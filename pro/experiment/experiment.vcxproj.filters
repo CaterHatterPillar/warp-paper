@@ -3,4 +3,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\experiment\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\experiment\stdafx.h" />
+  </ItemGroup>
 </Project>
