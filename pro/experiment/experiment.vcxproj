@@ -70,12 +70,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\experiment\main.cpp" />
+    <ClCompile Include="..\..\src\experiment\Dx.cpp" />
+    <ClCompile Include="..\..\src\experiment\Experiment.cpp" />
+    <ClCompile Include="..\..\src\experiment\Main.cpp" />
+    <ClCompile Include="..\..\src\experiment\winMain.cpp" />
     <ClCompile Include="..\..\src\experiment\UtilWin.cpp" />
+    <ClCompile Include="..\..\src\experiment\Win.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\experiment\Common.h" />
+    <ClInclude Include="..\..\src\experiment\CommonDx.h" />
+    <ClInclude Include="..\..\src\experiment\Dx.h" />
+    <ClInclude Include="..\..\src\experiment\Experiment.h" />
+    <ClInclude Include="..\..\src\experiment\Main.h" />
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
     <ClInclude Include="..\..\src\experiment\UtilWin.h" />
+    <ClInclude Include="..\..\src\experiment\Win.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

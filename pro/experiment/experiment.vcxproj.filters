@@ -1,11 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\src\experiment\main.cpp" />
-    <ClCompile Include="..\..\src\experiment\UtilWin.cpp" />
+    <ClCompile Include="..\..\src\experiment\winMain.cpp" />
+    <ClCompile Include="..\..\src\experiment\Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Dx.cpp">
+      <Filter>Experiment\Dx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Experiment.cpp">
+      <Filter>Experiment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\UtilWin.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Win.cpp">
+      <Filter>Win</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
-    <ClInclude Include="..\..\src\experiment\UtilWin.h" />
+    <ClInclude Include="..\..\src\experiment\Main.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Dx.h">
+      <Filter>Experiment\Dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Experiment.h">
+      <Filter>Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\UtilWin.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\CommonDx.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Win.h">
+      <Filter>Win</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{2e06071b-3fb0-47f7-81df-13fb4fe454b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experiment">
+      <UniqueIdentifier>{6dbba361-d760-485c-9b79-764f5942c5ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experiment\Dx">
+      <UniqueIdentifier>{172ba649-7faf-4b21-8e72-924bb791f841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{4b8743da-cdce-47ff-acb5-35c09a409349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{73965fb7-7687-4443-8dd3-e207c084d28e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win">
+      <UniqueIdentifier>{505c2580-9dfb-4c80-a140-8f2e9db977e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
