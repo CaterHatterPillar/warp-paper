@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\src\experiment\winMain.cpp" />
-    <ClCompile Include="..\..\src\experiment\Main.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\experiment\Dx.cpp">
       <Filter>Experiment\Dx</Filter>
     </ClCompile>
@@ -17,12 +13,10 @@
     <ClCompile Include="..\..\src\experiment\Win.cpp">
       <Filter>Win</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
-    <ClInclude Include="..\..\src\experiment\Main.h">
-      <Filter>Main</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\experiment\Dx.h">
       <Filter>Experiment\Dx</Filter>
     </ClInclude>
@@ -43,9 +37,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Main">
-      <UniqueIdentifier>{2e06071b-3fb0-47f7-81df-13fb4fe454b8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Experiment">
       <UniqueIdentifier>{6dbba361-d760-485c-9b79-764f5942c5ec}</UniqueIdentifier>
     </Filter>

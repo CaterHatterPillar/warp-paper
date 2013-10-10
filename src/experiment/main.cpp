@@ -1,24 +1,17 @@
 #include <stdafx.h>
 
-#include "Win.h"
-#include "Main.h"
+#include "Experiment.h"
 
-Main::Main( Win* p_win ) {
-	m_win = p_win;
-}
-Main::~Main() {
-	// Do nothing.
-}
-
-int Main::main( int argc, char *argv[] ) {
-	MSG msgWin = { 0 };
-	while( WM_QUIT!=msgWin.message ) { 
-		if( PeekMessage( &msgWin, NULL, 0, 0, PM_REMOVE ) ) {
-			TranslateMessage( &msgWin );
-			DispatchMessage( &msgWin );
-		} else {
-			// Do things.
-		}
+// Entry point to the application:
+int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow ) {
+	Experiment experiment( hInstance, hPrevInstance, lpCmdLine, nCmdShow );
+	HRESULT hr = experiment.init();
+	
+	int retVal = 0;
+	if( hr==S_OK ) {
+		retVal = experiment.run( 0, nullptr );
+	} else {
+		retVal = (int)hr;
 	}
-	return (int)msgWin.wParam;
+	return retVal;
 }
