@@ -18,6 +18,10 @@ public:
 
 	HRESULT init();
 
+	unsigned getWidth();
+	unsigned getHeight();
+	HWND getHWnd() const;
+
 	// This method is totally off limits. Hands off.
 	static LRESULT CALLBACK wWinProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
 protected:

@@ -2,6 +2,24 @@
 
 #include <UtilWin.h>
 
+Winfo::Winfo( HINSTANCE p_hInstance, HINSTANCE p_hInstancePrev, LPWSTR p_lpCmdLine, int p_nCmdShow ) {
+	hInstance		= p_hInstance;
+	hInstancePrev	= p_hInstancePrev;
+	lpCmdLine		= p_lpCmdLine;
+	nCmdShow		= p_nCmdShow;
+}
+Winfo::~Winfo() {
+	// Do nothing.
+}
+
+void MessageboxError( std::string p_what ) {
+	MessageBoxA(
+		NULL,
+		p_what.c_str(),
+		"Experiment Error!",
+		MB_OK | MB_ICONEXCLAMATION );
+}
+
 void GetLastErrorAndTerminateProcess( LPTSTR p_function ) {
 	// Retrieve the system error message for the last-error code:
 	LPVOID lpMsgBuf;

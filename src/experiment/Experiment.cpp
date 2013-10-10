@@ -4,16 +4,16 @@
 #include <Win.h>
 #include <Experiment.h>
 
-Experiment::Experiment( HINSTANCE p_hInstance, HINSTANCE p_hInstancePrev, LPWSTR p_lpCmdLine, int p_nCmdShow ) {
-	m_hInstance = p_hInstance;
-	m_hInstancePrev = p_hInstancePrev;
-	m_lpCmdLine = p_lpCmdLine;
-	m_nCmdShow = p_nCmdShow;
+Experiment::Experiment( Winfo* p_winfo ) {
+	m_winfo = p_winfo;
 	
 	m_dx = nullptr;
 	m_win = nullptr;
 }
 Experiment::~Experiment() {
+	assert( m_win );
+	assert( m_dx );
+	
 	delete m_win;
 	delete m_dx;
 }
@@ -28,9 +28,6 @@ HRESULT Experiment::init() {
 }
 
 int Experiment::run( int argc, char *argv[] ) {
-	Dx* dx = nullptr;
-	assert( dx );
-
 	MSG msgWin = { 0 };
 	while( WM_QUIT!=msgWin.message ) { 
 		if( PeekMessage( &msgWin, NULL, 0, 0, PM_REMOVE ) ) {
@@ -38,16 +35,20 @@ int Experiment::run( int argc, char *argv[] ) {
 			DispatchMessage( &msgWin );
 		} else {
 			// Do things.
+			m_dx->render();
 		}
 	}
 	return (int)msgWin.wParam;
 }
 
 HRESULT Experiment::initWin() {
-	m_win = new Win( m_hInstance, m_hInstancePrev, m_lpCmdLine, m_nCmdShow );
+	m_win = new Win( m_winfo->hInstance, m_winfo->hInstancePrev, m_winfo->lpCmdLine, m_winfo->nCmdShow );
 	return m_win->init();
 }
 HRESULT Experiment::initDx() {
 	HRESULT hr = S_OK;
+	m_dx = new Dx();
+	hr = m_dx->init( m_win );
+
 	return hr;
 }

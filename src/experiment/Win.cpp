@@ -23,6 +23,20 @@ HRESULT Win::init() {
 	return hr;
 }
 
+unsigned Win::getWidth() {
+	RECT rct; GetClientRect( m_hWnd, &rct );
+	unsigned width = rct.right - rct.left;
+	return width;
+}
+unsigned Win::getHeight() {
+	RECT rct; GetClientRect( m_hWnd, &rct );
+	unsigned height = rct.bottom - rct.top;
+	return height;
+}
+HWND Win::getHWnd() const {
+	return m_hWnd;
+}
+
 HRESULT Win::initWindow() {
 	HRESULT hr = E_FAIL;
 
@@ -39,8 +53,8 @@ HRESULT Win::initWindow() {
 
 	LPTSTR lastMethod = "RegisterClassEx";
 	if( RegisterClassEx( &wcex )!=0 ) { // Registers a window class for subsequent use in calls to the CreateWindow or CreateWindowEx function.
-		RECT rc = { 0, 0, g_windowWidth, g_windowHeight };
-		AdjustWindowRect( &rc, WS_OVERLAPPEDWINDOW, FALSE );
+		RECT rct = { 0, 0, g_windowWidth, g_windowHeight };
+		AdjustWindowRect( &rct, WS_OVERLAPPEDWINDOW, FALSE );
 
 		lastMethod = "CreateWindow";
 		m_hWnd = CreateWindow(
@@ -49,8 +63,8 @@ HRESULT Win::initWindow() {
 			WS_OVERLAPPEDWINDOW,
 			CW_USEDEFAULT,
 			CW_USEDEFAULT,
-			rc.right	- rc.left,
-			rc.bottom	- rc.top,
+			rct.right	- rct.left,
+			rct.bottom	- rct.top,
 			NULL,
 			NULL,
 			m_hInstance,

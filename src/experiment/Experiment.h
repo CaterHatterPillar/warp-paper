@@ -6,7 +6,7 @@ class Win;
 
 class Experiment {
 public:
-	Experiment( HINSTANCE p_hInstance, HINSTANCE p_hInstancePrev, LPWSTR p_lpCmdLine, int p_nCmdShow );
+	Experiment( Winfo* p_winfo );
 	~Experiment();
 	
 	HRESULT init();
@@ -22,11 +22,8 @@ private:
 	Win* m_win;
 	Dx* m_dx;
 
-	// Junk
-	HINSTANCE m_hInstance;
-	HINSTANCE m_hInstancePrev;
-	LPWSTR m_lpCmdLine;
-	int m_nCmdShow;
+	// Junk:
+	Winfo* m_winfo;
 };
 
 #endif // DV2549_EXPERIMENT_EXPERIMENT_H

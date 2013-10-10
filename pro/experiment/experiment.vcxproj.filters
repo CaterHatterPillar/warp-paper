@@ -14,6 +14,27 @@
       <Filter>Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\Main.cpp" />
+    <ClCompile Include="..\..\src\experiment\UtilDx.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Util.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\ExceptionExperiment.cpp">
+      <Filter>Error</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Fx.cpp">
+      <Filter>Experiment\Dx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Kernel.cpp">
+      <Filter>Experiment\Dx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\KernelCS.cpp">
+      <Filter>Experiment\Dx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\TimerDx.cpp">
+      <Filter>Experiment\Dx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
@@ -35,6 +56,28 @@
     <ClInclude Include="..\..\src\experiment\Win.h">
       <Filter>Win</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\experiment\UtilDx.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Util.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\ExceptionExperiment.h">
+      <Filter>Error</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Conf.h" />
+    <ClInclude Include="..\..\src\experiment\Fx.h">
+      <Filter>Experiment\Dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Kernel.h">
+      <Filter>Experiment\Dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\KernelCS.h">
+      <Filter>Experiment\Dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\TimerDx.h">
+      <Filter>Experiment\Dx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Experiment">
@@ -52,5 +95,16 @@
     <Filter Include="Win">
       <UniqueIdentifier>{505c2580-9dfb-4c80-a140-8f2e9db977e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Error">
+      <UniqueIdentifier>{9bf2fac9-765a-47ab-adde-d5da6323e8c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fxs">
+      <UniqueIdentifier>{03fd1e2e-093a-4516-a0ee-e0308cfd3c5a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\fxs\KernelTest.fx">
+      <Filter>fxs</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
