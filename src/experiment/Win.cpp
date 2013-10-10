@@ -1,7 +1,7 @@
 #include <stdafx.h>
 
-#include "Win.h"
-#include "UtilWin.h"
+#include <Win.h>
+#include <UtilWin.h>
 
 Win::Win( HINSTANCE	p_hInstance,
 		 HINSTANCE	p_hInstancePrev,

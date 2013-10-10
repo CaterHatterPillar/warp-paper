@@ -1,6 +1,6 @@
 #include <stdafx.h>
 
-#include "Experiment.h"
+#include <Experiment.h>
 
 // Entry point to the application:
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow ) {

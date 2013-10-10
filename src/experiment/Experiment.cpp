@@ -28,6 +28,9 @@ HRESULT Experiment::init() {
 }
 
 int Experiment::run( int argc, char *argv[] ) {
+	Dx* dx = nullptr;
+	assert( dx );
+
 	MSG msgWin = { 0 };
 	while( WM_QUIT!=msgWin.message ) { 
 		if( PeekMessage( &msgWin, NULL, 0, 0, PM_REMOVE ) ) {

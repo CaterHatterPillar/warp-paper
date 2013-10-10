@@ -3,6 +3,7 @@
 
 #include <windows.h>
 
-#include "CommonDx.h"
+#include <Common.h>
+#include <CommonDx.h>
 
 #endif // DV2549_EXPERIMENT_STDAFX_H

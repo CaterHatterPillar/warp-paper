@@ -1,6 +1,6 @@
 #include <stdafx.h>
 
-#include "UtilWin.h"
+#include <UtilWin.h>
 
 void GetLastErrorAndTerminateProcess( LPTSTR p_function ) {
 	// Retrieve the system error message for the last-error code:

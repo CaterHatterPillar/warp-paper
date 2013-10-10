@@ -1,6 +1,6 @@
 #include <stdafx.h>
 
-#include "Dx.h"
+#include <Dx.h>
 
 Dx::Dx() {
 

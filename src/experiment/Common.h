@@ -1,0 +1,6 @@
+#ifndef DV2549_EXPERIMENT_COMMON_H
+#define DV2549_EXPERIMENT_COMMON_H
+
+#include <cassert>
+
+#endif // DV2549_EXPERIMENT_COMMON_H
