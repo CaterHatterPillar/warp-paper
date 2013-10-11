@@ -18,14 +18,18 @@ bool Matrixgen::run() {
 	std::cout << "\n" << "---" << "\n" << "Matrixgen Utility" << "\n" << "---" << "\n";
 	bool success = true;
 
-	Matrix< int >* mA = new Matrix< int >( 100, 100 );
-	Matrix< int >* mB = new Matrix< int >( 100, 100 );
-	Matrix< int >* mC = new Matrix< int >( 100, 100 );
+	Matrix< int >* mA = new Matrix< int >( 200, 200 );
+	Matrix< int >* mB = new Matrix< int >( 200, 200 );
+	Matrix< int >* mC = new Matrix< int >( 200, 200 );
 	
 	Ampersand< int >* m_amp = new Ampersand< int >();
 	m_amp->matrixPopulate( mA, m_min, m_max );
 	m_amp->matrixPopulate( mB, m_min, m_max );
 	m_amp->matrixMultiply( mC, mA, mB );
+
+	//std::cout << std::endl << mA->toString() << std::endl << std::endl;
+	//std::cout << std::endl << mB->toString() << std::endl << std::endl;
+	//std::cout << std::endl << mC->toString() << std::endl << std::endl;
 
 	Printer< int >* m_printer = new Printer< int >( MatrixgenPrecisions_INTEGER, mA, mB, mC );
 	success = m_printer->print();

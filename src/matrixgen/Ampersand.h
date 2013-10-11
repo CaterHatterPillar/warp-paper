@@ -6,6 +6,8 @@ class Matrix;
 
 #include <amp_tinymt_rng.h>
 
+static const unsigned TileSize = 4;
+
 /*
 The constructor of Ampersand, as well as matrixPopulate - or any use of C++ AMP it seems - seems to cause memory leaks.
 I'm not sure what causes it, whether or not it is expected behaviour or if I've done something wrong.
@@ -62,22 +64,32 @@ public:
 
 		const unsigned rows = p_c->getNumRows();
 		const unsigned cols = p_c->getNumCols();
-		
-		T* a = p_a->get();
-		T* b = p_b->get();
-		T* c = p_c->get();
-
-		concurrency::array_view< T, 2 > iA( p_a->getNumRows(), p_a->getNumCols(), a ); 
-		concurrency::array_view< T, 2 > iB( p_b->getNumRows(), p_b->getNumCols(), b );
-		concurrency::array_view< T, 2 > ioC( p_c->getNumRows(), p_c->getNumCols(), c );
+		concurrency::array_view< T, 2 > iA( p_a->getNumRows(), p_a->getNumCols(), p_a->get() ); 
+		concurrency::array_view< T, 2 > iB( p_b->getNumRows(), p_b->getNumCols(), p_b->get() );
+		concurrency::array_view< T, 2 > ioC( p_c->getNumRows(), p_c->getNumCols(), p_c->get() );
 		parallel_for_each(
-			ioC.extent,
-			[=]( concurrency::index< 2 > idx ) restrict( amp ) {
-				int row = idx[ 0 ];
-				int col = idx[ 1 ];
-				for( unsigned i = 0; i < rows; i++ ) {
-					ioC[ idx ] += iA( row, i ) * iB( i, col );
+			ioC.extent.tile< TileSize, TileSize >(),
+			[=]( concurrency::tiled_index< TileSize, TileSize > tidx ) restrict( amp ) {
+				int row = tidx.local[ 0 ];
+				int col = tidx.local[ 1 ];	// Relative to tile.
+				int rowG = tidx.global[ 0 ];
+				int colG = tidx.global[ 1 ]; // Matrix index.
+
+				int product = 0;
+				for( unsigned i = 0; i < rows; i += TileSize ) {
+					// Cooperatively load shared block data:
+					tile_static int locA[ TileSize ][ TileSize ];
+					tile_static int locB[ TileSize ][ TileSize ];
+					locA[ row ][ col ] = iA( rowG, col + i );
+					locB[ row ][ col ] = iB( row + i, colG );
+					tidx.barrier.wait();
+
+					for( int k = 0; k < TileSize; k++ ) {
+						product += locA[ row ][ k ] * locB[ k ][ col ];
+					}
+					tidx.barrier.wait();
 				}
+				ioC[ tidx.global ] = product;
 			}
 		);
 		ioC.synchronize();
