@@ -9,14 +9,14 @@ class Matrix;
 template < class T >
 class Ampersand {
 public:
-	Ampersand( int p_seed ) {
-		m_seed = p_seed;
-
+	Ampersand() {
 		concurrency::accelerator default_device;
 		std::wcout << std::endl << L"Initializing C++ AMP with device: " << default_device.get_description() + L".";
 		if( default_device==concurrency::accelerator( concurrency::accelerator::direct3d_ref) ) {
 			std::cout << std::endl << "Warning. Running C++ AMP using a slow emulator.";
 		}
+
+		srand( time( 0 ) );
 	}
 	~Ampersand() {
 		// Do nothing.
@@ -29,12 +29,13 @@ public:
 		T** matrix = p_matrix->get();
 
 		// Initialize RNG:
+		long seed = rand();
 		const int rank = 2; // ?
 		concurrency::extent< rank > e_size( rows, cols );
-		tinymt_collection< rank > rng( e_size, m_seed );
+		tinymt_collection< rank > rng( e_size, seed );
 		char ref[50];
 		sprintf_s( ref, "%d", &matrix );
-		std::cout << std::endl << "C++ AMP RNG initialized with seed: " + Util::toString( m_seed ) + "." << std::endl << "Proceeding to generate random numbers for matrix: " + std::string( ref ) + ".";
+		std::cout << std::endl << "C++ AMP RNG initialized with seed: " + Util::toString( seed ) + "." << std::endl << "Proceeding to generate random numbers for matrix: " + std::string( ref ) + ".";
 	
 		concurrency::array_view< T, 2 > a( rows, cols, *matrix );
 		parallel_for_each(
@@ -61,7 +62,6 @@ public:
 	// http://amprng.codeplex.com/SourceControl/latest#test/main.cpp
 protected:
 private:
-	int m_seed;
 };
 
 #endif // DV2549_MATRIXGEN_AMPERSAND_H

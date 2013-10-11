@@ -12,8 +12,10 @@ int main( int argc, char* argv[] ) {
 	// 1. Get arguments.
 	// 2. Generate matrix.
 
-	unsigned arg = 10;
-	Matrixgen mgen( arg );
+	unsigned dim = 10;
+	unsigned min = 0;
+	unsigned max = 1000;
+	Matrixgen mgen( dim, min, max );
 	bool sucess = mgen.run();
 	return (int)sucess;
 }

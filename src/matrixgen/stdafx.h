@@ -1,12 +1,13 @@
 #ifndef DV2549_MATRIXGEN_STDAFX_H
 #define DV2549_MATRIXGEN_STDAFX_H
 
-#include <amp.h> // C++ AMP
-#include <amp_math.h>
+#include <amp.h>
+#include <time.h>
 #include <string>
 #include <cassert>
 #include <sstream>
 #include <iostream>
+#include <amp_math.h>
 
 #include <Util.h>
 #include <Common.h>

@@ -8,7 +8,7 @@ class Matrix;
 
 class Matrixgen {
 public:
-	Matrixgen( unsigned p_dim );
+	Matrixgen( unsigned p_dim, unsigned p_min, unsigned p_max );
 	~Matrixgen();
 
 	bool run();
@@ -18,6 +18,8 @@ protected:
 	void matrixSaveToDisk();
 private:
 	unsigned m_dim;
+	unsigned m_max;
+	unsigned m_min;
 
 	Matrix< int >* m_a;
 	Matrix< int >* m_b;

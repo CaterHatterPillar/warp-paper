@@ -20,6 +20,9 @@ T** MatrixAlloc( unsigned p_rows, unsigned p_cols ) {
 
 class Util {
 public:
+	Util();
+	~Util();
+
 	static std::string toString( int p_int );
 	static std::string toString( unsigned p_uint );
 
