@@ -11,6 +11,7 @@
     <ClCompile Include="..\..\src\matrixgen\Util.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\matrixgen\Conf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\matrixgen\stdafx.h" />
@@ -29,6 +30,10 @@
     <ClInclude Include="..\..\src\matrixgen\Ampersand.h">
       <Filter>Calc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\Printer.h">
+      <Filter>Printer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\Conf.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Calc">
@@ -39,6 +44,9 @@
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{1cdc51bf-e7a7-4b85-b335-a49b8b776afe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Printer">
+      <UniqueIdentifier>{02b9bd1e-df80-43dc-8850-4a4d8fd3b911}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -37,8 +37,7 @@ public:
 		long seed = rand();
 		concurrency::extent< 2 > e_size( rows, cols );
 		tinymt_collection< 2 > rng( e_size, seed );
-		char ref[50];
-		sprintf_s( ref, "%d", matrix );
+		char ref[50]; sprintf_s( ref, "%d", matrix );
 		std::cout << std::endl << "C++ AMP RNG initialized with seed: " + Util::toString( seed ) + "." << std::endl << "Proceeding to generate random numbers for matrix: " + std::string( ref ) + ".";
 	
 		concurrency::array_view< T, 2 > ioMatrix( rows, cols, matrix );
@@ -56,8 +55,11 @@ public:
 		ioMatrix.synchronize();
 	}
 
+	// Consider tiling this implementation.
 	template < class T >
 	void matrixMultiply( Matrix< T >* p_c, Matrix< T >* p_a, Matrix< T >* p_b ) {
+		std::cout << std::endl << "Compiling reference matrix C=AB.";
+
 		const unsigned rows = p_c->getNumRows();
 		const unsigned cols = p_c->getNumCols();
 		
@@ -84,5 +86,6 @@ protected:
 private:
 };
 // http://amprng.codeplex.com/SourceControl/latest#test/main.cpp
+// http://msdn.microsoft.com/en-us/library/hh873134.aspx
 
 #endif // DV2549_MATRIXGEN_AMPERSAND_H

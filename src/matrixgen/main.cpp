@@ -14,10 +14,10 @@ int main( int argc, char* argv[] ) {
 
 	unsigned dim = 10;
 	unsigned min = 0;
-	unsigned max = 10;
+	unsigned max = 1000;
 	Matrixgen mgen( dim, min, max );
 	bool sucess = mgen.run();
-	return (int)sucess;
+	return (int)!sucess;
 }
 
 /*

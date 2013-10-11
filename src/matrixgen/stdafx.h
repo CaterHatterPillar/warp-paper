@@ -6,6 +6,7 @@
 #include <string>
 #include <cassert>
 #include <sstream>
+#include <fstream>
 #include <iostream>
 #include <amp_math.h>
 
