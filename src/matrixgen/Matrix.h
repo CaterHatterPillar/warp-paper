@@ -9,10 +9,11 @@ public:
 		m_cols = p_cols;
 
 		m_ = MatrixAlloc< T >( p_rows, p_cols );
+		std::memset( m_, 0, sizeof( T ) * m_rows * m_cols );
 	}
 	~Matrix() {
 		assert( m_ );
-		delete[] m_;
+		MatrixFree( m_ );
 	}
 
 	T* get() const {
@@ -23,6 +24,17 @@ public:
 	}
 	unsigned getNumCols() const {
 		return m_cols;
+	}
+
+	std::string toString() {
+		std::string string = "\n";
+		for( int row = 0; row < m_rows; row++ ) {
+			for( int col = 0; col < m_cols; col++ ) {
+				string += Util::toString( m_[ row * m_rows + col ] ) + "  ";
+			}
+			string += "\n";
+		}
+		return string;
 	}
 protected:
 private:

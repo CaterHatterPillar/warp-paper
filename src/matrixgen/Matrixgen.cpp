@@ -16,29 +16,25 @@ Matrixgen::~Matrixgen() {
 bool Matrixgen::run() {
 	bool success = true;
 
-	Matrix< int >* m_a = new Matrix< int >(10,10);
-	Matrix< int >* m_b = new Matrix< int >(10,10);
-	Matrix< int >* m_c = new Matrix< int >(10,10);
+	Matrix< int >* mA = new Matrix< int >( 3 , 3 );
+	Matrix< int >* mB = new Matrix< int >( 3 , 3 );
+	Matrix< int >* mC = new Matrix< int >( 3 , 3 );
 	Ampersand< int >* m_amp = new Ampersand< int >();
 
-	m_amp->matrixPopulate( m_a, m_min, m_max );
-	m_amp->matrixPopulate( m_b, m_min, m_max );
+	m_amp->matrixPopulate( mA, m_min, m_max );
+	m_amp->matrixPopulate( mB, m_min, m_max );
+	m_amp->matrixMultiply( mC, mA, mB );
+
+	std::cout << mA->toString() << std::endl << std::endl;
+	std::cout << mB->toString() << std::endl << std::endl;
+	std::cout << mC->toString() << std::endl << std::endl;
 
 	getchar();
 
-	delete m_a;
-	delete m_b;
-	delete m_c;
+	delete mA;
+	delete mB;
+	delete mC;
 	delete m_amp;
 	
 	return success;
-}
-
-void Matrixgen::matrixPopulate() {
-}
-void Matrixgen::matrixCalculate() {
-
-}
-void Matrixgen::matrixSaveToDisk() {
-
 }

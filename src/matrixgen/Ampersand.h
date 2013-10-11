@@ -29,8 +29,8 @@ public:
 
 	template < class T >
 	void matrixPopulate( Matrix< T >* p_matrix, int p_min, int p_max ) {
-		unsigned rows = p_matrix->getNumRows();
-		unsigned cols = p_matrix->getNumCols();
+		const unsigned rows = p_matrix->getNumRows();
+		const unsigned cols = p_matrix->getNumCols();
 		T* matrix = p_matrix->get();
 
 		// Initialize RNG:
@@ -41,34 +41,48 @@ public:
 		sprintf_s( ref, "%d", matrix );
 		std::cout << std::endl << "C++ AMP RNG initialized with seed: " + Util::toString( seed ) + "." << std::endl << "Proceeding to generate random numbers for matrix: " + std::string( ref ) + ".";
 	
-		concurrency::array_view< T, 2 > a( rows, cols, matrix );
+		concurrency::array_view< T, 2 > ioMatrix( rows, cols, matrix );
 		parallel_for_each(
-			a.extent,
+			ioMatrix.extent,
 			[=]( concurrency::index< 2 > idx ) restrict( amp ) {
 				int row = idx[ 0 ];
 				int col = idx[ 1 ];
 		
 				auto t = rng[ idx ];
 				float random = t.next_single(); // Gives a floating point in-between 0-1.
-				a[ row ][ col ] = int( concurrency::precise_math::nearbyint( random * p_max + p_min ) );
+				ioMatrix[ row ][ col ] = int( concurrency::precise_math::nearbyint( random * p_max + p_min ) );
 			}
 		);
-		a.synchronize();
+		ioMatrix.synchronize();
 	}
-	// http://amprng.codeplex.com/SourceControl/latest#test/main.cpp
+
+	template < class T >
+	void matrixMultiply( Matrix< T >* p_c, Matrix< T >* p_a, Matrix< T >* p_b ) {
+		const unsigned rows = p_c->getNumRows();
+		const unsigned cols = p_c->getNumCols();
+		
+		T* a = p_a->get();
+		T* b = p_b->get();
+		T* c = p_c->get();
+
+		concurrency::array_view< T, 2 > iA( p_a->getNumRows(), p_a->getNumCols(), a ); 
+		concurrency::array_view< T, 2 > iB( p_b->getNumRows(), p_b->getNumCols(), b );
+		concurrency::array_view< T, 2 > ioC( p_c->getNumRows(), p_c->getNumCols(), c );
+		parallel_for_each(
+			ioC.extent,
+			[=]( concurrency::index< 2 > idx ) restrict( amp ) {
+				int row = idx[ 0 ];
+				int col = idx[ 1 ];
+				for( unsigned i = 0; i < rows; i++ ) {
+					ioC[ idx ] += iA( row, i ) * iB( i, col );
+				}
+			}
+		);
+		ioC.synchronize();
+	}
 protected:
 private:
 };
-
-/*
-// Temp debug-print:
-std::cout << std::endl;
-for (int col = 0; col < cols; col++) {
-for (int row = 0; row < rows; row++) {
-std::cout << matrix[ col * cols + row ] << "  ";
-}
-std::cout << "\n";
-}
-*/
+// http://amprng.codeplex.com/SourceControl/latest#test/main.cpp
 
 #endif // DV2549_MATRIXGEN_AMPERSAND_H

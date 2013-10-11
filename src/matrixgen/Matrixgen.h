@@ -13,9 +13,6 @@ public:
 
 	bool run();
 protected:
-	void matrixPopulate();
-	void matrixCalculate();
-	void matrixSaveToDisk();
 private:
 	unsigned m_dim;
 	unsigned m_max;
