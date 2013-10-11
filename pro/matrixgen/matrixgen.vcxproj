@@ -41,12 +41,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)..\bin\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\bin\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)..\src\$(ProjectName)\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\lib\$(ProjectName)\amp_rng-1.0\inc\;$(SolutionDir)..\src\$(ProjectName)\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\bin\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\bin\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)..\src\$(ProjectName)\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\lib\$(ProjectName)\amp_rng-1.0\inc\;$(SolutionDir)..\src\$(ProjectName)\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -54,6 +54,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Create</PrecompiledHeader>
+      <PreprocessorDefinitions>MATRIXGEN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -67,6 +68,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Create</PrecompiledHeader>
+      <PreprocessorDefinitions>MATRIXGEN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -75,10 +77,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\matrixgen\Common.cpp" />
     <ClCompile Include="..\..\src\matrixgen\main.cpp" />
+    <ClCompile Include="..\..\src\matrixgen\Matrixgen.cpp" />
+    <ClCompile Include="..\..\src\matrixgen\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_rand_collection.h" />
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_sobol_rng.h" />
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_tinymt_rng.h" />
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\xxamp_sobol_rng.h" />
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\xxamp_tinymt_precalc_dc.h" />
+    <ClInclude Include="..\..\src\matrixgen\Ampersand.h" />
+    <ClInclude Include="..\..\src\matrixgen\Common.h" />
+    <ClInclude Include="..\..\src\matrixgen\Matrix.h" />
+    <ClInclude Include="..\..\src\matrixgen\Matrixgen.h" />
     <ClInclude Include="..\..\src\matrixgen\stdafx.h" />
+    <ClInclude Include="..\..\src\matrixgen\Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

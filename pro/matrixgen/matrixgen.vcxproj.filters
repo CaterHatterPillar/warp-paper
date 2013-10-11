@@ -2,8 +2,61 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\src\matrixgen\main.cpp" />
+    <ClCompile Include="..\..\src\matrixgen\Matrixgen.cpp">
+      <Filter>Calc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\matrixgen\Common.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\matrixgen\Util.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\matrixgen\stdafx.h" />
+    <ClInclude Include="..\..\src\matrixgen\Matrixgen.h">
+      <Filter>Calc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\Matrix.h">
+      <Filter>Calc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\Util.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\Ampersand.h">
+      <Filter>Calc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_rand_collection.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_sobol_rng.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_tinymt_rng.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\xxamp_sobol_rng.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\xxamp_tinymt_precalc_dc.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Calc">
+      <UniqueIdentifier>{2af68c84-c65d-4a7a-8590-b0facd81ec31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{900e9d86-8e1f-4023-9499-6d961044a0e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{1cdc51bf-e7a7-4b85-b335-a49b8b776afe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{52b65f44-ceb9-4012-b984-1a7651a8f74d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
