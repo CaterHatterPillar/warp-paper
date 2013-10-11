@@ -2,6 +2,7 @@
 #define DV2549_MATRIXGEN_STDAFX_H
 
 #include <amp.h> // C++ AMP
+#include <amp_math.h>
 #include <string>
 #include <cassert>
 #include <sstream>

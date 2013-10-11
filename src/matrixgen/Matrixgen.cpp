@@ -8,11 +8,11 @@
 Matrixgen::Matrixgen( unsigned p_dim ) {
 	m_dim = p_dim;
 
-	m_a = new Matrix< float >(10,10);//( p_dim, p_dim );
-	m_b = new Matrix< float >(10,10);//( p_dim, p_dim );
-	m_c = new Matrix< float >(10,10);//( p_dim, p_dim );
+	m_a = new Matrix< int >(10,10);//( p_dim, p_dim );
+	m_b = new Matrix< int >(10,10);//( p_dim, p_dim );
+	m_c = new Matrix< int >(10,10);//( p_dim, p_dim );
 
-	m_amp = new Ampersand< float >( time( NULL ) );
+	m_amp = new Ampersand< int >( time( NULL ) );
 }
 Matrixgen::~Matrixgen() {
 	assert( m_a );

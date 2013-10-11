@@ -19,11 +19,12 @@ protected:
 private:
 	unsigned m_dim;
 
-	Matrix< float >* m_a;
-	Matrix< float >* m_b;
-	Matrix< float >* m_c;
+	Matrix< int >* m_a;
+	Matrix< int >* m_b;
+	Matrix< int >* m_c;
 
-	Ampersand< float >* m_amp;
+	Ampersand< int >* m_amp;
 };
+// http://msdn.microsoft.com/en-us/library/hh873134.aspx
 
 #endif // DV2549_MATRIXGEN_MATRIXGEN_H

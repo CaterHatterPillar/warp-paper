@@ -55,6 +55,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PreprocessorDefinitions>MATRIXGEN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -69,6 +70,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PreprocessorDefinitions>MATRIXGEN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -83,11 +85,6 @@
     <ClCompile Include="..\..\src\matrixgen\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_rand_collection.h" />
-    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_sobol_rng.h" />
-    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\amp_tinymt_rng.h" />
-    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\xxamp_sobol_rng.h" />
-    <ClInclude Include="..\..\lib\matrixgen\amp_rng-1.0\inc\xxamp_tinymt_precalc_dc.h" />
     <ClInclude Include="..\..\src\matrixgen\Ampersand.h" />
     <ClInclude Include="..\..\src\matrixgen\Common.h" />
     <ClInclude Include="..\..\src\matrixgen\Matrix.h" />

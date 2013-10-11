@@ -29,11 +29,3 @@ result = 1;
 }
 return result;
 */
-
-/*
-accelerator default_device;
-std::wcout << L"Using device : " << default_device.get_description() << std::endl;
-if (default_device == accelerator(accelerator::direct3d_ref))
-std::cout << "WARNING!! Running on very slow emulator! Only use this accelerator for debugging." << std::endl;
-
-*/

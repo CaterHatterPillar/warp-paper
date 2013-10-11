@@ -44,8 +44,8 @@ public:
 				int col = idx[ 1 ];
 
 				auto t = rng[ idx ];
-				float random = t.next_single();
-				a[ idx ] = random;
+				float random = t.next_single(); // Gives a floating point in-between 0-1.
+				a[ idx ] = int( concurrency::precise_math::nearbyint( random * p_max + p_min ) );
 			}
 		);
 		a.synchronize();
