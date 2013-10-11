@@ -20,12 +20,6 @@ private:
 	unsigned m_dim;
 	unsigned m_max;
 	unsigned m_min;
-
-	Matrix< int >* m_a;
-	Matrix< int >* m_b;
-	Matrix< int >* m_c;
-
-	Ampersand< int >* m_amp;
 };
 // http://msdn.microsoft.com/en-us/library/hh873134.aspx
 

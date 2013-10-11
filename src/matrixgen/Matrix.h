@@ -12,13 +12,10 @@ public:
 	}
 	~Matrix() {
 		assert( m_ );
-		for( unsigned i = 0; i < m_cols; i++ ) {
-			delete[] m_[ i ];
-		}
 		delete[] m_;
 	}
 
-	T** get() const {
+	T* get() const {
 		return m_;
 	}
 	unsigned getNumRows() const {
@@ -29,7 +26,7 @@ public:
 	}
 protected:
 private:
-	T** m_;
+	T* m_;
 	unsigned m_rows;
 	unsigned m_cols;
 };

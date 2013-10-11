@@ -9,13 +9,15 @@ void CrudeMemoryLeakDetection();
 #endif // MATRIXGEN_DEBUG
 
 template < class T >
-T** MatrixAlloc( unsigned p_rows, unsigned p_cols ) {
-	T** matrix;
-	matrix = (T**)calloc( p_cols, sizeof( T* ) );
-	for( unsigned i = 0; i < p_cols; i++ ) {
-		matrix[ i ] = (T*)calloc( p_rows, sizeof( T ) );
-	}
+T* MatrixAlloc( unsigned p_rows, unsigned p_cols ) {
+	T* matrix;
+	matrix = (T*)calloc( p_rows * p_cols, sizeof( T ) );
+
 	return matrix;
+}
+template < class T >
+void MatrixFree( T* p_matrix ) {
+	free( p_matrix );
 }
 
 class Util {
