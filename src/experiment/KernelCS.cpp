@@ -12,7 +12,7 @@ KernelCS::~KernelCS() {
 
 HRESULT KernelCS::init( ID3D11Device* p_device ) {
 	HRESULT hr = Kernel::init( p_device );
-	if( hr==S_OK ) {
+	if( SUCCEEDED( hr ) ) {
 		hr = p_device->CreateComputeShader( 
 			m_blob->GetBufferPointer(),
 			m_blob->GetBufferSize(),

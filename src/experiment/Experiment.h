@@ -11,7 +11,7 @@ public:
 	
 	HRESULT init();
 
-	// Consider remoing the Windows message loop, as time is optimally spent entirely on the experiment
+	// Consider removing the Windows message loop, as time is optimally spent entirely on the experiment
 	// and not on listening to keystrokes, etc.
 	int run( int argc, char *argv[] );
 protected:

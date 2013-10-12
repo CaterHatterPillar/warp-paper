@@ -32,14 +32,14 @@ HRESULT Dx::init( Win* p_win ) {
 	m_win = p_win;
 	
 	hr = initD3D( p_win );
-	if( hr==S_OK ) {
+	if( SUCCEEDED( hr ) ) {
 		hr = initBackbuffer();
 	}
-	if( hr==S_OK ) {
+	if( SUCCEEDED( hr ) ) {
 		m_fx = new Fx();
 		hr = m_fx->init( m_device );
 	}
-	if( hr==S_OK ) {
+	if( SUCCEEDED( hr ) ) {
 		m_timer = new TimerDx();
 		hr = m_timer->init( m_device );
 	}
@@ -93,7 +93,7 @@ HRESULT Dx::initBackbuffer() {
 	HRESULT hr = S_OK;
 
 	hr = m_swapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), (LPVOID*)&m_backbufferTex );
-	if( hr==S_OK ) {
+	if( SUCCEEDED( hr ) ) {
 		hr = m_device->CreateUnorderedAccessView( m_backbufferTex, NULL, &m_backbufferUav );
 	}
 

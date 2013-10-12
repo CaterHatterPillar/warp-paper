@@ -8,6 +8,15 @@
 void CrudeMemoryLeakDetection();
 #endif // EXPERIMENT_DEBUG
 
+template < class T >
+T* MatrixAlloc( unsigned p_rows, unsigned p_cols ) {
+	return (T*)calloc( p_rows * p_cols, sizeof( T ) );
+}
+template < class T >
+void MatrixFree( T* p_matrix ) {
+	free( p_matrix );
+}
+
 class Util {
 public:
 	static std::string toString( int p_int );

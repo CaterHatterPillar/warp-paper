@@ -1,6 +1,9 @@
 #ifndef DV2549_EXPERIMENT_UTILWIN_H
 #define DV2549_EXPERIMENT_UTILWIN_H
 
+#define HRESULT_TO_BOOL( hr )	( SUCCEEDED( hr ) )?	true : false;
+#define BOOL_TO_HRESULT( boll ) ( boll==true )? S_OK : S_FALSE;
+
 #include <strsafe.h>
 
 struct Winfo {

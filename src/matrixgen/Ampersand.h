@@ -29,6 +29,7 @@ public:
 		// Do nothing.
 	}
 
+	// Tile this implementation:
 	template < class T >
 	void matrixPopulate( Matrix< T >* p_matrix, int p_min, int p_max ) {
 		const unsigned rows = p_matrix->getNumRows();
@@ -57,7 +58,6 @@ public:
 		ioMatrix.synchronize();
 	}
 
-	// Consider tiling this implementation.
 	template < class T >
 	void matrixMultiply( Matrix< T >* p_c, Matrix< T >* p_a, Matrix< T >* p_b ) {
 		std::cout << std::endl << "Compiling reference matrix C=AB.";

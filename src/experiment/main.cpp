@@ -13,7 +13,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	HRESULT hr = experiment.init();
 	
 	int retVal = 0;
-	if( hr==S_OK ) {
+	if( SUCCEEDED( hr ) ) {
 		retVal = experiment.run( 0, nullptr );
 	} else {
 		retVal = (int)hr;

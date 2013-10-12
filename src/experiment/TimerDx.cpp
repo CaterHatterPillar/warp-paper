@@ -19,10 +19,10 @@ HRESULT TimerDx::init( ID3D11Device* p_device ) {
 	HRESULT hr = p_device->CreateQuery( &desc, &m_disjoint );
 
 	desc.Query = D3D11_QUERY_TIMESTAMP;
-	if( hr==S_OK ) {
+	if( SUCCEEDED( hr ) ) {
 		p_device->CreateQuery( &desc, &m_start );
 	}
-	if( hr==S_OK ) {
+	if( SUCCEEDED( hr ) ) {
 		p_device->CreateQuery( &desc, &m_stop );
 	}
 	return hr;

@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\experiment\Conf.cpp" />
     <ClCompile Include="..\..\src\experiment\Dx.cpp" />
     <ClCompile Include="..\..\src\experiment\ExceptionExperiment.cpp" />
     <ClCompile Include="..\..\src\experiment\Experiment.cpp" />
@@ -96,8 +97,10 @@
     <ClCompile Include="..\..\src\experiment\Win.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\experiment\Case.h" />
     <ClInclude Include="..\..\src\experiment\Common.h" />
     <ClInclude Include="..\..\src\experiment\CommonDx.h" />
+    <ClInclude Include="..\..\src\experiment\CommonWin.h" />
     <ClInclude Include="..\..\src\experiment\Conf.h" />
     <ClInclude Include="..\..\src\experiment\Dx.h" />
     <ClInclude Include="..\..\src\experiment\ExceptionExperiment.h" />
@@ -105,6 +108,8 @@
     <ClInclude Include="..\..\src\experiment\Fx.h" />
     <ClInclude Include="..\..\src\experiment\Kernel.h" />
     <ClInclude Include="..\..\src\experiment\KernelCS.h" />
+    <ClInclude Include="..\..\src\experiment\Matrix.h" />
+    <ClInclude Include="..\..\src\experiment\Reader.h" />
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
     <ClInclude Include="..\..\src\experiment\TimerDx.h" />
     <ClInclude Include="..\..\src\experiment\Util.h" />

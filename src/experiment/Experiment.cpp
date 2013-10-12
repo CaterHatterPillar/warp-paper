@@ -2,6 +2,8 @@
 
 #include <Dx.h>
 #include <Win.h>
+#include <Case.h>
+#include <Reader.h>
 #include <Experiment.h>
 
 Experiment::Experiment( Winfo* p_winfo ) {
@@ -20,14 +22,22 @@ Experiment::~Experiment() {
 
 HRESULT Experiment::init() {
 	HRESULT hr = S_OK;
-	hr = initWin();
-	if( hr==S_OK ) {
+
+	// Initialize dx:
+	if( SUCCEEDED( hr ) ) {
+		hr = initWin();
+	}
+	if( SUCCEEDED( hr ) ) {
 		hr = initDx();
 	}
 	return hr;
 }
 
 int Experiment::run( int argc, char *argv[] ) {
+	// Initialize case data:
+	Case< int > _case;
+	Reader< int >::loadCase( _case ); // test
+
 	MSG msgWin = { 0 };
 	while( WM_QUIT!=msgWin.message ) { 
 		if( PeekMessage( &msgWin, NULL, 0, 0, PM_REMOVE ) ) {

@@ -1,1 +1,6 @@
 # .gitignore
+
+# At the moment, we ignore .mxg-files.
+# However, during the actual experiment, it may be 
+# a good idea to upload these for consistency.
+*.mxg

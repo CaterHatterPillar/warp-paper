@@ -35,6 +35,9 @@
     <ClCompile Include="..\..\src\experiment\TimerDx.cpp">
       <Filter>Experiment\Dx</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Conf.cpp">
+      <Filter>Conf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
@@ -65,7 +68,6 @@
     <ClInclude Include="..\..\src\experiment\ExceptionExperiment.h">
       <Filter>Error</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\experiment\Conf.h" />
     <ClInclude Include="..\..\src\experiment\Fx.h">
       <Filter>Experiment\Dx</Filter>
     </ClInclude>
@@ -77,6 +79,21 @@
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\TimerDx.h">
       <Filter>Experiment\Dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Reader.h">
+      <Filter>Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Matrix.h">
+      <Filter>Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Case.h">
+      <Filter>Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\CommonWin.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Conf.h">
+      <Filter>Conf</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +117,9 @@
     </Filter>
     <Filter Include="fxs">
       <UniqueIdentifier>{03fd1e2e-093a-4516-a0ee-e0308cfd3c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Conf">
+      <UniqueIdentifier>{56654049-0cbf-446c-bca1-f2ed450bd2cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
