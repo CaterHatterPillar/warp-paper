@@ -2,32 +2,26 @@
 
 #include <Matrixgen.h>
 
-// static const unsigned NumExpectedArgs = 1;
-
-int main( int argc, char* argv[] ) {
+void MemLeakDetect() {
 #ifdef MATRIXGEN_DEBUG
 	CrudeMemoryLeakDetection();
 #endif // MATRIXGEN_DEBUG
-
-	// 1. Get arguments.
-	// 2. Generate matrix.
-
-	unsigned dim = 4;
-	unsigned min = 0;
-	unsigned max = 10;
-	Matrixgen mgen( dim, min, max );
-	bool sucess = mgen.run();
-	return (int)!sucess;
 }
 
-/*
-int result = 0;
-unsigned numExpectedArgs = NumExpectedArgs + 1; // First argument is the command invoking application.
-if( argc==numExpectedArgs ) {
-// Generate matrix.
-} else {
-std::cerr << "Usage: " << argv[ 0 ] << " WIDTH" << std::endl;
-result = 1;
+int main( int argc, char* argv[] ) {
+	MemLeakDetect();
+
+	int result = 1;
+	unsigned numExpectedArgs = 4; // First argument is the command invoking application.
+	if( argc==numExpectedArgs ) {
+		unsigned dim = atoi( argv[ 1 ] );
+		unsigned min = atoi( argv[ 2 ] );
+		unsigned max = atoi( argv[ 3 ] );
+
+		Matrixgen mgen( dim, min, max );
+		result = (int)!mgen.run();
+	} else {
+		std::cerr << "Usage: " << argv[ 0 ] << " DIM MIN MAX" << std::endl;
+	}
+	return result;
 }
-return result;
-*/
