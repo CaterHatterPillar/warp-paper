@@ -5,6 +5,7 @@
 #include <Win.h>
 #include <Case.h>
 #include <Reader.h>
+#include <Printer.h>
 #include <Inspector.h> // Get rid of these includes somehow.
 
 template < class T >
@@ -36,6 +37,9 @@ public:
 		// Perform matrix multiplication of specified case using DirectCompute:
 		m_dx->run();
 
+		Printer< T > printer( MatrixgenPrecisions_INTEGER, m_case ); // temp precision
+		bool sucessfulPrint = printer.print();
+
 		// Compare result to reference matrix compiled by C++ AMP:
 		Inspection inspection; ZERO_MEM( inspection );
 		Inspector< T > inspector( m_case );
@@ -64,6 +68,5 @@ private:
 #endif // DV2549_EXPERIMENT_EXPERIMENT_H
 
 /*#ifdef EXPERIMENT_DEBUG
-		Printer< int > printer( MatrixgenPrecisions_INTEGER, m_case );
-		bool sucessfulPrint = printer.print();
+		
 #endif // EXPERIMENT_DEBUG*/

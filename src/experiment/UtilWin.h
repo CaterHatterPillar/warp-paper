@@ -1,8 +1,8 @@
 #ifndef DV2549_EXPERIMENT_UTILWIN_H
 #define DV2549_EXPERIMENT_UTILWIN_H
 
-#define HRESULT_TO_BOOL( hr )	( SUCCEEDED( hr ) )?	true : false;
-#define BOOL_TO_HRESULT( boll ) ( boll==true )? S_OK : S_FALSE;
+#define HRESULT_TO_BOOL( hr ) ( SUCCEEDED( hr ) )? true : false;
+#define BOOL_TO_HRESULT( boll ) ( boll==true )?	S_OK : S_FALSE;
 
 #include <strsafe.h>
 
@@ -22,5 +22,6 @@ private:
 void MessageboxError( std::string p_what );
 
 void GetLastErrorAndTerminateProcess( LPTSTR p_function );
+void TerminateProcess();
 
 #endif // DV2549_EXPERIMENT_UTILWIN_H

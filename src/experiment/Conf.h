@@ -4,16 +4,9 @@
 #include <string>
 #include <windows.h> // Get rid of these.
 
-// This is terrible. Fix.
-#ifdef EXPERIMENT_DEBUG
-static const LPCWSTR PathKernelTest = L"../../bin/experiment/Debug/KernelTest.cso";
-static const LPCWSTR PathKernelMult = L"../../bin/experiment/Debug/KernelMult.cso";
-#else
-static const LPCWSTR PathKernelTest = L"../../bin/experiment/Release/KernelTest.cso";
-static const LPCWSTR PathKernelMult = L"../../bin/experiment/Release/KernelMult.cso";
-#endif // EXPERIMENT_DEBUG
+static const LPCWSTR PathKernelMult = L"KernelMult.cso";
 
-static const std::string g_mxgPath = "../../mxg/";
+static const std::string g_mxgPath = "../../../mxg/"; // Path to mxg-dir.
 static const std::string g_mxgA = "a.mxg";
 static const std::string g_mxgB = "b.mxg";
 static const std::string g_mxgC = "c.mxg";
@@ -24,3 +17,12 @@ enum MatrixgenPrecisions {
 };
 
 #endif // DV2549_EXPERIMENT_CONF_H
+
+/*
+// This is terrible. Fix.
+#ifdef EXPERIMENT_DEBUG
+static const LPCWSTR PathKernelMult = L"../../bin/experiment/Debug/KernelMult.cso";
+#else
+static const LPCWSTR PathKernelMult = L"../../bin/experiment/Release/KernelMult.cso";
+#endif // EXPERIMENT_DEBUG
+*/

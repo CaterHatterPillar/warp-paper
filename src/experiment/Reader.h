@@ -48,6 +48,8 @@ private:
 
 			matrix = new Matrix< T >( m, rows, cols );
 			MatrixFree( m ); // Matrix copies the passed data, so be sure to free memory.
+		} else {
+			MessageboxError( p_pathMxg + " not found!" );
 		}
 
 		return matrix;

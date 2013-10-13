@@ -18,6 +18,7 @@ void MessageboxError( std::string p_what ) {
 		p_what.c_str(),
 		"Experiment Error!",
 		MB_OK | MB_ICONEXCLAMATION );
+	TerminateProcess();
 }
 
 void GetLastErrorAndTerminateProcess( LPTSTR p_function ) {
@@ -52,6 +53,10 @@ void GetLastErrorAndTerminateProcess( LPTSTR p_function ) {
 	LocalFree(lpDisplayBuf);
 
 	// Finally, exit the responsible process:
+	ExitProcess(dw); 
+}
+void TerminateProcess() {
+	DWORD dw = GetLastError(); 
 	ExitProcess(dw); 
 }
 // http://msdn.microsoft.com/en-us/library/windows/desktop/ms680582%28v=vs.85%29.aspx
