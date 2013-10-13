@@ -35,7 +35,7 @@ public:
 	// Obs, should rather return whether or not execution was sucessful - and write results to file.
 	int run( int argc, char *argv[] ) {
 		// Perform matrix multiplication of specified case using DirectCompute:
-		m_dx->run();
+		m_case.ms = m_dx->run();
 
 		// Compare result to reference matrix compiled by C++ AMP:
 		Inspector< T > inspector( m_case );

@@ -64,17 +64,15 @@ public:
 		}
 		return hr;
 	}
-	void run() {
-		// Set shader
+	double run() {
+		// Set resources:
 		m_cogFx->getKernel()->set( m_d3d.devcon );
 
-		// Set resources
 		ID3D11ShaderResourceView* srvs[ 2 ] = { m_srvA->getSrv(), m_srvB->getSrv() };
 		ID3D11UnorderedAccessView* uavs[ 1 ] = { m_uavC->getUav() };
 		m_d3d.devcon->CSSetShaderResources( 0, 2, srvs );
 		m_d3d.devcon->CSSetUnorderedAccessViews( 0, 1, uavs, NULL );
 
-		// Update and set cb
 		CbMatrixProperties cb;
 		cb.aRows = m_case->a->getNumRows();
 		cb.aCols = m_case->a->getNumCols();
@@ -85,15 +83,19 @@ public:
 		m_cogCb->updateMatrixProps( m_d3d.devcon, cb );
 		m_cogCb->setMatrixProps( m_d3d.devcon );
 
-		// Be sure to time the dispatch
+		// Time and dispatch kernel:
+		m_timer->start( m_d3d.devcon );
 		m_d3d.devcon->Dispatch( m_case->a->getNumRows(), m_case->b->getNumCols(), 1 );
+		m_timer->stop( m_d3d.devcon );
 
-		// Retrieve the data
+		// Retrieve the data:
 		m_d3d.devcon->CopyResource( m_bufC->getBuf(), m_uavC->getBuf() );
 		D3D11_MAPPED_SUBRESOURCE mapRsrc;
 		m_d3d.devcon->Map( m_bufC->getBuf(), 0, D3D11_MAP_READ, 0, &mapRsrc );
 		m_case->c = new Matrix< T >( (T*)mapRsrc.pData, m_case->ref->getNumRows(), m_case->ref->getNumRows() );
 		m_d3d.devcon->Unmap( m_bufC->getBuf(), 0 );
+
+		return m_timer->time( m_d3d.devcon );
 	}
 protected:
 	HRESULT initD3D(  Win* p_win ) {

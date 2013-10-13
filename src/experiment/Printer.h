@@ -62,7 +62,7 @@ protected:
 			unsigned rows = m_case->c->getNumRows();
 			unsigned cols = m_case->c->getNumCols();
 
-			long ms = m_case->ms;
+			double ms = m_case->ms;
 			unsigned precision = (int)m_precision;
 			bool equalToRef = m_case->equalToRef;
 			
