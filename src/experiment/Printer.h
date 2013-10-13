@@ -1,6 +1,8 @@
 #ifndef DV2549_EXPERIMENT_PRINTER_H
 #define DV2549_EXPERIMENT_PRINTER_H
 
+#include <Case.h>
+
 template < class T >
 class Printer {
 public:
