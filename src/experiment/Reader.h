@@ -20,9 +20,9 @@ public:
 		Matrix< T >* mB = loadMxg( g_mxgPath + g_mxgB );
 		Matrix< T >* mRef = loadMxg( g_mxgPath + g_mxgRef );
 		if( mA!=nullptr && mB!=nullptr && mRef!=nullptr ) {
-			io_case.m_a = mA;
-			io_case.m_b = mB;
-			io_case.m_ref = mRef;
+			io_case.a = mA;
+			io_case.b = mB;
+			io_case.ref = mRef;
 			validCase = true;
 		}
 		return validCase;

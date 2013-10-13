@@ -37,13 +37,12 @@ public:
 		// Perform matrix multiplication of specified case using DirectCompute:
 		m_dx->run();
 
+		// Compare result to reference matrix compiled by C++ AMP:
+		Inspector< T > inspector( m_case );
+		bool isEqual = inspector.inspect();
+
 		Printer< T > printer( MatrixgenPrecisions_INTEGER, m_case ); // temp precision
 		bool sucessfulPrint = printer.print();
-
-		// Compare result to reference matrix compiled by C++ AMP:
-		Inspection inspection; ZERO_MEM( inspection );
-		Inspector< T > inspector( m_case );
-		bool isEqual = inspector.inspect( inspection );
 
 		return !isEqual;
 	}

@@ -15,9 +15,20 @@ public:
 	}
 
 	bool print() {
+		bool sucess = true;
+#ifdef EXPERIMENT_DEBUG
+		sucess = printC();
+#endif // EXPERIMENT_DEBUG
+		if( sucess==true ) {
+			sucess = printRes();
+		}
+		return sucess;
+	}
+protected:
+	bool printC() {
 		std::string filename = g_mxgC;
 
-		Matrix< T >* matrix = m_case->m_c;
+		Matrix< T >* matrix = m_case->c;
 
 		bool sucess = true;
 		std::ofstream mxg;
@@ -33,14 +44,36 @@ public:
 			for( unsigned i = 0; i<numElements; i++ ) {
 				mxg << "\n" << m[ i ];
 			}
+			mxg.close();
 		} else {
+			throw ExceptionExperiment( "Could not open " + g_mxgPath + filename + " for writing." );
 			sucess = false;
 		}
-		mxg.close();
 
 		return sucess;
 	}
-protected:
+	bool printRes() {
+		std::string filename = "res.res";
+		
+		bool success = true;
+		std::ofstream res;
+		res.open( g_resPath + filename );
+		if( res.is_open()==true ) {
+			unsigned rows = m_case->c->getNumRows();
+			unsigned cols = m_case->c->getNumCols();
+
+			long ms = m_case->ms;
+			unsigned precision = (int)m_precision;
+			bool equalToRef = m_case->equalToRef;
+			
+			res << (int)equalToRef << "\n" << ms << "\n" << precision << "\n" << rows << "\n" << cols;
+			res.close();
+		} else {
+			throw ExceptionExperiment( "Could not open " + g_resPath + filename + " for writing." );
+			success = false;
+		}
+		return success;
+	}
 private:
 	MatrixgenPrecisions m_precision;
 	Case< T >* m_case;

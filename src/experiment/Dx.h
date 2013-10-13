@@ -76,23 +76,23 @@ public:
 
 		// Update and set cb
 		CbMatrixProperties cb;
-		cb.aRows = m_case->m_a->getNumRows();
-		cb.aCols = m_case->m_a->getNumCols();
-		cb.bRows = m_case->m_b->getNumRows();
-		cb.bCols = m_case->m_b->getNumCols();
-		cb.cRows = m_case->m_ref->getNumRows();
-		cb.cCols = m_case->m_ref->getNumCols();
+		cb.aRows = m_case->a->getNumRows();
+		cb.aCols = m_case->a->getNumCols();
+		cb.bRows = m_case->b->getNumRows();
+		cb.bCols = m_case->b->getNumCols();
+		cb.cRows = m_case->ref->getNumRows();
+		cb.cCols = m_case->ref->getNumCols();
 		m_cogCb->updateMatrixProps( m_d3d.devcon, cb );
 		m_cogCb->setMatrixProps( m_d3d.devcon );
 
 		// Be sure to time the dispatch
-		m_d3d.devcon->Dispatch( m_case->m_a->getNumRows(), m_case->m_b->getNumCols(), 1 );
+		m_d3d.devcon->Dispatch( m_case->a->getNumRows(), m_case->b->getNumCols(), 1 );
 
 		// Retrieve the data
 		m_d3d.devcon->CopyResource( m_bufC->getBuf(), m_uavC->getBuf() );
 		D3D11_MAPPED_SUBRESOURCE mapRsrc;
 		m_d3d.devcon->Map( m_bufC->getBuf(), 0, D3D11_MAP_READ, 0, &mapRsrc );
-		m_case->m_c = new Matrix< T >( (T*)mapRsrc.pData, m_case->m_ref->getNumRows(), m_case->m_ref->getNumRows() );
+		m_case->c = new Matrix< T >( (T*)mapRsrc.pData, m_case->ref->getNumRows(), m_case->ref->getNumRows() );
 		m_d3d.devcon->Unmap( m_bufC->getBuf(), 0 );
 	}
 protected:
@@ -109,9 +109,9 @@ protected:
 		return hr;
 	}
 	HRESULT initBuf() {
-		Matrix< T >* mA = m_case->m_a;
-		Matrix< T >* mB = m_case->m_b;
-		Matrix< T >* mRef = m_case->m_ref;
+		Matrix< T >* mA = m_case->a;
+		Matrix< T >* mB = m_case->b;
+		Matrix< T >* mRef = m_case->ref;
 
 		m_srvA = new BufSrv< T >( mA->get(), mA->getNum() );
 		HRESULT hr = m_srvA->init( m_d3d.device );

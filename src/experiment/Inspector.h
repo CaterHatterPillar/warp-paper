@@ -1,12 +1,6 @@
 #ifndef DV2549_EXPERIMENT_INSPECTOR_H
 #define DV2549_EXPERIMENT_INSPECTOR_H
 
-struct Inspection {
-	bool isEqual;
-
-	// standard deviation... etc.
-};
-
 template < class T >
 class Inspector {
 public:
@@ -17,20 +11,20 @@ public:
 		// Do nothing.
 	}
 
-	bool inspect( Inspection& io_inspection ) {
+	bool inspect() {
 		bool isEqual = false;
 		
-		T* m1 = m_case->m_ref->get();
-		T* m2 = m_case->m_c->get();
-		unsigned rows = m_case->m_ref->getNumRows();
-		unsigned cols = m_case->m_ref->getNumCols();
+		T* m1 = m_case->ref->get();
+		T* m2 = m_case->c->get();
+		unsigned rows = m_case->ref->getNumRows();
+		unsigned cols = m_case->ref->getNumCols();
 
 		unsigned size = rows * cols * sizeof( T );
 		int comparison = memcmp( m1, m2, size );
 		if( comparison==0 ) {
 			isEqual = true;
 		}
-		io_inspection.isEqual = isEqual;
+		m_case->equalToRef = isEqual;
 
 		return isEqual;
 	}

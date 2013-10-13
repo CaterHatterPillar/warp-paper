@@ -1,10 +1,9 @@
 #ifndef DV2549_EXPERIMENT_CONF_H
 #define DV2549_EXPERIMENT_CONF_H
 
-#include <string>
-#include <windows.h> // Get rid of these.
-
 static const LPCWSTR PathKernelMult = L"KernelMult.cso";
+
+static const std::string g_resPath = "../../../res/";
 
 static const std::string g_mxgPath = "../../../mxg/"; // Path to mxg-dir.
 static const std::string g_mxgA = "a.mxg";
