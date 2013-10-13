@@ -2,15 +2,18 @@
 #define DV2549_MATRIXGEN_STDAFX_H
 
 #include <amp.h>
+#include <amp_math.h>
+
 #include <time.h>
 #include <string>
 #include <cassert>
 #include <sstream>
 #include <fstream>
 #include <iostream>
-#include <amp_math.h>
+#include <exception>
 
+#include <Conf.h>
 #include <Util.h>
-#include <Common.h>
+#include <ExceptionMatrixgen.h>
 
 #endif // DV2549_MATRIXGEN_STDAFX_H

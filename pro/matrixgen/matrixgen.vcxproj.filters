@@ -3,50 +3,59 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\matrixgen\main.cpp" />
     <ClCompile Include="..\..\src\matrixgen\Matrixgen.cpp">
-      <Filter>Calc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\matrixgen\Common.cpp">
-      <Filter>Common</Filter>
+      <Filter>Matrixgen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\matrixgen\Util.cpp">
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\matrixgen\Conf.cpp" />
+    <ClCompile Include="..\..\src\matrixgen\Ampersand.cpp">
+      <Filter>Matrixgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\matrixgen\Amphack.cpp">
+      <Filter>Matrixgen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\matrixgen\ExceptionMatrixgen.cpp">
+      <Filter>Error</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\matrixgen\stdafx.h" />
     <ClInclude Include="..\..\src\matrixgen\Matrixgen.h">
-      <Filter>Calc</Filter>
+      <Filter>Matrixgen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\matrixgen\Matrix.h">
-      <Filter>Calc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\matrixgen\Common.h">
-      <Filter>Common</Filter>
+      <Filter>Matrixgen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\matrixgen\Util.h">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\matrixgen\Ampersand.h">
-      <Filter>Calc</Filter>
+      <Filter>Matrixgen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\matrixgen\Printer.h">
       <Filter>Printer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\matrixgen\Conf.h" />
+    <ClInclude Include="..\..\src\matrixgen\Amphack.h">
+      <Filter>Matrixgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\ExceptionMatrixgen.h">
+      <Filter>Error</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Calc">
-      <UniqueIdentifier>{2af68c84-c65d-4a7a-8590-b0facd81ec31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{900e9d86-8e1f-4023-9499-6d961044a0e8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{1cdc51bf-e7a7-4b85-b335-a49b8b776afe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Printer">
       <UniqueIdentifier>{02b9bd1e-df80-43dc-8850-4a4d8fd3b911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Matrixgen">
+      <UniqueIdentifier>{2af68c84-c65d-4a7a-8590-b0facd81ec31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Error">
+      <UniqueIdentifier>{76e34607-7a01-418a-98c6-06b8df5dab3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

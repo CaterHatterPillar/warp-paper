@@ -79,16 +79,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\matrixgen\Common.cpp" />
+    <ClCompile Include="..\..\src\matrixgen\Ampersand.cpp" />
+    <ClCompile Include="..\..\src\matrixgen\Amphack.cpp" />
     <ClCompile Include="..\..\src\matrixgen\Conf.cpp" />
+    <ClCompile Include="..\..\src\matrixgen\ExceptionMatrixgen.cpp" />
     <ClCompile Include="..\..\src\matrixgen\main.cpp" />
     <ClCompile Include="..\..\src\matrixgen\Matrixgen.cpp" />
     <ClCompile Include="..\..\src\matrixgen\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\matrixgen\Ampersand.h" />
-    <ClInclude Include="..\..\src\matrixgen\Common.h" />
+    <ClInclude Include="..\..\src\matrixgen\Amphack.h" />
     <ClInclude Include="..\..\src\matrixgen\Conf.h" />
+    <ClInclude Include="..\..\src\matrixgen\ExceptionMatrixgen.h" />
     <ClInclude Include="..\..\src\matrixgen\Matrix.h" />
     <ClInclude Include="..\..\src\matrixgen\Matrixgen.h" />
     <ClInclude Include="..\..\src\matrixgen\Printer.h" />

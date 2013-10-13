@@ -4,9 +4,7 @@
 template < class T >
 class Matrix;
 
-#include <amp_tinymt_rng.h>
-
-static const unsigned TileSize = 1;
+#include <Amphack.h>
 
 /*
 The constructor of Ampersand, as well as matrixPopulate - or any use of C++ AMP it seems - seems to cause memory leaks.
@@ -22,82 +20,40 @@ public:
 		if( default_device==concurrency::accelerator( concurrency::accelerator::direct3d_ref) ) {
 			std::cout << std::endl << "Warning. Running C++ AMP using a slow emulator.";
 		}
-		
 		srand( time( 0 ) );
 	}
 	~Ampersand() {
 		// Do nothing.
 	}
 
-	// Tile this implementation:
+	// This is ugly! Quick hack performed to get rid of obscure linker errors. Fix this! 
 	template < class T >
 	void matrixPopulate( Matrix< T >* p_matrix, int p_min, int p_max ) {
-		const unsigned rows = p_matrix->getNumRows();
-		const unsigned cols = p_matrix->getNumCols();
-		T* matrix = p_matrix->get();
-
-		// Initialize RNG:
-		long seed = rand();
-		concurrency::extent< 2 > e_size( rows, cols );
-		tinymt_collection< 2 > rng( e_size, seed );
-		char ref[50]; sprintf_s( ref, "%d", matrix );
-		std::cout << std::endl << "C++ AMP RNG initialized with seed: " + Util::toString( seed ) + "." << std::endl << "Proceeding to generate random numbers for matrix: " + std::string( ref ) + ".";
-	
-		concurrency::array_view< T, 2 > ioMatrix( rows, cols, matrix );
-		parallel_for_each(
-			ioMatrix.extent,
-			[=]( concurrency::index< 2 > idx ) restrict( amp ) {
-				int row = idx[ 0 ];
-				int col = idx[ 1 ];
-		
-				auto t = rng[ idx ];
-				float random = t.next_single(); // Gives a floating point in-between 0-1.
-				ioMatrix[ row ][ col ] = int( concurrency::precise_math::nearbyint( random * p_max + p_min ) );
-			}
-		);
-		ioMatrix.synchronize();
+		throw ExceptionMatrixgen( "Non-supported datatype!" );
+	}
+	template <>
+	void matrixPopulate( Matrix< int >* p_matrix, int p_min, int p_max ) {
+		Amphack::Amp_MatrixPopulate( p_matrix, p_min, p_max );
+	}
+	template <>
+	void matrixPopulate( Matrix< float >* p_matrix, int p_min, int p_max ) {
+		Amphack::Amp_MatrixPopulate( p_matrix, p_min, p_max );
 	}
 
 	template < class T >
 	void matrixMultiply( Matrix< T >* p_c, Matrix< T >* p_a, Matrix< T >* p_b ) {
-		std::cout << std::endl << "Compiling reference matrix C=AB.";
-
-		const unsigned rows = p_c->getNumRows();
-		const unsigned cols = p_c->getNumCols();
-		concurrency::array_view< T, 2 > iA( p_a->getNumRows(), p_a->getNumCols(), p_a->get() ); 
-		concurrency::array_view< T, 2 > iB( p_b->getNumRows(), p_b->getNumCols(), p_b->get() );
-		concurrency::array_view< T, 2 > ioC( p_c->getNumRows(), p_c->getNumCols(), p_c->get() );
-		parallel_for_each(
-			ioC.extent.tile< TileSize, TileSize >(),
-			[=]( concurrency::tiled_index< TileSize, TileSize > tidx ) restrict( amp ) {
-				int row = tidx.local[ 0 ];
-				int col = tidx.local[ 1 ];	// Relative to tile.
-				int rowG = tidx.global[ 0 ];
-				int colG = tidx.global[ 1 ]; // Matrix index.
-
-				int product = 0;
-				for( unsigned i = 0; i < rows; i += TileSize ) {
-					// Cooperatively load shared block data:
-					tile_static int locA[ TileSize ][ TileSize ];
-					tile_static int locB[ TileSize ][ TileSize ];
-					locA[ row ][ col ] = iA( rowG, col + i );
-					locB[ row ][ col ] = iB( row + i, colG );
-					tidx.barrier.wait();
-
-					for( int k = 0; k < TileSize; k++ ) {
-						product += locA[ row ][ k ] * locB[ k ][ col ];
-					}
-					tidx.barrier.wait();
-				}
-				ioC[ tidx.global ] = product;
-			}
-		);
-		ioC.synchronize();
+		throw ExceptionMatrixgen( "Non-supported datatype!" );
+	}
+	template <>
+	void matrixMultiply( Matrix< int >* p_c, Matrix< int >* p_a, Matrix< int >* p_b ) {
+		Amphack::Amp_MatrixMultiply( p_c, p_a, p_b );
+	}
+	template <>
+	void matrixMultiply( Matrix< float >* p_c, Matrix< float >* p_a, Matrix< float >* p_b ) {
+		Amphack::Amp_MatrixMultiply( p_c, p_a, p_b );
 	}
 protected:
 private:
 };
-// http://amprng.codeplex.com/SourceControl/latest#test/main.cpp
-// http://msdn.microsoft.com/en-us/library/hh873134.aspx
 
 #endif // DV2549_MATRIXGEN_AMPERSAND_H

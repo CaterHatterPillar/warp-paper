@@ -10,18 +10,36 @@ void MemLeakDetect() {
 
 int main( int argc, char* argv[] ) {
 	MemLeakDetect();
+	std::cout << "\n" << "---" << "\n" << "Matrixgen Utility" << "\n" << "---" << "\n";
 
 	int result = 1;
-	unsigned numExpectedArgs = 4; // First argument is the command invoking application.
+	unsigned numExpectedArgs = 5; // First argument is the command invoking application.
 	if( argc==numExpectedArgs ) {
-		unsigned dim = atoi( argv[ 1 ] );
-		unsigned min = atoi( argv[ 2 ] );
-		unsigned max = atoi( argv[ 3 ] );
+		std::string precision( argv[ 1 ] );
+		unsigned dim = atoi( argv[ 2 ] );
+		unsigned min = atoi( argv[ 3 ] );
+		unsigned max = atoi( argv[ 4 ] );
 
-		Matrixgen mgen( dim, min, max );
-		result = (int)!mgen.run();
+		if( precision=="INT" ) {
+			// Generate matrix with integer precision.
+			Matrixgen< int > mgen( MatrixgenPrecisions_INTEGER, dim, min, max );
+			result = (int)!mgen.run();
+		} else if( precision=="FLOAT" ) {
+			Matrixgen< float > mgen( MatrixgenPrecisions_FLOAT, dim, min, max );
+			result = (int)!mgen.run();
+			// Generate matrix with float precision.
+		} else {
+			std::cerr << "Unsupported precision: " << precision;
+		}
 	} else {
 		std::cerr << "Usage: " << argv[ 0 ] << " DIM MIN MAX" << std::endl;
 	}
+
+	if( result==0 ) {
+		std::cout << "\n" << "Matrixgen was run sucessfully.";
+	} else {
+		std::cout << "\n" << "Matrixgen encountered an error!";
+	}
+	getchar();
 	return result;
 }
