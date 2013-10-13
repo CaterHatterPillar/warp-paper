@@ -12,9 +12,9 @@ int main( int argc, char* argv[] ) {
 	// 1. Get arguments.
 	// 2. Generate matrix.
 
-	unsigned dim = 10;
+	unsigned dim = 4;
 	unsigned min = 0;
-	unsigned max = 1000;
+	unsigned max = 10;
 	Matrixgen mgen( dim, min, max );
 	bool sucess = mgen.run();
 	return (int)!sucess;

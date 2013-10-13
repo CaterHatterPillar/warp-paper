@@ -6,7 +6,7 @@ class Matrix;
 
 #include <amp_tinymt_rng.h>
 
-static const unsigned TileSize = 4;
+static const unsigned TileSize = 1;
 
 /*
 The constructor of Ampersand, as well as matrixPopulate - or any use of C++ AMP it seems - seems to cause memory leaks.

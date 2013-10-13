@@ -17,5 +17,10 @@ static const std::string g_mxgPath = "../../mxg/";
 static const std::string g_mxgA = "a.mxg";
 static const std::string g_mxgB = "b.mxg";
 static const std::string g_mxgC = "c.mxg";
+static const std::string g_mxgRef = "ref.mxg";
+
+enum MatrixgenPrecisions {
+	MatrixgenPrecisions_INTEGER = 0
+};
 
 #endif // DV2549_EXPERIMENT_CONF_H

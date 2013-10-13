@@ -18,9 +18,9 @@ bool Matrixgen::run() {
 	std::cout << "\n" << "---" << "\n" << "Matrixgen Utility" << "\n" << "---" << "\n";
 	bool success = true;
 
-	Matrix< int >* mA = new Matrix< int >( 200, 200 );
-	Matrix< int >* mB = new Matrix< int >( 200, 200 );
-	Matrix< int >* mC = new Matrix< int >( 200, 200 );
+	Matrix< int >* mA = new Matrix< int >( m_dim, m_dim );
+	Matrix< int >* mB = new Matrix< int >( m_dim, m_dim );
+	Matrix< int >* mC = new Matrix< int >( m_dim, m_dim );
 	
 	Ampersand< int >* m_amp = new Ampersand< int >();
 	m_amp->matrixPopulate( mA, m_min, m_max );

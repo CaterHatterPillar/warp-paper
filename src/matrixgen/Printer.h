@@ -22,7 +22,7 @@ public:
 			printToFile( "b.mxg", m_b );
 		}
 		if( sucess==true ) {
-			printToFile( "c.mxg", m_c );
+			printToFile( "ref.mxg", m_c );
 		}
 		return sucess;
 	}

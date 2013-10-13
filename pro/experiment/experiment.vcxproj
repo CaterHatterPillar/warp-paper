@@ -94,7 +94,9 @@
     <ClCompile Include="..\..\src\experiment\CogFx.cpp" />
     <ClCompile Include="..\..\src\experiment\Fx.cpp" />
     <ClCompile Include="..\..\src\experiment\FxCs.cpp" />
+    <ClCompile Include="..\..\src\experiment\Inspector.cpp" />
     <ClCompile Include="..\..\src\experiment\Main.cpp" />
+    <ClCompile Include="..\..\src\experiment\Printer.cpp" />
     <ClCompile Include="..\..\src\experiment\TimerDx.cpp" />
     <ClCompile Include="..\..\src\experiment\Util.cpp" />
     <ClCompile Include="..\..\src\experiment\UtilDx.cpp" />
@@ -119,7 +121,9 @@
     <ClInclude Include="..\..\src\experiment\Fx.h" />
     <ClInclude Include="..\..\src\experiment\FxCs.h" />
     <ClInclude Include="..\..\src\experiment\CbDesc.h" />
+    <ClInclude Include="..\..\src\experiment\Inspector.h" />
     <ClInclude Include="..\..\src\experiment\Matrix.h" />
+    <ClInclude Include="..\..\src\experiment\Printer.h" />
     <ClInclude Include="..\..\src\experiment\Reader.h" />
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
     <ClInclude Include="..\..\src\experiment\TimerDx.h" />

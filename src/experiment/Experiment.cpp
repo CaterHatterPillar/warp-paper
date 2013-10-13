@@ -4,6 +4,8 @@
 #include <Win.h>
 #include <Case.h>
 #include <Reader.h>
+#include <Printer.h>
+#include <Inspector.h>
 #include <Experiment.h>
 
 Experiment::Experiment( Winfo* p_winfo ) {
@@ -13,20 +15,14 @@ Experiment::Experiment( Winfo* p_winfo ) {
 	m_win = nullptr;
 }
 Experiment::~Experiment() {
-	assert( m_win );
-	assert( m_dx );
-	
-	delete m_win;
-	delete m_dx;
+	ASSERT_DELETE( m_win );
+	ASSERT_DELETE( m_dx );
 }
 
 HRESULT Experiment::init() {
 	HRESULT hr = S_OK;
 
-	// Initialize case data:
 	hr = BOOL_TO_HRESULT( Reader< int >::loadCase( m_case ) );
-
-	// Initialize dx:
 	if( SUCCEEDED( hr ) ) {
 		hr = initWin();
 	}
@@ -37,10 +33,22 @@ HRESULT Experiment::init() {
 }
 
 int Experiment::run( int argc, char *argv[] ) {
-	m_dx->run(); // Calculate matrix.
-	// Compare with reference matrix.
-	// Return the result.
-	return 1; // temp
+	// Perform matrix multiplication of specified case using DirectCompute:
+	m_dx->run();
+
+	// Compare result to reference matrix compiled by C++ AMP:
+	Inspection inspection; ZERO_MEM( inspection );
+	Inspector< int > inspector( m_case );
+	bool isEqual = inspector.inspect( inspection );
+
+#ifdef EXPERIMENT_DEBUG
+	Printer< int > printer( MatrixgenPrecisions_INTEGER, m_case );
+	bool sucessfulPrint = printer.print();
+#endif // EXPERIMENT_DEBUG
+
+	// Obs, should rather return whether or not execution was sucessful - and write results to file.
+
+	return !isEqual;
 }
 
 HRESULT Experiment::initWin() {
@@ -54,16 +62,3 @@ HRESULT Experiment::initDx() {
 
 	return hr;
 }
-
-// Original windows message loop:
-/*MSG msgWin = { 0 };
-while( WM_QUIT!=msgWin.message ) { 
-	if( PeekMessage( &msgWin, NULL, 0, 0, PM_REMOVE ) ) {
-		TranslateMessage( &msgWin );
-		DispatchMessage( &msgWin );
-	} else {
-		// Do things.
-		m_dx->render();
-	}
-}
-return (int)msgWin.wParam; */

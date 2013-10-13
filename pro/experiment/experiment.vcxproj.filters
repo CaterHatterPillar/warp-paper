@@ -53,6 +53,12 @@
     <ClCompile Include="..\..\src\experiment\FxCs.cpp">
       <Filter>Experiment\Dx\Fx</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Inspector.cpp">
+      <Filter>Experiment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Printer.cpp">
+      <Filter>Experiment\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
@@ -85,9 +91,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\TimerDx.h">
       <Filter>Experiment\Dx</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\experiment\Reader.h">
-      <Filter>Experiment</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\Matrix.h">
       <Filter>Experiment</Filter>
@@ -128,6 +131,15 @@
     <ClInclude Include="..\..\src\experiment\FxCs.h">
       <Filter>Experiment\Dx\Fx</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Inspector.h">
+      <Filter>Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Reader.h">
+      <Filter>Experiment\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Printer.h">
+      <Filter>Experiment\IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Experiment">
@@ -162,6 +174,9 @@
     </Filter>
     <Filter Include="Experiment\Dx\Cb">
       <UniqueIdentifier>{f894d799-a203-4ca4-8a0c-8e3665a10e40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experiment\IO">
+      <UniqueIdentifier>{7563d0e3-157e-43d2-a3e9-95772d01ac7b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
