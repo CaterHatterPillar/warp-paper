@@ -23,20 +23,35 @@
     <ClCompile Include="..\..\src\experiment\ExceptionExperiment.cpp">
       <Filter>Error</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\experiment\Fx.cpp">
-      <Filter>Experiment\Dx</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\experiment\Kernel.cpp">
-      <Filter>Experiment\Dx</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\experiment\KernelCS.cpp">
-      <Filter>Experiment\Dx</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\experiment\TimerDx.cpp">
       <Filter>Experiment\Dx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\Conf.cpp">
       <Filter>Conf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\BufSrv.cpp">
+      <Filter>Experiment\Dx\Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\BufUav.cpp">
+      <Filter>Experiment\Dx\Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Buf.cpp">
+      <Filter>Experiment\Dx\Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Cb.cpp">
+      <Filter>Experiment\Dx\Cb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\CogCb.cpp">
+      <Filter>Experiment\Dx\Cb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\CogFx.cpp">
+      <Filter>Experiment\Dx\Fx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Fx.cpp">
+      <Filter>Experiment\Dx\Fx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\experiment\FxCs.cpp">
+      <Filter>Experiment\Dx\Fx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,15 +83,6 @@
     <ClInclude Include="..\..\src\experiment\ExceptionExperiment.h">
       <Filter>Error</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\experiment\Fx.h">
-      <Filter>Experiment\Dx</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\experiment\Kernel.h">
-      <Filter>Experiment\Dx</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\experiment\KernelCS.h">
-      <Filter>Experiment\Dx</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\experiment\TimerDx.h">
       <Filter>Experiment\Dx</Filter>
     </ClInclude>
@@ -94,6 +100,33 @@
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\Conf.h">
       <Filter>Conf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\BufSrv.h">
+      <Filter>Experiment\Dx\Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\BufUav.h">
+      <Filter>Experiment\Dx\Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Buf.h">
+      <Filter>Experiment\Dx\Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Cb.h">
+      <Filter>Experiment\Dx\Cb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\CogCb.h">
+      <Filter>Experiment\Dx\Cb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\CbDesc.h">
+      <Filter>Experiment\Dx\Cb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\CogFx.h">
+      <Filter>Experiment\Dx\Fx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Fx.h">
+      <Filter>Experiment\Dx\Fx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\experiment\FxCs.h">
+      <Filter>Experiment\Dx\Fx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +154,24 @@
     <Filter Include="Conf">
       <UniqueIdentifier>{56654049-0cbf-446c-bca1-f2ed450bd2cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Experiment\Dx\Buf">
+      <UniqueIdentifier>{149fa48a-2f54-4704-b3bb-5192090355e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experiment\Dx\Fx">
+      <UniqueIdentifier>{c6d03c4d-99e9-48d6-934b-2aee30fe1dd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experiment\Dx\Cb">
+      <UniqueIdentifier>{f894d799-a203-4ca4-8a0c-8e3665a10e40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\fxs\KernelTest.fx">
+      <Filter>fxs</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\fxs\KernelMult.fx">
+      <Filter>fxs</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\fxs\KernelData.fx">
       <Filter>fxs</Filter>
     </FxCompile>
   </ItemGroup>

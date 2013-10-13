@@ -18,11 +18,11 @@ public:
 
 		Matrix< T >* mA = loadMxg( g_mxgPath + g_mxgA );
 		Matrix< T >* mB = loadMxg( g_mxgPath + g_mxgB );
-		Matrix< T >* mC = loadMxg( g_mxgPath + g_mxgC );
-		if( mA!=nullptr && mB!=nullptr && mC!=nullptr ) {
+		Matrix< T >* mRef = loadMxg( g_mxgPath + g_mxgC );
+		if( mA!=nullptr && mB!=nullptr && mRef!=nullptr ) {
 			io_case.m_a = mA;
 			io_case.m_b = mB;
-			io_case.m_c = mC;
+			io_case.m_ref = mRef;
 			validCase = true;
 		}
 		return validCase;
@@ -47,6 +47,7 @@ private:
 			}
 
 			matrix = new Matrix< T >( m, rows, cols );
+			MatrixFree( m ); // Matrix copies the passed data, so be sure to free memory.
 		}
 
 		return matrix;

@@ -6,6 +6,4 @@
 #include <d3dcommon.h>
 #include <d3dcompiler.h>
 
-#define ASSERT_RELEASE( arg ) assert( arg ); arg->Release(); arg = nullptr;
-
 #endif // DV2549_EXPERIMENT_COMMONDX_H

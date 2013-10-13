@@ -1,14 +1,15 @@
 #ifndef DV2549_EXPERIMENT_DX_H
 #define DV2549_EXPERIMENT_DX_H
 
-struct ID3D11Device;
-struct IDXGISwapChain;
-struct ID3D11DeviceContext;
-struct ID3D11UnorderedAccessView;
-
-class Fx;
-class Win;
-class TimerDx;
+#include <Fx.h>
+#include <Cb.h>
+#include <Win.h>
+#include <Case.h>
+#include <CogFx.h>
+#include <CogCb.h>
+#include <BufSrv.h>
+#include <BufUav.h>
+#include <TimerDx.h> // These includes are ugly. Fix.
 
 enum ExperimentAccelerations {
 	ExperimentAccelerations_HARDWARE,
@@ -16,29 +17,163 @@ enum ExperimentAccelerations {
 	ExperimentAccelerations_WARP
 };
 
+template < class T >
 class Dx {
 public:
-	Dx();
-	~Dx();
+	Dx( Case< T >& p_case ) {
+		m_case = &p_case;
 
-	HRESULT init( Win* p_win );
-	void render();
+		m_cogFx = nullptr;
+		m_cogCb = nullptr;
+
+		m_bufC = nullptr;
+		m_srvA = nullptr;
+		m_srvB = nullptr;
+		m_uavC = nullptr;
+
+		m_timer = nullptr;
+	}
+	~Dx() {
+		ASSERT_DELETE( m_cogFx );
+		ASSERT_DELETE( m_cogCb );
+
+		ASSERT_DELETE( m_bufC );
+		ASSERT_DELETE( m_srvA );
+		ASSERT_DELETE( m_srvB );
+		ASSERT_DELETE( m_uavC );
+	
+		ASSERT_DELETE( m_timer );
+	}
+
+	HRESULT init( Win* p_win ) {
+		HRESULT hr = initD3D( p_win );
+		if( SUCCEEDED( hr ) ) {
+			hr = initBuf();
+		}
+		if( SUCCEEDED( hr ) ) {
+			m_cogFx = new CogFx();
+			hr = m_cogFx->init( m_d3d.device );
+		}
+		if( SUCCEEDED( hr ) ) {
+			m_cogCb = new CogCb();
+			hr = m_cogCb->init( m_d3d.device );
+		}
+		if( SUCCEEDED( hr ) ) {
+			m_timer = new TimerDx();
+			hr = m_timer->init( m_d3d.device );
+		}
+		return hr;
+	}
+	void run() {
+		// Set shader
+		m_cogFx->getKernel()->set( m_d3d.devcon );
+
+		// Set resources
+		ID3D11ShaderResourceView* srvs[ 2 ] = { m_srvA->getSrv(), m_srvB->getSrv() };
+		ID3D11UnorderedAccessView* uavs[ 1 ] = { m_uavC->getUav() };
+		m_d3d.devcon->CSSetShaderResources( 0, 2, srvs );
+		m_d3d.devcon->CSSetUnorderedAccessViews( 0, 1, uavs, NULL );
+
+		// Update and set cb
+		CbMatrixProperties cb;
+		cb.aRows = m_case->m_a->getNumRows();
+		cb.aCols = m_case->m_a->getNumCols();
+		cb.bRows = m_case->m_b->getNumRows();
+		cb.bCols = m_case->m_b->getNumCols();
+		cb.cRows = m_case->m_ref->getNumRows();
+		cb.cCols = m_case->m_ref->getNumCols();
+		m_cogCb->updateMatrixProps( m_d3d.devcon, cb );
+		m_cogCb->setMatrixProps( m_d3d.devcon );
+
+		// Be sure to time the dispatch
+		m_d3d.devcon->Dispatch( m_case->m_a->getNumRows(), m_case->m_b->getNumCols(), 1 );
+
+		// Retrieve the data
+		m_d3d.devcon->CopyResource( m_bufC->getBuf(), m_uavC->getBuf() );
+		D3D11_MAPPED_SUBRESOURCE mapRsrc;
+		m_d3d.devcon->Map( m_bufC->getBuf(), 0, D3D11_MAP_READ, 0, &mapRsrc );
+		m_case->m_c = new Matrix< T >( (T*)mapRsrc.pData, m_case->m_ref->getNumRows(), m_case->m_ref->getNumRows() );
+		m_d3d.devcon->Unmap( m_bufC->getBuf(), 0 );
+	}
 protected:
+	HRESULT initD3D(  Win* p_win ) {
+		UtilDx::DescDeviceSwapChain desc; ZERO_MEM( desc );
+		desc.hWnd		= p_win->getHWnd();
+		desc.hWndWidth	= p_win->getWidth();
+		desc.hWndHeight = p_win->getHeight();
+		desc.driverType = D3D_DRIVER_TYPE_HARDWARE; // This ought to be passed through as an argument.
+		HRESULT hr = UtilDx::createDeviceSwapChain( desc );
+		m_d3d.device		= desc.device;
+		m_d3d.devcon		= desc.devcon;
+		m_d3d.swapChain	= desc.swapChain;
+		return hr;
+	}
+	HRESULT initBuf() {
+		Matrix< T >* mA = m_case->m_a;
+		Matrix< T >* mB = m_case->m_b;
+		Matrix< T >* mRef = m_case->m_ref;
+
+		m_srvA = new BufSrv< T >( mA->get(), mA->getNum() );
+		HRESULT hr = m_srvA->init( m_d3d.device );
+		if( SUCCEEDED( hr ) ) {
+			m_srvB = new BufSrv< T >( mB->get(), mB->getNum() );
+			hr = m_srvB->init( m_d3d.device );
+		}
+		if( SUCCEEDED( hr ) ) {
+			m_uavC = new BufUav< T >( mRef->getNum() );
+			hr = m_uavC->init( m_d3d.device );
+		}
+		if( SUCCEEDED( hr ) ) {
+			D3D11_BUFFER_DESC desc; ZERO_MEM( desc );
+			m_uavC->getBuf()->GetDesc( &desc );
+			desc.Usage			= D3D11_USAGE_STAGING;
+			desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+			desc.BindFlags		= 0;
+			desc.MiscFlags		= 0;
+			m_bufC = new Buf< T >();
+			hr = m_bufC->initBuf( m_d3d.device, desc );
+		}
+		return hr;
+	}
 private:
-	HRESULT initD3D( Win* p_win );
-	HRESULT initBackbuffer();
+	Case< T >* m_case;
 
-	D3D_DRIVER_TYPE getDriverType( ExperimentAccelerations p_acceleration );
+	// Core
+	D3D m_d3d;
+	CogFx* m_cogFx;
+	CogCb* m_cogCb;
 
-	Fx* m_fx;
-	Win* m_win; // temp, remove me
+	// Buffers
+	Buf< T >* m_bufC;
+	BufSrv< T >* m_srvA;
+	BufSrv< T >* m_srvB;
+	BufUav< T >* m_uavC;
+
+	// Utility
 	TimerDx* m_timer;
-
-	ID3D11Device* m_device;
-	ID3D11DeviceContext* m_devcon;
-	IDXGISwapChain* m_swapChain;
-	ID3D11Texture2D* m_backbufferTex;
-	ID3D11UnorderedAccessView* m_backbufferUav;
 };
 
 #endif //DV2549_EXPERIMENT_DX_H
+
+/*
+typedef enum D3D_DRIVER_TYPE { 
+D3D_DRIVER_TYPE_UNKNOWN    = 0,
+D3D_DRIVER_TYPE_HARDWARE   = ( D3D_DRIVER_TYPE_UNKNOWN + 1 ),
+D3D_DRIVER_TYPE_REFERENCE  = ( D3D_DRIVER_TYPE_HARDWARE + 1 ),
+D3D_DRIVER_TYPE_NULL       = ( D3D_DRIVER_TYPE_REFERENCE + 1 ),
+D3D_DRIVER_TYPE_SOFTWARE   = ( D3D_DRIVER_TYPE_NULL + 1 ),
+D3D_DRIVER_TYPE_WARP       = ( D3D_DRIVER_TYPE_SOFTWARE + 1 )
+} D3D_DRIVER_TYPE;
+*/
+
+// Just checking to see whether or not the timer works correctly.
+/*char text[256];
+sprintf_s(
+text,
+sizeof( text ),
+"KernelTest frame-time: %f",
+m_timer->time( m_devcon ) );
+SetWindowText( m_win->getHWnd(), text );
+}*/
+
+// http://msdn.microsoft.com/en-us/library/windows/desktop/ff476328%28v=vs.85%29.aspx

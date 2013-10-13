@@ -5,7 +5,10 @@ template < class T >
 class Matrix {
 public:
 	Matrix( T* p_, unsigned p_rows, unsigned p_cols ) {
-		m_ = p_;
+		m_ = MatrixAlloc< T >( p_rows, p_cols );
+		unsigned size = sizeof( T ) * p_rows * p_cols;
+		memcpy( m_, p_, size );
+
 		m_rows = p_rows;
 		m_cols = p_cols;
 	}
@@ -15,6 +18,15 @@ public:
 
 	T* get() const {
 		return m_;
+	}
+	unsigned getNumRows() const {
+		return m_rows;
+	}
+	unsigned getNumCols() const {
+		return m_cols;
+	}
+	unsigned getNum() const {
+		return m_rows * m_cols;
 	}
 protected:
 private:

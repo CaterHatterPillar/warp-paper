@@ -23,6 +23,9 @@ Experiment::~Experiment() {
 HRESULT Experiment::init() {
 	HRESULT hr = S_OK;
 
+	// Initialize case data:
+	hr = BOOL_TO_HRESULT( Reader< int >::loadCase( m_case ) );
+
 	// Initialize dx:
 	if( SUCCEEDED( hr ) ) {
 		hr = initWin();
@@ -34,21 +37,10 @@ HRESULT Experiment::init() {
 }
 
 int Experiment::run( int argc, char *argv[] ) {
-	// Initialize case data:
-	Case< int > _case;
-	Reader< int >::loadCase( _case ); // test
-
-	MSG msgWin = { 0 };
-	while( WM_QUIT!=msgWin.message ) { 
-		if( PeekMessage( &msgWin, NULL, 0, 0, PM_REMOVE ) ) {
-			TranslateMessage( &msgWin );
-			DispatchMessage( &msgWin );
-		} else {
-			// Do things.
-			m_dx->render();
-		}
-	}
-	return (int)msgWin.wParam;
+	m_dx->run(); // Calculate matrix.
+	// Compare with reference matrix.
+	// Return the result.
+	return 1; // temp
 }
 
 HRESULT Experiment::initWin() {
@@ -57,8 +49,21 @@ HRESULT Experiment::initWin() {
 }
 HRESULT Experiment::initDx() {
 	HRESULT hr = S_OK;
-	m_dx = new Dx();
+	m_dx = new Dx< int >( m_case );
 	hr = m_dx->init( m_win );
 
 	return hr;
 }
+
+// Original windows message loop:
+/*MSG msgWin = { 0 };
+while( WM_QUIT!=msgWin.message ) { 
+	if( PeekMessage( &msgWin, NULL, 0, 0, PM_REMOVE ) ) {
+		TranslateMessage( &msgWin );
+		DispatchMessage( &msgWin );
+	} else {
+		// Do things.
+		m_dx->render();
+	}
+}
+return (int)msgWin.wParam; */

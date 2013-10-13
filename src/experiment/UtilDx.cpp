@@ -1,5 +1,16 @@
 #include <stdafx.h>
 
+D3D::D3D() {
+	device = nullptr;
+	devcon = nullptr;
+	swapChain = nullptr;
+}
+D3D::~D3D() {
+	ASSERT_RELEASE( device );
+	ASSERT_RELEASE( devcon );
+	ASSERT_RELEASE( swapChain );
+}
+
 HRESULT UtilDx::createDeviceSwapChain( DescDeviceSwapChain& p_desc ) {
 	HRESULT hr = S_OK;
 

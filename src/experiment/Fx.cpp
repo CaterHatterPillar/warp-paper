@@ -1,28 +1,28 @@
 #include <stdafx.h>
 
 #include <Fx.h>
-#include <KernelCS.h>
 
-Fx::Fx() {
-	m_kernel = nullptr;
+Fx::Fx( LPCWSTR p_kernelPath ) {
+	m_kernelPath = p_kernelPath;
+
+	m_blob = nullptr;
 }
 Fx::~Fx() {
-	assert( m_kernel );
-	delete m_kernel;
+	assert( m_blob );
+	m_blob->Release();
 }
 
 HRESULT Fx::init( ID3D11Device* p_device ) {
 	HRESULT hr = S_OK;
-
-	m_kernel = new KernelCS( PathKernelTest );
-	hr = m_kernel->init( p_device );
+	hr = D3DReadFileToBlob( m_kernelPath, &m_blob );
+	if( hr!=S_OK ) {
+		// Fix this, this is terrible:
+		std::wstring location = L"Kernel::init D3DReadFileToBlob ";
+		std::wstring failed = L" Failed!";
+		std::wstring errorMsg = location + static_cast<std::wstring>( m_kernelPath ) + failed;
+		std::string std( errorMsg.begin(), errorMsg.end() );
+		MessageboxError( std );
+	}
 
 	return hr;
-}
-
-void Fx::tempSet( ID3D11DeviceContext* p_devcon ) {
-	m_kernel->set( p_devcon );
-}
-void Fx::tempUnset( ID3D11DeviceContext* p_devcon ) {
-	m_kernel->unset( p_devcon );
 }

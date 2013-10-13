@@ -8,6 +8,9 @@
 void CrudeMemoryLeakDetection();
 #endif // EXPERIMENT_DEBUG
 
+#define ZERO_MEM( arg ) ZeroMemory( &arg, sizeof( arg ) );
+#define ASSERT_DELETE( arg ) assert( arg ); delete arg; arg = nullptr;
+
 template < class T >
 T* MatrixAlloc( unsigned p_rows, unsigned p_cols ) {
 	return (T*)calloc( p_rows * p_cols, sizeof( T ) );

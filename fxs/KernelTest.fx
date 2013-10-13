@@ -1,6 +1,9 @@
+#ifndef DV2549_FXS_KERNELTEST_FX
+#define DV2549_FXS_KERNELTEST_FX
+
 RWTexture2D<float4> output : register(u0);
 
-[numthreads(32, 32, 1)]
+[ numthreads( 32, 32, 1 ) ]
 void main( 	
 	uint3 blockID			: SV_GroupID,
 	uint threadIDBlockIndex : SV_GroupIndex,
@@ -8,3 +11,5 @@ void main(
 	uint3 threadIDBlock		: SV_GroupThreadID ) {
 	output[ threadIDDispatch.xy ] = float4( 0.0f, 1.0f, 0.0f, 1.0f );
 }
+
+#endif // DV2549_FXS_KERNELTEST_FX

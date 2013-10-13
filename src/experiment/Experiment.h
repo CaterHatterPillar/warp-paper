@@ -1,8 +1,11 @@
 #ifndef DV2549_EXPERIMENT_EXPERIMENT_H
 #define DV2549_EXPERIMENT_EXPERIMENT_H
 
+template < class T >
 class Dx;
 class Win;
+
+#include <Case.h>
 
 class Experiment {
 public:
@@ -20,7 +23,8 @@ private:
 	HRESULT initDx();
 
 	Win* m_win;
-	Dx* m_dx;
+	Dx< int >* m_dx;
+	Case< int > m_case;
 
 	// Junk:
 	Winfo* m_winfo;
