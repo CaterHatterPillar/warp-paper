@@ -40,6 +40,9 @@ int main( int argc, char* argv[] ) {
 	} else {
 		std::cout << "\n" << "Matrixgen encountered an error!";
 	}
+
+#ifdef MATRIXGEN_DEBUG
 	getchar();
+#endif // MATRIXGEN_DEBUG
 	return result;
 }
