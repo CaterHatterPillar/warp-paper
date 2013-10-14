@@ -15,22 +15,32 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 
 	int numArgs;
 	LPWSTR* args = CommandLineToArgvW( lpCmdLine, &numArgs );
-	if( numArgs==1 ) { // Program name not included.
-		LPWSTR precision = args[ 0 ];
+	if( numArgs==2 ) { // Program name not included.
+		LPWSTR argMode = args[ 0 ];
+		LPWSTR argPrec = args[ 1 ];
 
-		if( wcscmp( precision, L"INT" )==0 ) {
-			Experiment< int > experiment( winfo );
+		ExperimentAccelerations acceleration = ExperimentAccelerations_WARP;
+		if( wcscmp( argMode, L"HARD" )==0 ) {
+			acceleration = ExperimentAccelerations_HARD;
+		} else if( wcscmp( argMode, L"SOFT" )==0 ) {
+			acceleration = ExperimentAccelerations_SOFT;
+		}
+
+		if( wcscmp( argPrec, L"INT" )==0 ) {
+			Experiment< int > experiment( winfo, acceleration );
 			HRESULT hr = experiment.init();
 			if( SUCCEEDED( hr ) ) {
 				retVal = experiment.run( 0, nullptr );
 			} else {
 				retVal = (int)hr;
 			}
-		} else if( precision==L"FLOAT" ) {
+		} else if( wcscmp( argPrec, L"FLOAT" )==0 ) {
 			MessageboxError( "Float-precision has not yet been implemented." );
 		} else {
 			MessageboxError( "The specified datatype is not supported." );
 		}
+	} else {
+		std::cerr << "Usage: " << "experiment" << " ACCELERATION [ HARD SOFT WARP ] PRECISION [ INT FLOAT ]" << std::endl;
 	}
 	// Don't forget to clean up:
 	delete winfo;

@@ -19,8 +19,7 @@ HRESULT UtilDx::createDeviceSwapChain( DescDeviceSwapChain& p_desc ) {
 	deviceSwapChainFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif // EXPERIMENT_DEBUG
 
-	DXGI_SWAP_CHAIN_DESC scd;
-	ZERO_MEM( scd );
+	DXGI_SWAP_CHAIN_DESC scd; ZERO_MEM( scd );
 	scd.BufferCount			= 1;
 	scd.OutputWindow		= p_desc.hWnd;
 	scd.Windowed			= TRUE;

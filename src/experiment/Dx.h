@@ -11,17 +11,12 @@
 #include <BufUav.h>
 #include <TimerDx.h> // These includes are ugly. Fix.
 
-enum ExperimentAccelerations {
-	ExperimentAccelerations_HARDWARE,
-	ExperimentAccelerations_SOFTWARE,
-	ExperimentAccelerations_WARP
-};
-
 template < class T >
 class Dx {
 public:
-	Dx( Case< T >& p_case ) {
+	Dx( Case< T >& p_case, ExperimentAccelerations p_acceleration ) {
 		m_case = &p_case;
+		m_acceleration = p_acceleration;
 
 		m_cogFx = nullptr;
 		m_cogCb = nullptr;
@@ -103,7 +98,7 @@ protected:
 		desc.hWnd		= p_win->getHWnd();
 		desc.hWndWidth	= p_win->getWidth();
 		desc.hWndHeight = p_win->getHeight();
-		desc.driverType = D3D_DRIVER_TYPE_HARDWARE; // This ought to be passed through as an argument.
+		desc.driverType = (D3D_DRIVER_TYPE)m_acceleration;
 		HRESULT hr = UtilDx::createDeviceSwapChain( desc );
 		m_d3d.device		= desc.device;
 		m_d3d.devcon		= desc.devcon;
@@ -139,6 +134,7 @@ protected:
 	}
 private:
 	Case< T >* m_case;
+	ExperimentAccelerations m_acceleration;
 
 	// Core
 	D3D m_d3d;

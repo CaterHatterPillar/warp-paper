@@ -6,7 +6,7 @@
 template < class T >
 class Printer {
 public:
-	Printer( MatrixgenPrecisions p_precision, Case< T >& p_case ) {
+	Printer( ExperimentPrecisions p_precision, Case< T >& p_case ) {
 		m_precision = p_precision;
 		m_case = &p_case;
 	}
@@ -75,7 +75,7 @@ protected:
 		return success;
 	}
 private:
-	MatrixgenPrecisions m_precision;
+	ExperimentPrecisions m_precision;
 	Case< T >* m_case;
 };
 

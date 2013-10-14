@@ -32,7 +32,7 @@ int main( int argc, char* argv[] ) {
 			std::cerr << "Unsupported precision: " << precision;
 		}
 	} else {
-		std::cerr << "Usage: " << argv[ 0 ] << " DIM MIN MAX" << std::endl;
+		std::cerr << "Usage: " << argv[ 0 ] << " PRECISION [ INT FLOAT ] DIM MIN MAX" << std::endl;
 	}
 
 	if( result==0 ) {

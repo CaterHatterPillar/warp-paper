@@ -11,8 +11,9 @@
 template < class T >
 class Experiment {
 public:
-	Experiment( Winfo* p_winfo ) {
+	Experiment( Winfo* p_winfo, ExperimentAccelerations p_acceleration ) {
 		m_winfo = p_winfo;
+		m_acceleration = p_acceleration;
 		m_dx = nullptr;
 		m_win = nullptr;
 	}
@@ -41,7 +42,7 @@ public:
 		Inspector< T > inspector( m_case );
 		bool isEqual = inspector.inspect();
 
-		Printer< T > printer( MatrixgenPrecisions_INTEGER, m_case ); // temp precision
+		Printer< T > printer( ExperimentPrecisions_INTEGER, m_case ); // temp precision
 		bool sucessfulPrint = printer.print();
 
 		return !isEqual;
@@ -52,10 +53,11 @@ protected:
 		return m_win->init();
 	}
 	HRESULT initDx() {
-		m_dx = new Dx< T >( m_case );
+		m_dx = new Dx< T >( m_case, m_acceleration );
 		return m_dx->init( m_win );;
 	}
 private:
+	ExperimentAccelerations m_acceleration;
 	Win* m_win;
 	Dx< T >* m_dx;
 	Case< T > m_case;
@@ -65,7 +67,3 @@ private:
 };
 
 #endif // DV2549_EXPERIMENT_EXPERIMENT_H
-
-/*#ifdef EXPERIMENT_DEBUG
-		
-#endif // EXPERIMENT_DEBUG*/
