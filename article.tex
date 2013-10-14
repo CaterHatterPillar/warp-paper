@@ -153,6 +153,18 @@ The experiment has been performed on a system with the following specifications:
 % CONTRIBUTION - RESULTS
 \subsection{Results}
 \label{sec:contribution:results}
+Preliminary results indicate a surprisingly well-performing WARP, roughly only doubling the execution time in regards to the same kernel hardware accelerated. Each configuration has been has been run using the same integer-precision 200x200-matrix. To gather the results presented below, each scenario has been run 100 times each. Please observe that these are preliminary tests, and more data is to be gathered before the closing of this article. \\
+The results gathered during preliminary testing are presented below:
+\begin{center}
+	\begin{tabular}{| l | l | l | l |}
+	\hline
+	Acceleration & Min (ms) & Max (ms) & Average (ms)	\\ \hline
+	Hardware & 25.86  & 43.12  & 26.41			\\ \hline
+	Software & 16141.6 & 16906.7 & 16390.6		\\ \hline
+	WARP & 46.18 & 64.25 & 48.47				\\
+	\hline
+	\end{tabular}
+\end{center}
 
 % Contribution
 %	Vilka empiriska resultat erhölls vid experimentdesignens implementation?
@@ -162,6 +174,7 @@ The experiment has been performed on a system with the following specifications:
 % CONCLUSION
 \section{Conclusion}
 \label{sec:conclusion}
+Conclusion left out in regards to further development and analysis.
 % Summary
 %	Vilken bakgrund, utmaning, ansats och resultat omfattar studien?
 % Discussion
