@@ -31,6 +31,15 @@
 % ABSTRACT
 \Abstract{
 Abstract here.
+
+% Background	(what)
+%	Vilket sammanhang utgör studiens bakgrund?
+% Challenge		(why)
+%	Vilka utmaningar omfattar studien?
+% Approach		(how)
+%	Vilken ansats tillämpas i studien?
+% Results 		(what)
+%	Vilka resultat gav studien?
 }
 
 \begin{document}
@@ -49,11 +58,48 @@ Abstract here.
 % INTRODUCTION
 \section*{Introduction} % The \section*{} command stops section numbering
 \addcontentsline{toc}{section}{\hspace*{-\tocsep}Introduction} % Adds this section to the table of contents with negative horizontal space equal to the indent for the numbered sections
-Introductional things.
+\label{sec:introduction}
+% Background and Challenge
+%	Vilket sammanhang utgör studiens bakgrund?
+%	Vilka utmaningar omfattar studien?
+When developing \textit{GPGPU}-kernels relatively small changes may induce large deviations in performance, due to massively parallelized instruction sets and architectural differences in-
+between on-chip hardware. Therefore, it may be desirable for the developer to be able to view the data he or she is modifying on the graphics card - a possibility often limited in terms of \textit{GPGPU}-
+technologies.\\
+\\
+% Approach and Result
+%	Vilken ansats tillämpas i studien?
+%	Vilka resultat gav studien?
+The increased utilization of \textit{GPGPU} has brought forth the need of more extensive debugging-possibilities involving access of data that may be hard to retrieve from graphics cards - possibly due to architectural differences in-between chip manufacturers. A preferred solution to this problem has been to emulate such \textit{GPU}-kernels on the \textit{CPU} - in exchange for a substantial performance-loss. This study comprises an investigation into the performance of software emulation of hardware accelerated \textit{GPU}-kernels, by the means of analyzing several software rasterizers.\\
+\\
+% Outline and Conclusion
+%	Vilket upplägg har resterande delar av matrialet?
+As such, the study concerns the fields of simulation, emulation and \textit{GPU}-technologies - respectively, with the purpose of facilitating debugging and profiling of \textit{GPU}-kernels, whilst maintaining acceptable performance.
 
-% ACKNOWLEDGEMENTS
+% CONTRIBUTION
+\section{Contribution}
+\label{sec:contribution}
+% Introduction
+%	Vilka principer, modeller, metoder och teknologier omfattar studiens design?
+% Contribution
+%	Vilka empiriska resultat erhölls vid experimentdesignens implementation?
+% Conclusion
+% ...for each segment brought up under Contribution.
+
+% CONCLUSION
+\section{Conclusion}
+\label{sec:conclusion}
+% Summary
+%	Vilken bakgrund, utmaning, ansats och resultat omfattar studien?
+% Discussion
+%	Vilka relaterade studier förhåller sig materialet till?
+%	Vilka tvetydliga aspekter av studien kräver diskussion?
+% Answer and Oppertunity
+%	Vilka fortsatta studier föreslår rapportens författare?
+
+% ACKNOWLEDGMENTS
 \section*{Acknowledgments} % The \section*{} command stops section numbering
 \addcontentsline{toc}{section}{\hspace*{-\tocsep}Acknowledgments} % Adds this section to the table of contents with negative horizontal space equal to the indent for the numbered sections
+\label{sec:acknowledgments}
 I wish to express my gratitude to my fellow students, colleagues and close friends Bob, Benny and no-one for their work, co-operation and positive attitude throughout the execution of this experiment.
 
 \bibliographystyle{IEEEtranS}
