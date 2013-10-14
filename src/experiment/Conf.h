@@ -4,7 +4,6 @@
 static const LPCWSTR PathKernelMult = L"KernelMult.cso";
 
 static const std::string g_resPath = "../../../res/";
-
 static const std::string g_mxgPath = "../../../mxg/"; // Path to mxg-dir.
 static const std::string g_mxgA = "a.mxg";
 static const std::string g_mxgB = "b.mxg";

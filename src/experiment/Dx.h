@@ -152,26 +152,3 @@ private:
 };
 
 #endif //DV2549_EXPERIMENT_DX_H
-
-/*
-typedef enum D3D_DRIVER_TYPE { 
-D3D_DRIVER_TYPE_UNKNOWN    = 0,
-D3D_DRIVER_TYPE_HARDWARE   = ( D3D_DRIVER_TYPE_UNKNOWN + 1 ),
-D3D_DRIVER_TYPE_REFERENCE  = ( D3D_DRIVER_TYPE_HARDWARE + 1 ),
-D3D_DRIVER_TYPE_NULL       = ( D3D_DRIVER_TYPE_REFERENCE + 1 ),
-D3D_DRIVER_TYPE_SOFTWARE   = ( D3D_DRIVER_TYPE_NULL + 1 ),
-D3D_DRIVER_TYPE_WARP       = ( D3D_DRIVER_TYPE_SOFTWARE + 1 )
-} D3D_DRIVER_TYPE;
-*/
-
-// Just checking to see whether or not the timer works correctly.
-/*char text[256];
-sprintf_s(
-text,
-sizeof( text ),
-"KernelTest frame-time: %f",
-m_timer->time( m_devcon ) );
-SetWindowText( m_win->getHWnd(), text );
-}*/
-
-// http://msdn.microsoft.com/en-us/library/windows/desktop/ff476328%28v=vs.85%29.aspx
