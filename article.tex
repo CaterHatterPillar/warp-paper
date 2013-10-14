@@ -1,0 +1,61 @@
+\documentclass[fleqn,10pt]{SelfArx} % Document font size and equations flushed left
+
+\setlength{\columnsep}{0.55cm} % Distance between the two columns of text
+\setlength{\fboxrule}{0.75pt} % Width of the border around the abstract
+
+\definecolor{color1}{RGB}{0,0,0} % Color of the article title and sections
+\definecolor{color2}{RGB}{0,20,20} % Color of the boxes behind the abstract and headings
+
+\newlength{\tocsep} 
+\setlength\tocsep{1.5pc} % Sets the indentation of the sections in the table of contents
+\setcounter{tocdepth}{3} % Show only three levels in the table of contents section: sections, subsections and subsubsections
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{caption}
+\usepackage{verbatim}
+\usepackage{float}
+
+\JournalInfo{\today} % Journal information
+\Archive{First~Draft} % Additional notes (e.g. copyright, DOI, review/research article)
+
+\PaperTitle{A~Study~into~the~Performance~of~Emulated~GPGPU~Kernels} % Article title
+
+\Authors{Eric~Nilsson} % Authors
+\affiliation{EricNNilsson@gmail.com}
+%\affiliation{*\textbf{Corresponding author}: john@smith.com} % Corresponding author
+
+\Keywords{GPGPU, GPU, Performance, Emulation, Simulation} % Keywords - if you don't want any simply remove all the text between the curly brackets
+\newcommand{\keywordname}{Keywords} % Defines the keywords heading name
+
+% ABSTRACT
+\Abstract{
+Abstract here.
+}
+
+\begin{document}
+\flushbottom % Makes all text pages the same height
+\maketitle % Print the title and abstract box
+
+\noindent
+\textit{"Inspirational quote."}
+\begin{center}
+- Someone smart.
+\end{center}
+
+\tableofcontents % Print the contents section
+\thispagestyle{empty} % Removes page numbering from the first page
+
+% INTRODUCTION
+\section*{Introduction} % The \section*{} command stops section numbering
+\addcontentsline{toc}{section}{\hspace*{-\tocsep}Introduction} % Adds this section to the table of contents with negative horizontal space equal to the indent for the numbered sections
+Introductional things.
+
+% ACKNOWLEDGEMENTS
+\section*{Acknowledgments} % The \section*{} command stops section numbering
+\addcontentsline{toc}{section}{\hspace*{-\tocsep}Acknowledgments} % Adds this section to the table of contents with negative horizontal space equal to the indent for the numbered sections
+I wish to express my gratitude to my fellow students, colleagues and close friends Bob, Benny and no-one for their work, co-operation and positive attitude throughout the execution of this experiment.
+
+\bibliographystyle{IEEEtranS}
+\bibliography{doc}
+\end{document}
