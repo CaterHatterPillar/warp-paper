@@ -64,7 +64,7 @@ As such, the hypothesis suggested in this proposal may be summarized as follows:
 % Background and Challenge
 %	Vilket sammanhang utgör studiens bakgrund?
 %	Vilka utmaningar omfattar studien?
-When developing \textit{GPGPU}-kernels relatively small changes may induce large deviations in performance, due to massively parallelized instruction sets and architectural differences in-
+When developing \textit{GPU}-kernels relatively small changes may induce large deviations in performance, due to massively parallelized instruction sets and architectural differences in-
 between on-chip hardware. Therefore, it may be desirable for the developer to be able to view the data he or she is modifying on the graphics card - a possibility often limited in terms of \textit{GPGPU}-
 technologies.\\
 \\
@@ -72,7 +72,7 @@ technologies.\\
 %	Vilken ansats tillämpas i studien?
 %	Vilka resultat gav studien?
 The increased utilization of \textit{GPGPU} has brought forth the need of more extensive debugging-possibilities involving access of data that may be hard to retrieve from graphics cards - possibly due to architectural differences in-between chip manufacturers. A preferred solution to this problem has been to emulate such \textit{GPU}-kernels on the \textit{CPU} - in exchange for a substantial performance-loss. This study comprises an investigation into the performance of software emulation of hardware accelerated \textit{GPU}-kernels, by the means of analyzing several software rasterizers.\\
-This study concerns an investigation into the DirectCompute-framework on the Windows-platform, analyzing the performance of a \textit{GPGPU}-kernel on-chip, using the DirectX standard software rasterizer, and utilizing the DirectX 11.1-addition\footnote{Bundled with Windows 8.} Microsoft \textit{WARP}-technology (Windows Advanced Rasterization Platform) - which promises high-speed software emulation in exchange for some precision. \\
+Furthermore, this study concerns inquiry into the DirectCompute-framework on the Windows-platform, analyzing the performance of a \textit{GPGPU}-kernel on-chip, using the DirectX standard software rasterizer, and utilizing the DirectX 11.1-addition\footnote{Bundled with Windows 8.} Microsoft \textit{WARP}-technology (Windows Advanced Rasterization Platform) - which promises high-speed software emulation in exchange for some computational precision. \\
 A logical next step of such an evaluation would be to investigate any influence Microsoft WARP may have on computational precision. Thus, it is important that the result such a kernel would produce is measurable and deterministic. \\
 \\
 This study concludes that the performance loss of emulated \textit{GPGPU}-kernel may be considered negligible in exchange for possible extended possibilities of data extraction and increased granularity. As such, Microsoft \textit{WARP}-technology may be considered feasible for use in industry rasterization\footnote{Such a use-case might be if hardware is unavailable, not suffiecient or busy - as suggested by Microsoft. Link to Microsofts page on WARP here!}.\\
