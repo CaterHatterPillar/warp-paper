@@ -37,7 +37,9 @@ protected:
 			unsigned precision = (int)m_precision;
 			unsigned rows = matrix->getNumRows();
 			unsigned cols = matrix->getNumCols();
-			mxg << precision << "\n" << rows << "\n" << cols;
+			mxg << "Precision:\t"	<< precision	<< "\n" 
+				<< "Rows:\t"		<< rows			<< "\n" 
+				<< "Columns:\t"		<< cols;
 
 			unsigned numElements = rows * cols;
 			T* m = matrix->get();

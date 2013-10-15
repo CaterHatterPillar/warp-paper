@@ -32,12 +32,13 @@ private:
 	static Matrix< T >* loadMxg( std::string p_pathMxg ) {
 		Matrix< T >* matrix = nullptr;
 
+		std::string temp;
 		int precision;
 		unsigned rows, cols;
 
 		std::ifstream mxg( p_pathMxg );
 		if( mxg.is_open() ) {
-			mxg >> precision >> rows >> cols;
+			mxg >> temp >> precision >> temp >> rows >> temp >> cols;
 			
 			unsigned i = 0;
 			T* m = MatrixAlloc< T >( rows, cols );

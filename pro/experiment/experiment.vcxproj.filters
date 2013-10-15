@@ -57,7 +57,7 @@
       <Filter>Experiment</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\Printer.cpp">
-      <Filter>Experiment\IO</Filter>
+      <Filter>IO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,10 +135,10 @@
       <Filter>Experiment</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\Reader.h">
-      <Filter>Experiment\IO</Filter>
+      <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\Printer.h">
-      <Filter>Experiment\IO</Filter>
+      <Filter>IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,14 +175,14 @@
     <Filter Include="Experiment\Dx\Cb">
       <UniqueIdentifier>{f894d799-a203-4ca4-8a0c-8e3665a10e40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Experiment\IO">
-      <UniqueIdentifier>{7563d0e3-157e-43d2-a3e9-95772d01ac7b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="fxs\Basic">
       <UniqueIdentifier>{9b28f94c-5790-414f-a195-549909fc3b5f}</UniqueIdentifier>
     </Filter>
     <Filter Include="fxs\Tile">
       <UniqueIdentifier>{6494e76d-c9f2-4d08-9cd6-83774f2aae48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{7563d0e3-157e-43d2-a3e9-95772d01ac7b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

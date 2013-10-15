@@ -34,7 +34,7 @@ public:
 		m_amp->matrixPopulate( m_b, m_min, m_max );
 		m_amp->matrixMultiply( m_c, m_a, m_b );
 
-		Printer< T >* m_printer = new Printer< T >( MatrixgenPrecisions_INT, m_a, m_b, m_c );
+		Printer< T >* m_printer = new Printer< T >( m_precision, m_a, m_b, m_c );
 		success = m_printer->print();
 
 		delete m_amp;
