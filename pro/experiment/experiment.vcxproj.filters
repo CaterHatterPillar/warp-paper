@@ -178,16 +178,25 @@
     <Filter Include="Experiment\IO">
       <UniqueIdentifier>{7563d0e3-157e-43d2-a3e9-95772d01ac7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="fxs\Basic">
+      <UniqueIdentifier>{9b28f94c-5790-414f-a195-549909fc3b5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\..\fxs\KernelTest.fx">
+    <FxCompile Include="..\..\fxs\Common.fx">
       <Filter>fxs</Filter>
     </FxCompile>
-    <FxCompile Include="..\..\fxs\KernelMult.fx">
+    <FxCompile Include="..\..\fxs\CommonFloat.fx">
       <Filter>fxs</Filter>
     </FxCompile>
-    <FxCompile Include="..\..\fxs\KernelData.fx">
+    <FxCompile Include="..\..\fxs\CommonInt.fx">
       <Filter>fxs</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\fxs\MultIntBasic.fx">
+      <Filter>fxs\Basic</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\fxs\MultFloatBasic.fx">
+      <Filter>fxs\Basic</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ static const std::string g_mxgPath = "../../../mxg/";
 
 // Currently used to print precision. Can be phased out.
 enum MatrixgenPrecisions {
-	MatrixgenPrecisions_INTEGER = 0,
+	MatrixgenPrecisions_INT = 0,
 	MatrixgenPrecisions_FLOAT = 1
 };
 

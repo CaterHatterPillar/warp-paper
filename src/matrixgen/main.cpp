@@ -22,7 +22,7 @@ int main( int argc, char* argv[] ) {
 
 		if( precision=="INT" ) {
 			// Generate matrix with integer precision.
-			Matrixgen< int > mgen( MatrixgenPrecisions_INTEGER, dim, min, max );
+			Matrixgen< int > mgen( MatrixgenPrecisions_INT, dim, min, max );
 			result = (int)!mgen.run();
 		} else if( precision=="FLOAT" ) {
 			Matrixgen< float > mgen( MatrixgenPrecisions_FLOAT, dim, min, max );

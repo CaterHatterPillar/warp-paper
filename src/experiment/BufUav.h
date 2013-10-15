@@ -11,10 +11,10 @@ public:
 		ASSERT_RELEASE( m_uav );
 	}
 
-	HRESULT init( ID3D11Device* p_device ) {
+	HRESULT init( ID3D11Device* p_device, DXGI_FORMAT p_format ) { // hack!
 		HRESULT hr = initBuf( p_device );
 		if( SUCCEEDED( hr ) ) {
-			hr = initUav( p_device );
+			hr = initUav( p_device, p_format );
 		}
 		return hr;
 	}
@@ -32,12 +32,9 @@ private:
 
 		return Buf::initBuf( p_device, desc );
 	}
-	HRESULT initUav( ID3D11Device* p_device ) {
-		// This should depend upon precision! Will only work with integers!
-		DXGI_FORMAT uavFormat = DXGI_FORMAT_R32_SINT;
-
+	HRESULT initUav( ID3D11Device* p_device, DXGI_FORMAT p_format ) {
 		D3D11_UNORDERED_ACCESS_VIEW_DESC desc; ZERO_MEM( desc );
-		desc.Format					= uavFormat;
+		desc.Format					= p_format;
 		desc.ViewDimension			= D3D11_UAV_DIMENSION_BUFFER;
 		desc.Buffer.FirstElement	= 0;
 		desc.Buffer.NumElements		= m_tNum;

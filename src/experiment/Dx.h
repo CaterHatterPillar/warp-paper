@@ -14,30 +14,26 @@
 template < class T >
 class Dx {
 public:
-	Dx( Case< T >& p_case, ExperimentAccelerations p_acceleration ) {
+	Dx( Case< T >& p_case, ExperimentConf p_conf ) {
 		m_case = &p_case;
-		m_acceleration = p_acceleration;
+		m_conf = p_conf;
 
 		m_cogFx = nullptr;
 		m_cogCb = nullptr;
-
-		m_bufC = nullptr;
-		m_srvA = nullptr;
-		m_srvB = nullptr;
-		m_uavC = nullptr;
-
+		m_bufC	= nullptr;
+		m_srvA	= nullptr;
+		m_srvB	= nullptr;
+		m_uavC	= nullptr;
 		m_timer = nullptr;
 	}
 	~Dx() {
-		ASSERT_DELETE( m_cogFx );
-		ASSERT_DELETE( m_cogCb );
-
-		ASSERT_DELETE( m_bufC );
-		ASSERT_DELETE( m_srvA );
-		ASSERT_DELETE( m_srvB );
-		ASSERT_DELETE( m_uavC );
-	
-		ASSERT_DELETE( m_timer );
+		ASSERT_DELETE( m_cogFx	);
+		ASSERT_DELETE( m_cogCb	);
+		ASSERT_DELETE( m_bufC	);
+		ASSERT_DELETE( m_srvA	);
+		ASSERT_DELETE( m_srvB	);
+		ASSERT_DELETE( m_uavC	);
+		ASSERT_DELETE( m_timer	);
 	}
 
 	HRESULT init( Win* p_win ) {
@@ -46,7 +42,7 @@ public:
 			hr = initBuf();
 		}
 		if( SUCCEEDED( hr ) ) {
-			m_cogFx = new CogFx();
+			m_cogFx = new CogFx( m_conf );
 			hr = m_cogFx->init( m_d3d.device );
 		}
 		if( SUCCEEDED( hr ) ) {
@@ -98,7 +94,7 @@ protected:
 		desc.hWnd		= p_win->getHWnd();
 		desc.hWndWidth	= p_win->getWidth();
 		desc.hWndHeight = p_win->getHeight();
-		desc.driverType = (D3D_DRIVER_TYPE)m_acceleration;
+		desc.driverType = (D3D_DRIVER_TYPE)m_conf.confAcceleration;
 		HRESULT hr = UtilDx::createDeviceSwapChain( desc );
 		m_d3d.device		= desc.device;
 		m_d3d.devcon		= desc.devcon;
@@ -118,7 +114,16 @@ protected:
 		}
 		if( SUCCEEDED( hr ) ) {
 			m_uavC = new BufUav< T >( mRef->getNum() );
-			hr = m_uavC->init( m_d3d.device );
+			switch( m_conf.confPrecision ) {
+			case ExperimentPrecisions_INT:
+				hr = m_uavC->init( m_d3d.device, DXGI_FORMAT_R32_SINT );
+				break;
+			case ExperimentPrecisions_FLOAT:
+				hr = m_uavC->init( m_d3d.device, DXGI_FORMAT_R32_FLOAT );
+				break;
+			default:
+				throw ExceptionExperiment( "Encountered unknown datatype in Dx::initBuf!" );
+			}
 		}
 		if( SUCCEEDED( hr ) ) {
 			D3D11_BUFFER_DESC desc; ZERO_MEM( desc );
@@ -134,7 +139,7 @@ protected:
 	}
 private:
 	Case< T >* m_case;
-	ExperimentAccelerations m_acceleration;
+	ExperimentConf m_conf;
 
 	// Core
 	D3D m_d3d;

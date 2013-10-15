@@ -11,11 +11,12 @@
 template < class T >
 class Experiment {
 public:
-	Experiment( Winfo* p_winfo, ExperimentAccelerations p_acceleration ) {
-		m_winfo = p_winfo;
-		m_acceleration = p_acceleration;
-		m_dx = nullptr;
-		m_win = nullptr;
+	Experiment( Winfo* p_winfo, ExperimentConf p_conf ) {
+		m_winfo	= p_winfo;
+		m_conf	= p_conf;
+		
+		m_dx	= nullptr;
+		m_win	= nullptr;
 	}
 	~Experiment() {
 		ASSERT_DELETE( m_win );
@@ -33,7 +34,6 @@ public:
 		return hr;
 	}
 
-	// Obs, should rather return whether or not execution was sucessful - and write results to file.
 	int run( int argc, char *argv[] ) {
 		// Perform matrix multiplication of specified case using DirectCompute:
 		m_case.ms = m_dx->run();
@@ -42,7 +42,7 @@ public:
 		Inspector< T > inspector( m_case );
 		bool isEqual = inspector.inspect();
 
-		Printer< T > printer( ExperimentPrecisions_INTEGER, m_case ); // temp precision
+		Printer< T > printer( m_conf.confPrecision, m_case );
 		bool sucessfulPrint = printer.print();
 
 		return !isEqual;
@@ -53,12 +53,13 @@ protected:
 		return m_win->init();
 	}
 	HRESULT initDx() {
-		m_dx = new Dx< T >( m_case, m_acceleration );
+		m_dx = new Dx< T >( m_case, m_conf );
 		return m_dx->init( m_win );;
 	}
 private:
-	ExperimentAccelerations m_acceleration;
 	Win* m_win;
+	ExperimentConf m_conf;
+
 	Dx< T >* m_dx;
 	Case< T > m_case;
 
