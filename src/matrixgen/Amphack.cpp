@@ -89,8 +89,8 @@ void Amphack::Amp_MatrixMultiply( Matrix< int >* p_c, Matrix< int >* p_a, Matrix
 				tidx.barrier.wait();
 			}
 			ioC[ tidx.global ] = product;
-	}
-	);
+		}
+		);
 	ioC.synchronize();
 }
 void Amphack::Amp_MatrixMultiply( Matrix< float >* p_c, Matrix< float >* p_a, Matrix< float >* p_b ) {

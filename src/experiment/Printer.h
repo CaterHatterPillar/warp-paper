@@ -55,7 +55,7 @@ protected:
 		return sucess;
 	}
 	bool printRes() {
-		std::string filename = "res.res";
+		std::string filename = "res";
 		
 		bool success = true;
 		std::ofstream res;
@@ -68,7 +68,11 @@ protected:
 			unsigned precision = (int)m_precision;
 			bool equalToRef = m_case->equalToRef;
 			
-			res << (int)equalToRef << "\n" << ms << "\n" << precision << "\n" << rows << "\n" << cols;
+			res << "Equal:\t"		<< (int)equalToRef	<< "\n" 
+				<< "TimeMs:\t"		<< ms				<< "\n" 
+				<< "Precision:\t"	<< precision		<< "\n" 
+				<< "Rows:\t"		<< rows				<< "\n" 
+				<< "Cols:\t"		<< cols;
 			res.close();
 		} else {
 			throw ExceptionExperiment( "Could not open " + g_resPath + filename + " for writing." );
