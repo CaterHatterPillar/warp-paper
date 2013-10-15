@@ -29,7 +29,7 @@ experiment uses DirectCompute to multiply the generated matrices A and B into a 
 #### experiment use ####
 *	Compilation of experiment results in experiment.exe along with compiled DirectCompute-kernels located in any one of the configurational directories (Debug/ or Release/) in dv2549/bin/experiment/.
 *	experiment is run from command-line (or from within Visual Studio with default-set arguments) with he following options:
-	*	KERNEL [ BASIC ] - What kernel is to be run. Currently only supports the basic un-optimized kernel.
+	*	KERNEL [ BASIC, TILE ] - What kernel is to be run. Supports a very basic implementation (BASIC) and one utilizing shared memory (TILE).
 	*	ACCELERATION [ HARD, SOFT, WARP ] - Dictates what driver type to instantiate the DirectX device with.
 	*	PRECISION [ INT, FLOAT ] - What data-type is loaded and used thruought the experiment.
 *	Running experiment results in a .res-file located under the /res/-directory. This file contains analytic data of the execution, such as the time taken to dispatch the kernel.
