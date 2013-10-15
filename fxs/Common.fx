@@ -17,9 +17,3 @@ cbuffer CbMatrixProperties : register( b0 ) {
 };
 
 #endif // DV2549_FXS_COMMON_H
-
-// SVs
-/*uint3 blockID			: SV_GroupID,
-uint threadIDBlockIndex : SV_GroupIndex,
-uint3 threadIDDispatch	: SV_DispatchThreadID,
-uint3 threadIDBlock		: SV_GroupThreadID*/

@@ -10,12 +10,9 @@ groupshared int mBs[ BLOCK_SIZE ][ BLOCK_SIZE ];
 void main( uint3 tIdx : SV_GroupThreadID, uint3 bIdx : SV_GroupID ) {
 	const uint row = bIdx.y * BLOCK_SIZE + tIdx.y;
 	const uint col = bIdx.x * BLOCK_SIZE + tIdx.x;
-	if( row >= cRows || col >= cCols ) {
-		return;
-	}
 	
 	int sum = 0;
-	const uint blocks = aRows / BLOCK_SIZE;
+	const uint blocks = ceil( (float)aRows / (float)BLOCK_SIZE );
 	for( uint i = 0; i < blocks; i++ ) {
 		mAs[ tIdx.y ][ tIdx.x ] = mA[ row * aRows + ( i * BLOCK_SIZE + tIdx.x ) ];
 		mBs[ tIdx.y ][ tIdx.x ] = mB[ col + bRows * ( i * BLOCK_SIZE + tIdx.y ) ];
@@ -26,6 +23,11 @@ void main( uint3 tIdx : SV_GroupThreadID, uint3 bIdx : SV_GroupID ) {
 		}
 		GroupMemoryBarrierWithGroupSync();
 	}
+	// We may only clip target thread after the last sync has been performed.
+	if( row >= cRows || col >= cCols ) {
+		return;
+	}
+
 	mC[ row * cRows + col ] = sum;
 }
 
