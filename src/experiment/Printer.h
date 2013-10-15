@@ -55,7 +55,7 @@ protected:
 		return sucess;
 	}
 	bool printRes() {
-		std::string filename = "res";
+		std::string filename = "resExperiment.res";
 		
 		bool success = true;
 		std::ofstream res;

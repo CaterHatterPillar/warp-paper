@@ -1,5 +1,6 @@
 #include <stdafx.h>
 
+#include <Printer.h>
 #include <Deviant.h>
 #include <Analytics.h>
 
@@ -20,10 +21,14 @@ int Analytics::run() {
 	Deviant deviant;
 	deviant.establishDeviations( analytic, c, ref );
 
+	// Write analytic
+	Printer printer( analytic );
+	printer.init( g_pathRes );
+
 	free( c.list );
 	free( ref.list );
 
-	return 0; // temp
+	return 0;
 }
 
 void Analytics::loadMatrix( std::string p_filepath, DoubleList& io_list ) {

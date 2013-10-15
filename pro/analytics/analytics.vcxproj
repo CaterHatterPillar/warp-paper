@@ -81,6 +81,7 @@
     <ClCompile Include="..\..\src\analytics\Deviant.cpp" />
     <ClCompile Include="..\..\src\analytics\ExceptionAnalytics.cpp" />
     <ClCompile Include="..\..\src\analytics\main.cpp" />
+    <ClCompile Include="..\..\src\analytics\Printer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\analytics\Analytic.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="..\..\src\analytics\Deviant.h" />
     <ClInclude Include="..\..\src\analytics\DoubleList.h" />
     <ClInclude Include="..\..\src\analytics\ExceptionAnalytics.h" />
+    <ClInclude Include="..\..\src\analytics\Printer.h" />
     <ClInclude Include="..\..\src\analytics\stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -56,7 +56,7 @@ void Deviant::getDeviations( DoubleList p_c, DoubleList p_ref, DoubleList& io_de
 			double c = iC[ i ];
 			double ref = iRef[ i ];
 			ioDevs[ i ] = concurrency::precise_math::fabs( ref - c );
-		}
-		);
+	}
+	);
 	ioDevs.synchronize();
 }

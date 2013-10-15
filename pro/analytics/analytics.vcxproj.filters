@@ -5,6 +5,7 @@
     <ClCompile Include="..\..\src\analytics\Analytics.cpp" />
     <ClCompile Include="..\..\src\analytics\ExceptionAnalytics.cpp" />
     <ClCompile Include="..\..\src\analytics\Deviant.cpp" />
+    <ClCompile Include="..\..\src\analytics\Printer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\analytics\stdafx.h" />
@@ -15,5 +16,6 @@
     <ClInclude Include="..\..\src\analytics\DoubleList.h" />
     <ClInclude Include="..\..\src\analytics\Common.h" />
     <ClInclude Include="..\..\src\analytics\Analytic.h" />
+    <ClInclude Include="..\..\src\analytics\Printer.h" />
   </ItemGroup>
 </Project>
