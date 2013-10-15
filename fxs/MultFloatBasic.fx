@@ -21,8 +21,3 @@ void main( uint3 tIdx : SV_GroupThreadID, uint3 bIdx : SV_GroupID ) {
 }
 
 #endif // DV2549_FXS_MULTFLOATBASIC_FX
-
-/*uint3 blockID			: SV_GroupID,
-uint threadIDBlockIndex : SV_GroupIndex,
-uint3 threadIDDispatch	: SV_DispatchThreadID,
-uint3 threadIDBlock		: SV_GroupThreadID*/
