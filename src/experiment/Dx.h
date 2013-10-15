@@ -76,7 +76,9 @@ public:
 
 		// Time and dispatch kernel:
 		m_timer->start( m_d3d.devcon );
-		m_d3d.devcon->Dispatch( m_case->a->getNumRows(), m_case->b->getNumCols(), 1 );
+		unsigned dX = (unsigned)ceil( (float)m_case->a->getNumRows() / (float)BLOCK_SIZE );
+		unsigned dY = (unsigned)ceil( (float)m_case->b->getNumCols() / (float)BLOCK_SIZE );
+		m_d3d.devcon->Dispatch( dX, dY, 1 );
 		m_timer->stop( m_d3d.devcon );
 
 		// Retrieve the data:

@@ -3,22 +3,21 @@
 
 #include <CommonInt.fx>
 
-#define BLOCK_SIZE_X 1
-#define BLOCK_SIZE_Y 1
-
-[ numthreads( BLOCK_SIZE_X, BLOCK_SIZE_Y, 1 ) ]
-void main( uint3 tIdDispatch : SV_DispatchThreadID ) {
-	if( tIdDispatch.x >= bRows || tIdDispatch.y >= aCols ) {
+[ numthreads( BLOCK_SIZE, BLOCK_SIZE, 1 ) ]
+void main( uint3 tIdx : SV_DispatchThreadID, uint3 bIdx : SV_GroupID ) {
+	const uint row = bIdx.y * BLOCK_SIZE + tIdx.y;
+	const uint col = bIdx.x * BLOCK_SIZE + tIdx.x;
+	if( row >= bRows || col >= aCols ) {
 		return;
 	}
 	
 	float sum = 0;
 	for( uint i = 0; i < aRows; i++ ) {
-		uint idxA = tIdDispatch.y * aRows + i;
-		uint idxB = tIdDispatch.x + i * bRows;
+		uint idxA = row * aRows + i;
+		uint idxB = col + bRows * i;
 		sum += mA[ idxA ] * mB[ idxB ];
 	}
-	mC[ tIdDispatch.y * cRows + tIdDispatch.x ] = sum;
+	mC[ row * cRows + col ] = sum;
 }
 
 #endif // DV2549_FXS_MULTINTBASIC_FX

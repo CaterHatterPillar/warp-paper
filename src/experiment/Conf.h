@@ -1,6 +1,8 @@
 #ifndef DV2549_EXPERIMENT_CONF_H
 #define DV2549_EXPERIMENT_CONF_H
 
+#define BLOCK_SIZE 16
+
 static const LPCWSTR g_fxMultIntBasic	= L"MultIntBasic.cso";
 static const LPCWSTR g_fxMultFloatBasic = L"MultFloatBasic.cso";
 
