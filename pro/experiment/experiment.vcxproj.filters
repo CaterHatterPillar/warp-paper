@@ -181,6 +181,9 @@
     <Filter Include="fxs\Basic">
       <UniqueIdentifier>{9b28f94c-5790-414f-a195-549909fc3b5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="fxs\Tile">
+      <UniqueIdentifier>{6494e76d-c9f2-4d08-9cd6-83774f2aae48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\fxs\Common.fx">
@@ -197,6 +200,12 @@
     </FxCompile>
     <FxCompile Include="..\..\fxs\MultFloatBasic.fx">
       <Filter>fxs\Basic</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\fxs\MultFloatTile.fx">
+      <Filter>fxs\Tile</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\fxs\MultIntTile.fx">
+      <Filter>fxs\Tile</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

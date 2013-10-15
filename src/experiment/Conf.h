@@ -5,6 +5,8 @@
 
 static const LPCWSTR g_fxMultIntBasic	= L"MultIntBasic.cso";
 static const LPCWSTR g_fxMultFloatBasic = L"MultFloatBasic.cso";
+static const LPCWSTR g_fxMultIntTile	= L"MultIntTile.cso";
+static const LPCWSTR g_fxMultFloatTile	= L"MultFloatTile.cso";
 
 static const std::string g_resPath = "../../../res/";
 static const std::string g_mxgPath = "../../../mxg/"; // Path to mxg-dir.
@@ -28,7 +30,8 @@ enum ExperimentAccelerations {
 };
 
 enum ExperimentFxs {
-	ExperimentFxs_MULT_BASIC = 0
+	ExperimentFxs_MULT_BASIC	= 0,
+	ExperimentFxs_MULT_TILE		= 1
 };
 
 struct ExperimentConf {

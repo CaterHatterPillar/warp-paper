@@ -39,6 +39,8 @@ ExperimentFxs lpwstrToFx( LPWSTR p_lpwstr ) {
 	ExperimentFxs fx;
 	if( wcscmp( p_lpwstr, L"BASIC" )==0 ) {
 		fx = ExperimentFxs_MULT_BASIC;
+	} else if( wcscmp( p_lpwstr, L"TILE" )==0 ) {
+		fx = ExperimentFxs_MULT_TILE;
 	} else {
 		MessageboxError( "The specified kernel is not supported." );
 	}

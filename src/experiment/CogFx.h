@@ -13,11 +13,11 @@ public:
 
 	Fx* getKernel() const;
 protected:
-	HRESULT initBasic( ID3D11Device* p_device );
+	HRESULT initMult( ID3D11Device* p_device );
 private:
 	ExperimentConf m_conf;
 
-	Fx* m_kernel;
+	Fx* m_mult;
 };
 
 #endif // DV2549_EXPERIMENT_FX_H

@@ -4,10 +4,10 @@
 #include <CommonFloat.fx>
 
 [ numthreads( BLOCK_SIZE, BLOCK_SIZE, 1 ) ]
-void main( uint3 tIdx : SV_DispatchThreadID, uint3 bIdx : SV_GroupID ) {
+void main( uint3 tIdx : SV_GroupThreadID, uint3 bIdx : SV_GroupID ) {
 	const uint row = bIdx.y * BLOCK_SIZE + tIdx.y;
 	const uint col = bIdx.x * BLOCK_SIZE + tIdx.x;
-	if( row >= bRows || col >= aCols ) {
+	if( row >= cRows || col >= cCols ) {
 		return;
 	}
 	
