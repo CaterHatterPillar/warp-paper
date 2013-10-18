@@ -5,6 +5,16 @@ import sys
 import getopt
 import subprocess
 
+# Relative paths
+PATH_TO_EXPERIMENT	= "experiment.exe"
+PATH_TO_MATRIXGEN	= "../../matrixgen/Release/matrixgen.exe"
+PATH_TO_ANALYTICS	= "../../analytics/Release/analytics.exe"
+PATH_TO_RESEXP		= "../../resExperiment.res"
+PATH_TO_RESANA		= "../../resAnalytics.res"
+def GetPath( rel ): # Relative to absolute path.
+	return os.path.abspath( rel )
+
+# Classes
 class ResExperiment:
 	def __init__( self ):
 		self.equal 		= True
@@ -17,24 +27,53 @@ class ResAnalytics:
 		self.devMax = 0.0
 		self.devMin = 0.0
 		self.devStd = 0.0
+class DescMat:
+	def __init__( self ):
+		self.prec 	= ""
+		self.dim 	= ""
+		self.min 	= ""
+		self.max 	= ""
+class DescExp:
+	def __init__( self ):
+		self.num 	= 0
+		self.acc 	= ""
+		self.prec 	= ""
+		self.kernel = ""
 
+# Factory methods
+def factoryDescMat( prec, dim, min, max ):
+	desc = DescMat()
+	desc.prec 	= prec
+	desc.dim 	= dim
+	desc.min 	= min
+	desc.max 	= max
+	return desc
+def factoryDescExp( kernel, acc, prec, num ):
+	desc = DescExp()
+	desc.num 	= num
+	desc.acc 	= acc
+	desc.prec 	= prec
+	desc.kernel	= kernel
+	return desc
+
+# IO
 def readResExperiment():
-	res = open( os.path.abspath( "../../resExperiment.res" ) )
+	res = open( GetPath( PATH_TO_RESEXP ) )
 	lines = [ line.strip() for line in res ]
 	linesf = []
 	for line in lines:
 		lineSplit = line.split( "\t", 2 )
 		linesf.append( lineSplit[ 1 ] )
 	re = ResExperiment()
-	re.equal 		= bool( linesf[ 0 ] )
-	re.timeMs 		= float( linesf[ 1 ] )
+	
 	re.precision 	= int( linesf[ 2 ] )
 	re.rows			= int( linesf[ 3 ] )
 	re.cols			= int( linesf[ 4 ] )
+	re.equal 		= bool( linesf[ 0 ] )
+	re.timeMs 		= float( linesf[ 1 ] )
 	return re
-
 def readResAnalytics():
-	res = open( os.path.abspath( "../../resAnalytics.res" ) )
+	res = open( GetPath( PATH_TO_RESANA ) )
 	lines = [ line.strip() for line in res ]
 	linesf = []
 	for line in lines:
@@ -45,30 +84,48 @@ def readResAnalytics():
 	re.devMin = float( linesf[ 1 ] )
 	re.devStd = float( linesf[ 2 ] )
 	return re
-
 def writeRes( resExperiment, resAnalytics ):
 	print( resExperiment.timeMs )
 
+# Subprocesses
 def run( cmd ):
-	print( "\nRunning " + cmd + "..." )
+	print( cmd + "..." )
 	p = subprocess.Popen(
 		cmd, 
 		shell=True, # ?
 		stdout=subprocess.PIPE,
 		stderr=subprocess.STDOUT)
 	return p.communicate()
-
-def experiment( acc, prec, times ):
-	#print( "\nRunning default kernel " + str(times) + " times with properties:\n\tAcceleration: " + acc + "\n\tPrecision: " + prec )
-	experimentPath = os.path.abspath( "experiment.exe" )
-	experimentArgs = " TILE " + acc + " " + prec
+def matrixgen( desc ):
+	print( "\nGenerating matrices with properties:\n\tPrecision:\t" + desc.prec + "\n\tDimension:\t" + desc.dim + "\n\tMax:\t\t" + desc.max + "\n\tMin:\t\t" + desc.min + "\n" )
+	run( GetPath( PATH_TO_MATRIXGEN ) + " " + desc.prec + " " + desc.dim + " " + desc.min + " " + desc.max )
+def experiment( desc ):
 	results = []
-	for i in range( 0, times ):
-		run( experimentPath + experimentArgs )
-		resExperiment = readResExperiment()
-		resAnalytics = readResAnalytics()
+	for i in range( 0, desc.num ):
+		run( GetPath( PATH_TO_EXPERIMENT ) + " " + desc.kernel + " " + desc.acc + " " + desc.prec )
+		run( GetPath( PATH_TO_ANALYTICS ) )
+		# Collect data surrounding execution:
+		resExperiment 	= readResExperiment()
+		resAnalytics 	= readResAnalytics()
+		# Append the data to experiment summary:
 		writeRes( resExperiment, resAnalytics )
 	return results
+
+# Entry point:
+print( "---\ndv2549\n---" )
+argPrec = "FLOAT"
+
+# Generate a viable matrix:
+matrixgen( factoryDescMat( argPrec, "200", "0", "10" ) )
+
+# Perform experiments:
+tasks = []
+tasks.append( factoryDescExp( "TILE", "HARD", argPrec, 10 ) )
+for task in tasks:
+	print( "\nPerforming " + str( task.num ) + " experiments with properties:\n\tAcceleration:\t" + task.acc + "\n\tPrecision:\t" + task.prec + "\n" )
+	experiment( task )
+
+print( "Finished execution." )
 
 # These methods are not used.
 def avg( list ):
@@ -86,13 +143,13 @@ def writeList( file, list ):
 		file.write( str( entry ) + "\n" )
 	file.write( "\n" )
 def write( hard, soft, warp ):
-	out = open( os.path.abspath( "../../../dv2549.res" ), "w" )
+	out = open( GetPath( "../../../dv2549.res" ), "w" )
 	writeList( out, hard )
 	writeList( out, soft )
 	writeList( out, warp ) 
 	out.close()
 
-print( "---\ndv2549\n---" )
+# Add command line arguments at some point in the future. A bit something like this:
 # Parse arguments using getopt:
 # try:
 # 	opts, args = getopt.getopt( sys.argv[1:], ":h:|:s:|:w:|:if" )
@@ -100,9 +157,6 @@ print( "---\ndv2549\n---" )
 # 	print( e )
 # 	sys.exit( 2 )
 
-# tasks		= []
-# taskArgs 	= []
-# precision 	= "INT"
 # # Interpret arguments parsed to script:
 # for opt, arg in opts:
 # 	if opt in ( "-h", "-s", "-w" ): # Task
@@ -118,24 +172,3 @@ print( "---\ndv2549\n---" )
 # 			precision = "INT"
 # 		elif opt == "-f": # Float
 # 			precision = "FLOAT"
-
-precision = "FLOAT"
-
-# Generate a viable matrix:
-matrixgenArgPrecison 	= precision
-matrixgenArgDimension 	= "200"	
-matrixgenArgMin 		= "0"	# Currently default values.
-matrixgenArgMax 		= "10"	
-matrixgenArgs 			= " " + matrixgenArgPrecison + " " + matrixgenArgDimension + " " + matrixgenArgMin + " " + matrixgenArgMax
-matrixgenPath 			= os.path.abspath( "../../Release/matrixgen.exe" )
-matrixgenCommand 		= matrixgenPath + matrixgenArgs
-print( "\nGenerating matrices with properties:\n\tPrecision: " + matrixgenArgPrecison + "\n\tDimension: " + matrixgenArgDimension + "\n\tMax: " + matrixgenArgMax + "\n\tMin: " + matrixgenArgMin )
-run( matrixgenCommand )
-
-# Perform experiments:
-#for i, task in enumerate( tasks ):
-#	experiment( task, precision, taskArgs[ i ] )
-
-experiment( "HARD", precision, 10 )
-
-input( "Finished execution." )
