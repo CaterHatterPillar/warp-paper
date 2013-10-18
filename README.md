@@ -37,9 +37,14 @@ experiment uses DirectCompute to multiply the generated matrices A and B into a 
 
 ### dv2549.py ###
 dv2549.py is a Python script that runs the matrixgen and experiment a set amount of times with varying configurations. The scripts purpose is to collect the output of experiment and compile research data.
+When dv2549.py has been run, results will be collected in - sequence - under dv2549/. Results collected are the following:
+*	Kernel dispatch time (ms)
+*	Precision deviation minimum
+*	Precision deviation maximum
+*	Precision deviation standard
 
 #### dv2549.py use ####
 1.	Move the script into the configurational folder of experiment being used (dv2549/bin/experiment/Debug or dv2549/bin/experiment/Release).
-2.	Make sure matrixgen has been compiled in Release-mode (dv2549/bin/matrixgen/Release).
-3.	Run dv2549.py using Python 3.4 or later.
-4.	This segment is supposed to describe arguments to the dv2549.py-script, but the author got lost somewhere along the way.
+2.	Make sure experiment.exe has been compiled sucessfully.
+3.	Make sure matrixgen.exe and analytics.exe have both been compiled in Release-mode (dv2549/bin/matrixgen/Release/ & dv2549/bin/analytics/Release/).
+4.	Run dv2549.py using Python 3.4 or later.
