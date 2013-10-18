@@ -16,9 +16,7 @@ public:
 
 	bool print() {
 		bool sucess = true;
-#ifdef EXPERIMENT_DEBUG
 		sucess = printC();
-#endif // EXPERIMENT_DEBUG
 		if( sucess==true ) {
 			sucess = printRes();
 		}

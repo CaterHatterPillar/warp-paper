@@ -2,10 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\src\experiment\Dx.cpp">
-      <Filter>Experiment\Dx</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\experiment\Experiment.cpp">
-      <Filter>Experiment</Filter>
+      <Filter>Dx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\UtilWin.cpp">
       <Filter>Util</Filter>
@@ -24,49 +21,45 @@
       <Filter>Error</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\TimerDx.cpp">
-      <Filter>Experiment\Dx</Filter>
+      <Filter>Dx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\Conf.cpp">
       <Filter>Conf</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\BufSrv.cpp">
-      <Filter>Experiment\Dx\Buf</Filter>
+      <Filter>Dx\Buf</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\BufUav.cpp">
-      <Filter>Experiment\Dx\Buf</Filter>
+      <Filter>Dx\Buf</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\Buf.cpp">
-      <Filter>Experiment\Dx\Buf</Filter>
+      <Filter>Dx\Buf</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\Cb.cpp">
-      <Filter>Experiment\Dx\Cb</Filter>
+      <Filter>Dx\Cb</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\CogCb.cpp">
-      <Filter>Experiment\Dx\Cb</Filter>
+      <Filter>Dx\Cb</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\CogFx.cpp">
-      <Filter>Experiment\Dx\Fx</Filter>
+      <Filter>Dx\Fx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\Fx.cpp">
-      <Filter>Experiment\Dx\Fx</Filter>
+      <Filter>Dx\Fx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\FxCs.cpp">
-      <Filter>Experiment\Dx\Fx</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\experiment\Inspector.cpp">
-      <Filter>Experiment</Filter>
+      <Filter>Dx\Fx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\experiment\Printer.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\experiment\Experiment.cpp" />
+    <ClCompile Include="..\..\src\experiment\Inspector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\experiment\stdafx.h" />
     <ClInclude Include="..\..\src\experiment\Dx.h">
-      <Filter>Experiment\Dx</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\experiment\Experiment.h">
-      <Filter>Experiment</Filter>
+      <Filter>Dx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\UtilWin.h">
       <Filter>Util</Filter>
@@ -90,13 +83,7 @@
       <Filter>Error</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\TimerDx.h">
-      <Filter>Experiment\Dx</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\experiment\Matrix.h">
-      <Filter>Experiment</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\experiment\Case.h">
-      <Filter>Experiment</Filter>
+      <Filter>Dx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\CommonWin.h">
       <Filter>Common</Filter>
@@ -105,34 +92,31 @@
       <Filter>Conf</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\BufSrv.h">
-      <Filter>Experiment\Dx\Buf</Filter>
+      <Filter>Dx\Buf</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\BufUav.h">
-      <Filter>Experiment\Dx\Buf</Filter>
+      <Filter>Dx\Buf</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\Buf.h">
-      <Filter>Experiment\Dx\Buf</Filter>
+      <Filter>Dx\Buf</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\Cb.h">
-      <Filter>Experiment\Dx\Cb</Filter>
+      <Filter>Dx\Cb</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\CogCb.h">
-      <Filter>Experiment\Dx\Cb</Filter>
+      <Filter>Dx\Cb</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\CbDesc.h">
-      <Filter>Experiment\Dx\Cb</Filter>
+      <Filter>Dx\Cb</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\CogFx.h">
-      <Filter>Experiment\Dx\Fx</Filter>
+      <Filter>Dx\Fx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\Fx.h">
-      <Filter>Experiment\Dx\Fx</Filter>
+      <Filter>Dx\Fx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\FxCs.h">
-      <Filter>Experiment\Dx\Fx</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\experiment\Inspector.h">
-      <Filter>Experiment</Filter>
+      <Filter>Dx\Fx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\experiment\Reader.h">
       <Filter>IO</Filter>
@@ -140,14 +124,12 @@
     <ClInclude Include="..\..\src\experiment\Printer.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\experiment\Case.h" />
+    <ClInclude Include="..\..\src\experiment\Experiment.h" />
+    <ClInclude Include="..\..\src\experiment\Inspector.h" />
+    <ClInclude Include="..\..\src\experiment\Matrix.h" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Experiment">
-      <UniqueIdentifier>{6dbba361-d760-485c-9b79-764f5942c5ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Experiment\Dx">
-      <UniqueIdentifier>{172ba649-7faf-4b21-8e72-924bb791f841}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{4b8743da-cdce-47ff-acb5-35c09a409349}</UniqueIdentifier>
     </Filter>
@@ -166,15 +148,6 @@
     <Filter Include="Conf">
       <UniqueIdentifier>{56654049-0cbf-446c-bca1-f2ed450bd2cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Experiment\Dx\Buf">
-      <UniqueIdentifier>{149fa48a-2f54-4704-b3bb-5192090355e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Experiment\Dx\Fx">
-      <UniqueIdentifier>{c6d03c4d-99e9-48d6-934b-2aee30fe1dd9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Experiment\Dx\Cb">
-      <UniqueIdentifier>{f894d799-a203-4ca4-8a0c-8e3665a10e40}</UniqueIdentifier>
-    </Filter>
     <Filter Include="fxs\Basic">
       <UniqueIdentifier>{9b28f94c-5790-414f-a195-549909fc3b5f}</UniqueIdentifier>
     </Filter>
@@ -183,6 +156,18 @@
     </Filter>
     <Filter Include="IO">
       <UniqueIdentifier>{7563d0e3-157e-43d2-a3e9-95772d01ac7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dx">
+      <UniqueIdentifier>{172ba649-7faf-4b21-8e72-924bb791f841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dx\Buf">
+      <UniqueIdentifier>{149fa48a-2f54-4704-b3bb-5192090355e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dx\Fx">
+      <UniqueIdentifier>{c6d03c4d-99e9-48d6-934b-2aee30fe1dd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dx\Cb">
+      <UniqueIdentifier>{f894d799-a203-4ca4-8a0c-8e3665a10e40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
