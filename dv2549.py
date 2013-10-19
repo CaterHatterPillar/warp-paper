@@ -124,17 +124,34 @@ def experiment( desc ):
 
 # Entry point:
 print( "---\ndv2549\n---" )
-argPrec = "FLOAT"
 
-# Generate a viable matrix:
-matrixgen( factoryDescMat( argPrec, "200", "0", "10" ) )
+# Generate a viable integer matrix:
+matrixgen( factoryDescMat( "INT", "200", "0", "10" ) )
 
-# Perform experiments:
-tasks = []
-tasks.append( factoryDescExp( "TILE", "HARD", argPrec, 5 ) )
-tasks.append( factoryDescExp( "TILE", "SOFT", argPrec, 1 ) )
-tasks.append( factoryDescExp( "TILE", "WARP", argPrec, 5 ) )
-for task in tasks:
+tasksI = []
+tasksI.append( factoryDescExp( "BASIC", "HARD", "INT", 100 ) )
+tasksI.append( factoryDescExp( "BASIC", "SOFT", "INT", 100 ) )
+tasksI.append( factoryDescExp( "BASIC", "WARP", "INT", 100 ) )
+tasksI.append( factoryDescExp( "TILE", "HARD", "INT", 100 ) )
+tasksI.append( factoryDescExp( "TILE", "SOFT", "INT", 100 ) )
+tasksI.append( factoryDescExp( "TILE", "WARP", "INT", 100 ) )
+for task in tasksI:
+	print( "\nPerforming " + str( task.num ) + " experiments with properties:\n\tAcceleration:\t" + task.acc + "\n\tPrecision:\t" + task.prec + "\n" )
+	experiment( task )
+
+# Generate a viable floating point matrix:
+matrixgen( factoryDescMat( "FLOAT", "200", "0", "10" ) )
+
+# Perform experiments of all configurations for floating point precision.
+tasksF = []
+tasksF.append( factoryDescExp( "BASIC", "HARD", "FLOAT", 100 ) )
+tasksF.append( factoryDescExp( "BASIC", "SOFT", "FLOAT", 100 ) )
+tasksF.append( factoryDescExp( "BASIC", "WARP", "FLOAT", 100 ) )
+tasksF.append( factoryDescExp( "TILE", "HARD", "FLOAT", 100 ) )
+tasksF.append( factoryDescExp( "TILE", "SOFT", "FLOAT", 100 ) )
+tasksF.append( factoryDescExp( "TILE", "WARP", "FLOAT", 100 ) )
+
+for task in tasksF:
 	print( "\nPerforming " + str( task.num ) + " experiments with properties:\n\tAcceleration:\t" + task.acc + "\n\tPrecision:\t" + task.prec + "\n" )
 	experiment( task )
 
