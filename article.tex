@@ -7,6 +7,7 @@
 \usepackage{hyperref}
 \usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{multirow}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
@@ -177,35 +178,31 @@ The results presented in this study is gathered from experiments performed on a 
 \subsection{Results}
 \label{sec:contribution:results}
 
-\begin{table}
+\begin{table}[h]
 \begin{center}
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\multicolumn{3}{|c|}{Int $200x200$} \\
-		\hline
-		~    & BASIC & TILE \\	\hline
-		HARD	& 1.16    	& 0.24   	 \\	\hline
-		SOFT	& 11610.02 	& 9866.40    	\\	\hline
-		WARP & 15.31     	& 18.97   	\\	\hline
-	\end{tabular}
-	\label{tab:contribution:results:summaryint}
-	\caption{Average exectution time (ms) of a integer matrix.}
+\begin{tabular}{l|l|l|}
+	\cline{2-3}
+						& BASIC	& TILE			\\ \hline
+	\multicolumn{1}{|l|}{HARD}	& 1.16	& 0.24     		\\ \hline
+	\multicolumn{1}{|l|}{SOFT}	& 11610.02	& 9866.40     	\\ \hline
+	\multicolumn{1}{|l|}{WARP}	& 15.31	& 18.97     		\\ \hline
+\end{tabular}
+\label{tab:contribution:results:summaryint}
+\caption{Average exectution time (ms) of a $200x200$ integer matrix.}
 \end{center}
 \end{table}
 
-\begin{table}
+\begin{table}[h]
 \begin{center}
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\multicolumn{3}{|c|}{Float $200x200$} \\
-		\hline
-		~    & BASIC & TILE \\	\hline
-		HARD & 0.77     	& 0.22    		\\	\hline
-		SOFT & 10247.03     & 10909.88    	\\	\hline
-		WARP & 14.08     	& 17.44    		\\	\hline
-	\end{tabular}
-	\label{tab:contribution:results:summaryfloat}
-	\caption{Average exectution time (ms) of a floating point matrix.}
+\begin{tabular}{l|l|l|}
+	\cline{2-3}
+						& BASIC	& TILE			\\ \hline
+	\multicolumn{1}{|l|}{HARD}	& 0.77	& 0.22     		\\ \hline
+	\multicolumn{1}{|l|}{SOFT}	& 10247.03	& 10909.88      	\\ \hline
+	\multicolumn{1}{|l|}{WARP}	& 14.08	& 17.44     		\\ \hline
+\end{tabular}
+\label{tab:contribution:results:summaryfloat}
+\caption{Average exectution time (ms) of a $200x200$ floating point matrix.}
 \end{center}
 \end{table}
 
