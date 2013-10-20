@@ -1,4 +1,4 @@
-# test.gnuplot
+# msswarp.gnuplot
 
 # Function declarations:
 f( x ) = mean_basic
@@ -15,10 +15,13 @@ mss_max_tile = GPVAL_DATA_Y_MAX
 # Configuration and output-settings:
 reset
 set terminal latex
-set output "test.tex"
-set title "GNUPLOT TEST"
+set title "Execution Time - WARP"
+set output "msswarp.tex"
 unset key
 
+set ylabel "Time (ms)" offset -2
+
+# Utility:
 set style line 1 lt rgb "#A00000" lw 2 pt 1
 set style line 2 lt rgb "#00A000" lw 2 pt 6
 set style line 3 lt rgb "#5060D0" lw 2 pt 2
@@ -31,8 +34,8 @@ stdd_basic = sqrt( FIT_WSSR / ( FIT_NDF + 1 ) )
 fit t( x ) 'TILEWARPFLOAT.mss' u 0:1 via mean_tile
 stdd_tile = sqrt( FIT_WSSR / ( FIT_NDF + 1 ) )
 
-set label 1 gprintf("Mean = %g", mean_basic) at 2, mss_min_basic-0.2
-#set label 2 gprintf("Standard deviation = %g", stdd_basic) at 2, mss_min_basic-0.35
+set label 1 "Basic" at 0,mean_basic left offset -8,0
+set label 2 "Tile" at 0,mean_tile left offset -8,0
 plot mean_basic w l lt rgb "black"																			,\
 	mean_basic+stdd_basic w l ls 2																			,\
 	mean_basic-stdd_basic w l ls 2																			,\

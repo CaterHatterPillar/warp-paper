@@ -176,24 +176,89 @@ The results presented in this study is gathered from experiments performed on a 
 % CONTRIBUTION - RESULTS
 \subsection{Results}
 \label{sec:contribution:results}
-Preliminary results indicate a surprisingly well-performing WARP, roughly only doubling the execution time in regards to the same kernel hardware accelerated. Each configuration has been has been run using the same integer-precision 200x200-matrix. To gather the results presented below, each scenario has been run 100 times each. Please observe that these are preliminary tests, and more data is to be gathered before the closing of this article. \\
-The results gathered during preliminary testing are presented below:
+
+\begin{table}
 \begin{center}
-	\begin{tabular}{| l | l | l | l |}
-	\hline
-	Acceleration & Min (ms) & Max (ms) & Average (ms)	\\ \hline
-	Hardware & 25.86  & 43.12  & 26.41			\\ \hline
-	Software & 16141.6 & 16906.7 & 16390.6		\\ \hline
-	WARP & 46.18 & 64.25 & 48.47				\\
-	\hline
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\multicolumn{3}{|c|}{Int $200x200$} \\
+		\hline
+		~    & BASIC & TILE \\	\hline
+		HARD	& 1.16    	& 0.24   	 \\	\hline
+		SOFT	& 11610.02 	& 9866.40    	\\	\hline
+		WARP & 15.31     	& 18.97   	\\	\hline
 	\end{tabular}
+	\label{tab:contribution:results:summaryint}
+	\caption{Average exectution time (ms) of a integer matrix.}
 \end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\multicolumn{3}{|c|}{Float $200x200$} \\
+		\hline
+		~    & BASIC & TILE \\	\hline
+		HARD & 0.77     	& 0.22    		\\	\hline
+		SOFT & 10247.03     & 10909.88    	\\	\hline
+		WARP & 14.08     	& 17.44    		\\	\hline
+	\end{tabular}
+	\label{tab:contribution:results:summaryfloat}
+	\caption{Average exectution time (ms) of a floating point matrix.}
+\end{center}
+\end{table}
+
+%Summary
+
+\subsubsection{WARP}
+\label{sec:contribution:results:warp}
+The \textit{GPU}-accelerated implementation show a clear improvement when utilizing memory.\footnote{Bad visualization.} According to Microsoft... However, the execution time of WARP-acceleration demonstrate an increase in execution time...
+\begin{figure}[htb]
+\begin{center}
+	\resizebox{ \textwidth/2 }{!}{\input{msshard}}
+	\caption{Hardware~Accelerated execution time with floating point-precision for Basic- and Tiled implementation, with visualized mean and standard deviations. Values outside of their respective standard deviations have been clipped for the sake of clarity.}
+	\label{fig:contribution:results:warp:msshard}
+\end{center}
+\end{figure}
 
 \begin{figure}[htb]
-	\begin{center}
-		\resizebox{ \textwidth/2 }{!}{\input{test}}
-	\end{center}
+\begin{center}
+	\resizebox{ \textwidth/2 }{!}{\input{msswarp}}
+	\caption{\textit{WARP} execution time with float-precision for the Basic- and Tiled-kernel, with visualized mean and standard deviations. Values outside of their respective standard deviations have been clipped for the sake of clarity.}
+	\label{fig:contribution:results:warp:msswarp}
+\end{center}
 \end{figure}
+
+\subsubsection{Computational~Precision}
+\label{sec:contribution:results:computationalprecision}
+\begin{table}
+\begin{center}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Minimum & Maximum & Standard \\ \hline
+		0.0     & ~0.01   & ~0.0025            \\ \hline
+	\end{tabular}
+\label{tab:contribution:results:computationalprecision:avgprecision}
+\caption {Average precisional deviations in floating point operations.}
+\end{center}
+\end{table}
+
+Integer had no loss of precision whatsoever.
+All floating point experiments experienced a minimum precisional deviation of 0, a maximum precisional deviation of ~0.01 and a standard precisional deviation of ~0.0025. Experiments indicated no increased performance loss in-between the different driver types.
+
+%Preliminary results indicate a surprisingly well-performing WARP, roughly only doubling the execution time in regards to the same kernel hardware accelerated. Each configuration has been has been run using the same integer-precision 200x200-matrix. To gather the results presented below, each scenario has been run 100 times each. Please observe that these are preliminary tests, and more data is to be gathered before the closing of this article. \\
+%The results gathered during preliminary testing are presented below:
+%\begin{center}
+%	\begin{tabular}{| l | l | l | l |}
+%	\hline
+%	Acceleration & Min (ms) & Max (ms) & Average (ms)	\\ \hline
+%	Hardware & 25.86  & 43.12  & 26.41			\\ \hline
+%	Software & 16141.6 & 16906.7 & 16390.6		\\ \hline
+%	WARP & 46.18 & 64.25 & 48.47				\\
+%	\hline
+%	\end{tabular}
+%\end{center}
 
 % From these kernels, data entailing the execution time of said kernel may be retrieved - which will make out the main subject~of~study throughout this material. Additional data retrieved from the execution concerning the experiment make out precision deviations in resulting matrix \textit{C} compared to the expected result \textit{Ref}.\\
 
