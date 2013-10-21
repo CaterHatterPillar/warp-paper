@@ -239,8 +239,9 @@ In Microsoft's guide on \textit{WARP}\footref{lab:warpguide}, the author claims 
 \end{figure}
 
 \subsubsection{Computational~Precision}
+Integer~precision calculation showed no sign of loss of precision whatsoever. Meanwhile, all floating~point-experiments experienced an equal average loss of computational precision. However, the data collected indicates no divergence in the precisional loss of respective subject. The average deviations in precision experienced equally with each configuration, in relation to the $Ref$-matrix descibed in Section~\ref{sec:contribution:method}, are presented in Table~\ref{tab:contribution:results:computationalprecision:avgprecision}. See Microsoft's documentation on Floating-point Rules\footnote{Microsoft's reference on Floating-Point~Rules:~\url{http://bit.ly/1bOQnZu}. Retrieved 21-10-2013.} for more information surrounding floating~point-precision in the \textit{Direct3D}-framework.
 \label{sec:contribution:results:computationalprecision}
-\begin{table}
+\begin{table}[hbt]
 \begin{center}
 	\begin{tabular}{|r|r|r|}
 		\hline
@@ -248,13 +249,11 @@ In Microsoft's guide on \textit{WARP}\footref{lab:warpguide}, the author claims 
 		0.0     			& ~0.01   			& ~0.0025            		\\ \hline
 	\end{tabular}
 \label{tab:contribution:results:computationalprecision:avgprecision}
-\caption {Average precisional deviations in floating point operations.}
+\caption {Average precisional deviations in floating~point-operations.}
 \end{center}
 \end{table}
 
 %http://msdn.microsoft.com/en-us/library/windows/desktop/cc308050%28v=vs.85%29.aspx
-Integer had no loss of precision whatsoever.
-All floating point experiments experienced a minimum precisional deviation of 0, a maximum precisional deviation of ~0.01 and a standard precisional deviation of ~0.0025. Experiments indicated no increased performance loss in-between the different driver types.
 
 %Preliminary results indicate a surprisingly well-performing WARP, roughly only doubling the execution time in regards to the same kernel hardware accelerated. Each configuration has been has been run using the same integer-precision 200x200-matrix. To gather the results presented below, each scenario has been run 100 times each. Please observe that these are preliminary tests, and more data is to be gathered before the closing of this article. \\
 %The results gathered during preliminary testing are presented below:
