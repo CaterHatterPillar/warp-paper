@@ -46,7 +46,8 @@
 \Abstract{
 \ldots \\
 As such, the hypothesis suggested in this proposal may be summarized as follows:
-\quote{\textit{The performance of an emulated GPGPU-kernel on a CPU may have it’s performance substantially improved in exchange for some computational precision.}}
+%\quote{\textit{The performance of an emulated GPGPU-kernel on a CPU may have it’s performance substantially improved in exchange for some computational precision.}}
+%^ Not a valid hypothesis. No sources indicate that WARP has lesser precision.
 % Background	(what)
 %	Vilket sammanhang utgör studiens bakgrund?
 % Challenge		(why)
@@ -194,48 +195,40 @@ The measurements gathered from these executions make out the results presented i
 % CONTRIBUTION - RESULTS
 \subsection{Results}
 \label{sec:contribution:results}
+Based off the average of the collected execution times described in Section~\ref{sec:contribution:processofstudy}; results indicate an improvement in the performance of the kernels when using Microsoft~\textit{WARP}, when compared to the performance of the \textit{DirectX}~Reference~Device from which \textit{WARP} is derived.\\
+Table~\ref{tab:contribution:results:summaryint} demonstrates a performance gain with the Hardware~Accelerated subject when utilizing shared~memory amongst blocks; with varying results for the other subjects - either increasing or decreasing execution time (see Table~\ref{tab:contribution:results:summaryfloat}).
 
-\begin{table}[h]
+\begin{table}[hbt]
 \begin{center}
 \begin{tabular}{r|r|r|r|}
 	\cline{2-3}
 							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}}	\\ \hline
-	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$			& $0.24$ 	& $-79.3\%$    				\\ \hline
-	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$		& $9866.40$	& $-15.0\%$     				\\ \hline
-	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$			& $18.97$	& $+23.9\%$     				\\ \hline
+	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$			& $0.24$ 	& $-79.3\%$    					\\ \hline
+	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$		& $9866.40$	& $-15.0\%$     					\\ \hline
+	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$			& $18.97$	& $+23.9\%$     					\\ \hline
 \end{tabular}
-\label{tab:contribution:results:summaryint}
-\caption{Average exectution time in milliseconds of a $200x200$ integer matrix.}
 \end{center}
+\label{tab:contribution:results:summaryint}
+\caption{Average execution time in milliseconds of a $200x200$ integer matrix.}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[hbt]
 \begin{center}
 \begin{tabular}{r|r|r|r|}
 	\cline{2-3}
-							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}}		\\ \hline
+							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}}	\\ \hline
 	\multicolumn{1}{|l|}{\textbf{HARD}}	& $0.77$			& $0.22$		& $-71.4\%$    				\\ \hline
 	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $10247.03$		& $10909.88$	& $+6.5\%$     				\\ \hline
 	\multicolumn{1}{|l|}{\textbf{WARP}}	& $14.08$			& $17.44$		& $+23.9\%$    				\\ \hline
 \end{tabular}
-\label{tab:contribution:results:summaryfloat}
-\caption{Average exectution time in milliseconds of a $200x200$ floating point matrix.}
 \end{center}
+\label{tab:contribution:results:summaryfloat}
+\caption{Average execution time in milliseconds of a $200x200$ floating point matrix.}
 \end{table}
 
-%Summary
-
-\subsubsection{WARP}
-\label{sec:contribution:results:warp}
-%In both int- and float-cases, warp performs worse with memory tiling, whereas ref-device is less impaired or even performs better. why?
-The \textit{GPU}-accelerated implementation show a clear improvement when utilizing memory.\footnote{Bad visualization.} According to Microsoft... However, the execution time of WARP-acceleration demonstrate an increase in execution time...
-\begin{figure}[htb]
-\begin{center}
-	\resizebox{ \columnwidth }{!}{\input{msshard}}
-	\caption{Hardware~Accelerated execution time with floating point-precision for Basic- and Tiled implementation, with visualized mean and standard deviations. Values outside of their respective standard deviations have been clipped for the sake of clarity.}
-	\label{fig:contribution:results:warp:msshard}
-\end{center}
-\end{figure}
+\noindent
+Using both integer- and floating~point-precision, the performance of \textit{WARP} is impaired by the kernel utilizing shared~memory according to the data presented in Table \ref{tab:contribution:results:summaryint}~\&~\ref{tab:contribution:results:summaryfloat}.\\
+In Microsoft's guide on \textit{WARP}\footref{lab:warpguide}, the author claims that an application, if tuned to run efficiently on hardware, will run efficiently on \textit{WARP} - and vice versa. However, the data collected for this study rather indicates an increase in execution time of $23.9\%$ independant of precision, even though the same kernel accelerates the hardware~accelerated subject by roughly $70\%$. The floating~point scenario of this effect is visualized in Figure~\ref{fig:contribution:results:warp:msswarp}.
 
 \begin{figure}[htb]
 \begin{center}
