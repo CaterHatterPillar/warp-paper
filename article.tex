@@ -165,6 +165,10 @@ As \textit{experiment} is developed using the \textit{Windows~8~SDK}, \textit{Wi
 These three applications are, in turn, run as subprocesses in a script specifying the various configurations and number of times to run each program. This script, written in \textit{Python}, then compiles the assorted results of these applications and outputs a range of files suitably formatted for interpretation by \textit{Gnuplot}.\\
 More information surrounding how to run these programs can be found via the source repository (see Acknowledgments).
 
+\subsection{Process~of~Study}
+\label{sec:contribution:processofstudy}
+For the purpose of this study, 
+
 \subsubsection{Equipment}
 \label{sec:contribution:equipment}
 The results presented in this study is gathered from experiments performed on a system with the following specifications:
@@ -180,12 +184,12 @@ The results presented in this study is gathered from experiments performed on a 
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{l|l|l|}
+\begin{tabular}{r|r|r|r|}
 	\cline{2-3}
-						& BASIC	& TILE			\\ \hline
-	\multicolumn{1}{|l|}{HARD}	& 1.16	& 0.24     		\\ \hline
-	\multicolumn{1}{|l|}{SOFT}	& 11610.02	& 9866.40     	\\ \hline
-	\multicolumn{1}{|l|}{WARP}	& 15.31	& 18.97     		\\ \hline
+							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILE}}	\\ \hline
+	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$			& $0.24$ 	& $-79.3\%$    				\\ \hline
+	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$		& $9866.40$	& $-15.0\%$     				\\ \hline
+	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$			& $18.97$	& $+23.9\%$     				\\ \hline
 \end{tabular}
 \label{tab:contribution:results:summaryint}
 \caption{Average exectution time (ms) of a $200x200$ integer matrix.}
@@ -194,12 +198,12 @@ The results presented in this study is gathered from experiments performed on a 
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{l|l|l|}
+\begin{tabular}{r|r|r|r|}
 	\cline{2-3}
-						& BASIC	& TILE			\\ \hline
-	\multicolumn{1}{|l|}{HARD}	& 0.77	& 0.22     		\\ \hline
-	\multicolumn{1}{|l|}{SOFT}	& 10247.03	& 10909.88      	\\ \hline
-	\multicolumn{1}{|l|}{WARP}	& 14.08	& 17.44     		\\ \hline
+							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILE}}		\\ \hline
+	\multicolumn{1}{|l|}{\textbf{HARD}}	& $0.77$			& $0.22$		& $-71.4\%$    				\\ \hline
+	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $10247.03$		& $10909.88$	& $+6.5\%$     				\\ \hline
+	\multicolumn{1}{|l|}{\textbf{WARP}}	& $14.08$			& $17.44$		& $+23.9\%$    				\\ \hline
 \end{tabular}
 \label{tab:contribution:results:summaryfloat}
 \caption{Average exectution time (ms) of a $200x200$ floating point matrix.}
@@ -210,10 +214,11 @@ The results presented in this study is gathered from experiments performed on a 
 
 \subsubsection{WARP}
 \label{sec:contribution:results:warp}
+%In both int- and float-cases, warp performs worse with memory tiling, whereas ref-device is less impaired or even performs better. why?
 The \textit{GPU}-accelerated implementation show a clear improvement when utilizing memory.\footnote{Bad visualization.} According to Microsoft... However, the execution time of WARP-acceleration demonstrate an increase in execution time...
 \begin{figure}[htb]
 \begin{center}
-	\resizebox{ \textwidth/2 }{!}{\input{msshard}}
+	\resizebox{ \columnwidth }{!}{\input{msshard}}
 	\caption{Hardware~Accelerated execution time with floating point-precision for Basic- and Tiled implementation, with visualized mean and standard deviations. Values outside of their respective standard deviations have been clipped for the sake of clarity.}
 	\label{fig:contribution:results:warp:msshard}
 \end{center}
@@ -221,7 +226,7 @@ The \textit{GPU}-accelerated implementation show a clear improvement when utiliz
 
 \begin{figure}[htb]
 \begin{center}
-	\resizebox{ \textwidth/2 }{!}{\input{msswarp}}
+	\resizebox{ \columnwidth }{!}{\input{msswarp}}
 	\caption{\textit{WARP} execution time with float-precision for the Basic- and Tiled-kernel, with visualized mean and standard deviations. Values outside of their respective standard deviations have been clipped for the sake of clarity.}
 	\label{fig:contribution:results:warp:msswarp}
 \end{center}
