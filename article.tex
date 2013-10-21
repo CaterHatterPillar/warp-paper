@@ -76,7 +76,8 @@ technologies.\\
 %	Vilken ansats tillämpas i studien?
 The increased utilization of \textit{GPGPU} has brought forth the need of more extensive debugging-possibilities involving access of data that may be hard to retrieve from the hardware - possibly due to architectural differences in-between chip manufacturers. A preferred solution to this problem has been to emulate such \textit{GPU}-kernels on the \textit{CPU} - in exchange for substantial performance-losses. Other resons to emulate \textit{GPU}-kernels may concern pre-silicon development - that is, development for hardware not yet existant, when hardware is busy, or otherwize unavailable. This study comprises an investigation into the performance of software emulation of hardware accelerated \textit{GPGPU}-kernels, by the means of analyzing several software rasterizers.\\
 \\
-Furthermore, this study concerns inquiry into the \textit{DirectCompute}-framework on the \textit{Windows}-platform, analyzing the performance of a \textit{GPGPU}-kernel on-chip, using the \textit{DirectX} standard software rasterizer, and utilizing the \textit{DirectX~11.1}-addition Microsoft~\textit{WARP}\footnote{\textit{Windows~Advanced~Rasterization~Platform}.}-technology - which promises high-speed software emulation in exchange for some computational precision\footnote{\label{lab:warpguide}Microsoft's \textit{WARP~Guide}: \url{http://bit.ly/19hiwrZ}. Retrieved: 21-10-2013.}. \\
+Furthermore, this study concerns inquiry into the \textit{DirectCompute}-framework on the \textit{Windows}-platform, analyzing the performance of a \textit{GPGPU}-kernel on-chip, using the \textit{DirectX} standard software rasterizer, and utilizing the \textit{DirectX~11.1}-addition Microsoft~\textit{WARP}\footnote{\textit{Windows~Advanced~Rasterization~Platform}.}-technology - which promises high-speed software emulation\footnote{\label{lab:warpguide}Microsoft's \textit{WARP~Guide}: \url{http://bit.ly/19hiwrZ}. Retrieved: 21-10-2013.}. \\
+%...in exchange for some computational precision. Not Supported by cited source. From where did I get that idea?
 %	Vilka resultat gav studien?
 %\\
 %This study concludes that the performance loss of emulated \textit{GPGPU}-kernel may be considered negligible in exchange for possible extended possibilities of data extraction and increased granularity. As such, Microsoft~\textit{WARP}-technology may be considered feasible for use in industry rasterization\footnote{Such a use-case might be if hardware is unavailable, not suffiecient or busy - as suggested by Microsoft. Link to Microsofts page on WARP here!}.\\
@@ -135,10 +136,12 @@ In addition to the subject drivers mentioned in Section~\ref{sec:contribution:su
 \paragraph{Matrix~mult.~w.~Thread~Blocks}
 	A kernel producing $AB=C$ from two given matrices, writing back $C$ for further analysis.\\
 	The kernel is executed with one thread for each element in the square matrices, and likewize produce a lone element of the resulting matrix thread-wize.\\
-	Execution is performed in blocks of $16x16$ threads, as this number was found to be the block dimension performing optimally whilst hardware~accelerated on the \textit{GPU}\footnote{Make sure of this!}. 
+	Execution is performed in blocks of $16x16$ threads, as this number was found to be the block dimension performing optimally whilst hardware~accelerated on the \textit{GPU}\footnote{Make sure of this!}.  \\
+	This kernel will be referred to as the Basic~Kernel throughout this material.
 \paragraph{Matrix~mult.~w.~Thread~Blocks~\&~Shared~Memory}
 	Likewize as with the previous kernel, but further optimized to utilize \textit{shared~memory} in order to reduce time-consuming reading of \textit{global~memory}\cite[p.~77-93]{Kirk:2010:PMP:1841511}.\\
 	This kernel is presented as a test-case due to the preconditions of \textit{WARP} - stating that a kernel optimized for \textit{GPU}-execution is likewize optimized for execution with \textit{WARP}\footref{lab:warpguide}. Hence, we investigate a more optimized kernel to see whether or not this behaviour may be replicated in the experiment.\\
+	This kernel will be referred to as the Tiled~Kernel throughout this material.\\
 
 \noindent
 Furthermore, aforementioned kernels both support integer- and floating-point precision.\\
@@ -170,10 +173,6 @@ These three applications are, in turn, run as subprocesses in a script specifyin
 \\
 The source code manufactured for the sake of this study is freely available via \textit{GitHub}\footnote{\label{lab:github}\textit{GitHub}~Repository:~\url{http://bit.ly/1c4wd20}. Retrieved: 21-10-2013.}, along with a guide on how to compile and run the solution in order to replicate the experiment. Furthermore, the results collected and used throughout this study is also available for download, and may be acquired for further analysis.
 
-\subsection{Process~of~Study}
-\label{sec:contribution:processofstudy}
-For the purpose of this study, 
-
 \subsubsection{Equipment}
 \label{sec:contribution:equipment}
 The results presented in this study is gathered from experiments performed on a system with the following specifications:
@@ -182,7 +181,15 @@ The results presented in this study is gathered from experiments performed on a 
 	\item[GPU]	ATI Radeon HD 5800
 	\item[OS]	Windows 8.0
 \end{description*}
-The study has been performed on this system as Microsoft claims that the \textit{WARP}~driver performs best on modern quad-core \textit{CPU}s\footref{lab:warpguide}.
+This system setup was selected for use, for the purpose of this study, as Microsoft claims that the \textit{WARP}~driver performs best on modern quad-core \textit{CPU}s\footref{lab:warpguide}.
+
+\subsection{Process~of~Study}
+\label{sec:contribution:processofstudy}
+For the purpose of this study, the Object~of~Study - being a $200x200$ matrices - were randomized with numbers in-between zero and ten. The product matrix of these matrices was then computed 100 times for each configuration. In this way, the Basic~Kernel was run with each Subject~of~Study - being Hardware~Acceleration, Software~Rasterization and \textit{WARP} - respectively, likewize as with the Tiled~Kernel. For each execution, data surrounding the dispatch-time of each kernel (meaning the time taken to execute corresponding kernel, regardless of program initialization.) was garnered along with precision-wize deviational data.\\
+The process described above was then repeated for Integer- and Floating~Point-precision.\\
+
+\noindent
+The measurements gathered from these executions make out the results presented in this study.
 
 % CONTRIBUTION - RESULTS
 \subsection{Results}
@@ -192,7 +199,7 @@ The study has been performed on this system as Microsoft claims that the \textit
 \begin{center}
 \begin{tabular}{r|r|r|r|}
 	\cline{2-3}
-							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILE}}	\\ \hline
+							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}}	\\ \hline
 	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$			& $0.24$ 	& $-79.3\%$    				\\ \hline
 	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$		& $9866.40$	& $-15.0\%$     				\\ \hline
 	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$			& $18.97$	& $+23.9\%$     				\\ \hline
@@ -206,7 +213,7 @@ The study has been performed on this system as Microsoft claims that the \textit
 \begin{center}
 \begin{tabular}{r|r|r|r|}
 	\cline{2-3}
-							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILE}}		\\ \hline
+							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}}		\\ \hline
 	\multicolumn{1}{|l|}{\textbf{HARD}}	& $0.77$			& $0.22$		& $-71.4\%$    				\\ \hline
 	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $10247.03$		& $10909.88$	& $+6.5\%$     				\\ \hline
 	\multicolumn{1}{|l|}{\textbf{WARP}}	& $14.08$			& $17.44$		& $+23.9\%$    				\\ \hline
