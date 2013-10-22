@@ -44,9 +44,11 @@
 
 % ABSTRACT
 \Abstract{
-\ldots \\
+Emulation of \textit{GPU}-kernels on the \textit{CPU} is common for the purposes of debugging or profiling, but also in situations where hardware implementations are unavailable, such as server-side applications. When performing such emulation, one may experience severe performance loss due to the architectural differences in-between the two target platforms. This study examines the performance of such emulated kernels, by analyzing three driver types from the \textit{DirectX}-framework using \textit{DirectCompute}, amongst which is the high speed software~rasterizer Microsoft~\textit{WARP}.\\
+This study reasons that performance losses traditionally obstructing \textit{GPU}-kernel emulation may be amended sufficiently by technologies such as Microsoft~\textit{WARP} to the degree that such emulation can be considered viable for use in retail applications.\\
 As such, the hypothesis suggested in this proposal may be summarized as follows:
-%\quote{\textit{The performance of an emulated GPGPU-kernel on a CPU may have it’s performance substantially improved in exchange for some computational precision.}}
+\quote{WARP is fast.}
+% \textit{The performance of an emulated GPGPU-kernel on a CPU may have it’s performance substantially improved in exchange for some computational precision.}
 %^ Not a valid hypothesis. No sources indicate that WARP has lesser precision.
 % Background	(what)
 %	Vilket sammanhang utgör studiens bakgrund?
@@ -377,3 +379,20 @@ void main(
 \bibliographystyle{IEEEtranS}
 \bibliography{article}
 \end{document}
+
+%\begin{table}[h]
+%\begin{center}
+%\begin{tabular}{l|r|r|}
+%\cline{2-3}
+%\multicolumn{1}{c}{\textit{INT}}    & \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
+%\multicolumn{1}{|l|}{\textbf{HARD}} &                                      &                                      \\ \hline
+%\multicolumn{1}{|l|}{\textbf{SOFT}} &                                      &                                      \\ \hline
+%\multicolumn{3}{l}{}                                                                                              \\ \cline{2-3} 
+%\multicolumn{1}{c}{\textit{FLOAT}}  & \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
+%\multicolumn{1}{|l|}{\textbf{HARD}} &                                      &                                      \\ \hline
+%\multicolumn{1}{|l|}{\textbf{SOFT}} &                                      &                                      \\ \hline
+%\end{tabular}
+%\end{center}
+%\caption{-}
+%\label{tab:conclusion:perc}
+%\end{table}
