@@ -35,6 +35,16 @@ experiment uses DirectCompute to multiply the generated matrices A and B into a 
 *	Running experiment results in a .res-file located under the /res/-directory. This file contains analytic data of the execution, such as the time taken to dispatch the kernel.
 *	If running experiment from outside of Visual Studio, d3dcompiler_46.dll must be have been copied from Windows Kits/8.0/Redist/D3D/x86/ into the configurational directory from which experiment.exe is run.
 
+### analytics ###
+analytics is a smaller utility developed to compose data surrounding possible precisional deviations in-between matrices C and Ref. analytics compiles the minimum- and maximum-deviation encountered, as well as to calculate the standard deviation of said precisional deviation. In turn, analytics outputs this information to an intermediate file.
+
+#### analytics compile ####
+Compile analytics using Visual Studio 2012 in any one of the two configuraions (Debug or Relase).
+
+#### analytics use ####
+Simply run analytics.exe. analytics takes no arguments or flags, but assumes existant c.mxg and ref.mxg.
+
+
 ### dv2549.py ###
 dv2549.py is a Python script that runs the matrixgen and experiment a set amount of times with varying configurations. The scripts purpose is to collect the output of experiment and compile research data.
 When dv2549.py has been run, results will be collected in - sequence - under dv2549/. Results collected are the following:
