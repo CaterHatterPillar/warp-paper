@@ -45,7 +45,7 @@
 % ABSTRACT
 \Abstract{
 Emulation of \textit{GPU}-kernels on the \textit{CPU} is common for the purposes of debugging or profiling, but also in situations where hardware implementations are unavailable, such as server-side applications\footref{ftn:warpguide}. When performing such emulation, one may experience severe performance loss due to the architectural differences in-between the two target platforms. This study examines the performance of such emulated kernels, by analyzing three driver types from the \textit{DirectX}-framework using \textit{DirectCompute}, amongst which is the high speed software~rasterizer Microsoft~\textit{WARP}. The performance of \textit{WARP} is compared to that of traditional \textit{GPU}~hardware acceleration and the standard driver for software~rasterization - the Reference~Device~Driver.\\
-Results demonstrate a major performance boost when compared to that of software~rasterization using the Reference~Device~Driver. Thus, this study reasons that performance losses traditionally obstructing \textit{GPU}-kernel emulation may be amended sufficiently by technologies such as Microsoft~\textit{WARP} to the degree that such emulation can be considered viable for use in retail applications.\\
+Results demonstrate a major performance boost when compared to that of software~rasterization using the Reference~Device~Driver. Thus, this study reasons that performance losses traditionally obstructing \textit{GPU}-kernel emulation may be amended sufficiently by technologies, such as Microsoft~\textit{WARP}, to the degree that such emulation can be considered viable for use in retail applications.\\
 As such, the hypothesis suggested in this document may be summarized as follows:
 \quote{\textit{The performance-impaired emulation of a GPU-kernel may be amended by using high speed software~rasterizers, such as Microsoft~WARP.}}
 % \textit{The performance of an emulated GPGPU-kernel on a CPU may have it’s performance substantially improved in exchange for some computational precision.}
@@ -73,21 +73,19 @@ As such, the hypothesis suggested in this document may be summarized as follows:
 %	Vilket sammanhang utgör studiens bakgrund?
 %	Vilka utmaningar omfattar studien?
 When developing \textit{GPU}-kernels, relatively small modifications in code may induce large deviations in performance due to massively parallelized instruction sets and architectural differences in-
-between on-chip hardware\footnote{See Performance~Considerations by Kirk~\&~Hwu\cite[ch.~6]{Kirk:2010:PMP:1841511} for an analyis on the volatility of \textit{GPGPU}-performance.}. The increased utilization of complex \textit{GPGPU}-kernels has brought forth the need of more extensive debugging- and profiling-possibilities involving access of data that may be hard to retrieve from hardware. Therefore, it may be desirable for the developer to be able to view the data he or she is modifying on the graphics card - a possibility often limited in terms of \textit{GPGPU}-technologies, possibly due to architectural differences in-between chip manufacturers.\\
+between on-chip hardware\footnote{See Performance~Considerations by Kirk~\&~Hwu\cite[ch.~6]{Kirk:2010:PMP:1841511} for an analyis on the volatility of \textit{GPGPU}-performance.}. The increased utilization of complex \textit{GPGPU}-kernels has brought forth the need of more extensive debugging- and profiling-possibilities involving access of data that may be hard to retrieve from hardware. Therefore, it may be desirable for the developer to be able to view the data being computed on the graphics card - a possibility often limited in terms of \textit{GPGPU}-technologies, possibly due to architectural differences in-between chip manufacturers.\\
 % Approach and Result
 %	Vilken ansats tillämpas i studien?
 A preferred solution to this problem has been to emulate such \textit{GPU}-kernels on the \textit{CPU}\footnote{\label{ftn:drivertypes}Microsoft's reference on \textit{DirectX}~Driver~Types: \url{http://bit.ly/1b63NiX}. Retrieved: 21-10-2013.}, such as described by Kerr et al.\cite[p.~416-419]{Hwu:2011:GCG:2103614} concerning the implementation of the \textit{GPU~Ocelot} compilation framework\footnote{\label{ftn:ocelot}\textit{GPU}~Ocelot: \url{http://b.gatech.edu/1a489L1}. Retrieved 22-10-2013.}, often in exchange for substantial performance-losses. Other resons to emulate \textit{GPU}-kernels may concern pre-silicon development - that is, development for hardware not yet existant, when hardware is busy, or otherwize unavailable\footnote{\label{ftn:warpguide}Microsoft's reference on \textit{WARP}: \url{http://bit.ly/19hiwrZ}. Retrieved: 21-10-2013.}. This study comprises an investigation into the performance of software emulation of hardware accelerated \textit{GPGPU}-kernels, by the means of analyzing several software rasterizers.\\
 \\
 Furthermore, this material concerns inquiry into the \textit{DirectCompute}-framework on the \textit{Windows}-platform, analyzing the performance of a \textit{GPGPU}-kernel on-chip, using the \textit{DirectX} standard software rasterizer, and utilizing the \textit{DirectX~11.1}-addition Microsoft~\textit{WARP}\footnote{\textit{Windows~Advanced~Rasterization~Platform}.}-technology - which promises high-speed software emulation\footref{ftn:warpguide}. \\
 \\
-%...in exchange for some computational precision. Not Supported by cited source. From where did I get that idea?
 %	Vilka resultat gav studien?
 This article concludes that the performance losses inflicted by such emulation may be reduced enough for that emulation to be considered feasable for retail use, as originally proposed by Microsoft\footref{ftn:warpguide}. Thus, this study proposes use of Microsoft~\textit{WARP}-technology in industry rasterization if graphics~hardware is unavailable, not sufficient, or busy.\\
 \\
 % Outline and Conclusion
 As such, the study concerns the fields of simulation, emulation and \textit{GPU}-technologies - respectively, with the purpose of facilitating debugging and profiling of \textit{GPU}-kernels, whilst maintaining acceptable performance. \\
 The remainder of this document presents the method and process to acquire the data used,  the technologies using which it has been acquired, the results in and of their own, the conclusions based off the results and finally; the author's personal reflections surrounding future~work in the area along with propositions of further study.
-%	Vilket upplägg har resterande delar av matrialet?
 
 % CONTRIBUTION
 \section{Contribution}
@@ -100,12 +98,12 @@ The remainder of this document presents the method and process to acquire the da
 \label{sec:contribution:objectofstudy}
 Due to the nature of the experiment, it is important that the Object~of~Study is measurable and deterministic. For the purpose of this study, the data computed corresponds to a square matrix~multiplication, since such an operation is highly parallelizable, as demonstrated by Kirk~\&~Hwu\cite[ch.~3]{Kirk:2010:PMP:1841511}. Additionally, verifying the result of such an operation is trivial, and potential losses in computational precision may be computed from the expected data-type. The operation was therefore considered suitable for the purpose of this experiment.\\
 \\
-For the Object~of~Study, the dimension $200x200$ was selected for the respective matrices as it is big enough to execute efficiently on the \textit{GPU}, but yet reasonably sized to keep measurements collected by the means of emulation comparable to the hardware~accelerated reference case. \\
+The dimension $200x200$ was selected for the respective matrices as it is big enough to execute efficiently on the \textit{GPU}, but yet reasonably sized to keep measurements collected by the means of emulation comparable to the hardware~accelerated reference case. \\
 Throughout this material, the compiled data will be referred to as $AB=C$, and thus make out the Object of this experiment.
 
 \subsection{Method}
 \label{sec:contribution:method}
-In order to establish the Object~of~Study, $AB=C$, the experiment utilizes \textit{GPGPU}-kernels using which the result is calculated, in it’s entirety, in aforementioned kernel on some target platform. The experiment is devised of the following approximate steps in order to compile the Object~of~Study $AB=C$:
+In order to establish the Object~of~Study, $AB=C$, the experiment utilizes \textit{GPGPU}-kernels using which the result is calculated, in it’s entirety, in aforementioned kernel using some target Subject (see Section~\ref{sec:contribution:Subjectofstudy}). The experiment is devised of the following approximate steps in order to compile the Object~of~Study $AB=C$:
 \begin{enumerate*}
 	\item Randomize two matrices $A$ \& $B$ using desired data-type.
 	\item Establish the product-matrix $AB=Ref$. The resulting matrix will be used as a reference matrix to verify the final result.
@@ -118,7 +116,6 @@ The process described above make out the Method of this study.
 
 \subsection{Subjects~of~Study}
 \label{sec:contribution:Subjectofstudy}
-% Describe these modes and what they entail:
 The \textit{GPU}-kernels described in Section~\ref{sec:contribution:method} are comprised of \textit{HLSL}-syntax and are compiled \& executed using Microsoft~\textit{DirectCompute}. These kernels are run using three types of acceleration~technologies with varying strategies of \textit{GPU}-kernel emulation. These are comprised of the following:
 \paragraph{Hardware-Acceleration~(GPU)}
 	The execution of a \textit{DirectCompute}-kernel on a graphics card. This is the common case, and involves no emulation of the kernel. Thus, this case will act as a reference for the emulated Subjects.\\
@@ -130,8 +127,7 @@ The Reference~Driver was developed for the purpose of testing and debugging, and
 \paragraph{Windows~Advanced~Rasterization~Platform~(CPU)}
 	The emulated execution of a \textit{DirectCompute}-kernel using a special software rasterizer devised by Microsoft in their latest revision of the \textit{DirectX}-framework.\\
 	The driver is based off the \textit{DirectX}~Reference~Driver and uses thread pooling to distribute tasks efficiently on the \textit{CPU}, along with grouping execution in batches for optimum performance. Microsoft describes \textit{WARP} as a high-performance software~rasterizer, and recommends using the driver for retail applications, such as casual~games\footref{ftn:warpguide}.\\
-As there are, as of yet, few studies performed on Microsoft~\textit{WARP} expectations are unclear, but the driver is expected to perform better than standard software rasterization.\\
-% May one encounter computational precision issues with WARP?
+As there are, as of yet, few studies performed on Microsoft~\textit{WARP}; expectations are unclear, but the driver is expected to perform better than standard software rasterization.\\
 
 \noindent
 These three \textit{DirectX} driver-types make out the Subjects of this study.
@@ -143,7 +139,7 @@ The kernels are presented below.
 \paragraph{Matrix~mult.~w.~Thread~Blocks}
 	A kernel producing $AB=C$ from two given matrices, writing back $C$ for further analysis.\\
 	The kernel is executed with one thread for each element in the square matrices, and likewize each produce a lone element of the resulting matrix.\\
-	Execution is performed in blocks of $16x16$ threads, as this number was found to be the block dimension performing optimally whilst hardware~accelerated on the \textit{GPU}\footnote{Make sure of this!}.  \\
+	Execution is performed in blocks of $16x16$ threads since this was the block dimension, out of samples $8$, $16$, and $32$, that performed optimally whilst hardware~accelerated on the system described in Section~\ref{sec:contribution:equipment}.  \\
 	This kernel will be referred to as the Basic~Kernel throughout this material.
 \paragraph{Matrix~mult.~w.~Thread~Blocks~\&~Shared~Memory}
 	Similar to the previous kernel, but further optimized to utilize \textit{shared~memory} in order to reduce time-consuming reading of \textit{global~memory}, as presented by Kirk~\&~Hwu\cite[p.~77-93]{Kirk:2010:PMP:1841511}.\\
@@ -176,7 +172,7 @@ As \textit{experiment} is developed using the \textit{Windows~8~SDK}, \textit{Wi
 \noindent
 These three applications are, in turn, run as subprocesses in a script specifying the various configurations and number of times to run each program. This script, written in \textit{Python}, then compiles the assorted results of these applications and outputs a range of files suitably formatted for interpretation by \textit{Gnuplot}.\\
 \\
-The source code manufactured for the sake of this study is freely available via \textit{GitHub}\footnote{\label{ftn:github}\textit{GitHub}~Repository:~\url{http://bit.ly/1c4wd20}. Retrieved: 21-10-2013.}, along with a guide on how to compile and run the solution in order to replicate the experiment. Furthermore, the results collected and used throughout this study is also available for download, and may be acquired for further analysis.
+The source code manufactured for the sake of this study is freely available via \textit{GitHub}\footnote{\label{ftn:github}\textit{GitHub}~Repository:~\url{http://bit.ly/1c4wd20}. Retrieved: 21-10-2013.}, along with a guide on how to compile and run the solution in order to replicate the experiment. Furthermore, the complete results collected and used throughout this study is also available for download, and may be acquired for further analysis.
 
 \subsection{Equipment}
 \label{sec:contribution:equipment}
@@ -301,6 +297,7 @@ Additionally, the use of more complex kernels  in coagency with the \textit{WARP
 %\label{sec:acknowledgments}
 %I wish to express my gratitude to my fellow students, colleagues and close friends Bob, Benny and no-one for their work, co-operation and positive attitude throughout the execution of this experiment. 
 
+\newpage
 \section*{Appendix}
 \addcontentsline{toc}{section}{\hspace*{-\tocsep}Acknowledgments} % Adds this section to the table of contents with negative horizontal space equal to the indent for the numbered sections
 \label{sec:appendix}
