@@ -6,6 +6,9 @@ Performance analysis of emulated GPGPU-kernels.
 The compiled article may be found here:
 https://dl.dropboxusercontent.com/u/42347914/dv2549/article.pdf
 
+The raw data used throughout the material can be found under branch dv2549_data:
+https://github.com/CaterHatterPillar/dv2549/tree/dv2549_data
+
 ### matrixgen ###
 matrixgen is a tool utilizing C++ AMP along with C++ AMP RNG to generate a couple of randomized matrices (A&B), and from said matrices compile a reference matrix (Ref) making out the product matrix of the two.
 
