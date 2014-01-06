@@ -2,8 +2,13 @@ dv2549
 ======
 Performance analysis of emulated GPGPU-kernels.
 ------
+An experiment devised to investigate performance variations in emulated GPGPU-kernels using the Microsoft framework DirectCompute. The findings of this study have been compiled into an article for the sake of a course in computer science. Later on the article was edited and updated, co-authored with lecturer Martin Fredriksson, for the purpose of submission to the Eurosis GAME-ON ASIA conference.
+I wish to express my gratitude to lecturer Martin Fredriksson.
 
-The compiled article may be found here:
+The compiled article, written for submission to the Eurosis GAME-ON ASIA conference, may be found here:
+https://dl.dropboxusercontent.com/u/42347914/dv2549/eurosis.pdf
+
+The original article, written for cours DV2549 Ht13 Lp1 Spelmotorarkitektur at Blekinge Institute of Technology, may be found here:
 https://dl.dropboxusercontent.com/u/42347914/dv2549/article.pdf
 
 The raw data used throughout the material can be found under branch dv2549_data:
