@@ -5,10 +5,10 @@ f( x ) = mean_basic
 t( x ) = mean_tile
 
 # Retrieve data need during plot:
-plot 'BASICWARPFLOAT.mss'
+plot 'dat/BASICWARPFLOAT.mss'
 mss_min_basic = GPVAL_DATA_Y_MIN
 mss_max_basic = GPVAL_DATA_Y_MAX
-plot 'TILEWARPFLOAT.mss'
+plot 'dat/TILEWARPFLOAT.mss'
 mss_min_tile = GPVAL_DATA_Y_MIN
 mss_max_tile = GPVAL_DATA_Y_MAX
 
@@ -27,10 +27,10 @@ set style line 3 lt rgb "#000000" lw 2 pt 2
 set style line 4 lt rgb "#000000" lw 2 pt 9
 
 # Plotting Source:
-fit f( x ) 'BASICWARPFLOAT.mss' u 0:1 via mean_basic
+fit f( x ) 'dat/BASICWARPFLOAT.mss' u 0:1 via mean_basic
 stdd_basic = sqrt( FIT_WSSR / ( FIT_NDF + 1 ) )
 
-fit t( x ) 'TILEWARPFLOAT.mss' u 0:1 via mean_tile
+fit t( x ) 'dat/TILEWARPFLOAT.mss' u 0:1 via mean_tile
 stdd_tile = sqrt( FIT_WSSR / ( FIT_NDF + 1 ) )
 
 set label 1 "Basic" at 0,mean_basic left offset -8,0
@@ -39,8 +39,8 @@ plot mean_basic w l lt rgb "black"																			,\
 	mean_basic+stdd_basic w l ls 2																			,\
 	mean_basic-stdd_basic w l ls 2																			,\
 	mean_basic w l ls 2																						,\
-	'BASICWARPFLOAT.mss' u 0:(abs($1-mean_basic) < stdd_basic ? $1 : 1/0) w p pt 7 lt rgb "#000000" ps 1	,\
+	'dat/BASICWARPFLOAT.mss' u 0:(abs($1-mean_basic) < stdd_basic ? $1 : 1/0) w p pt 7 lt rgb "#000000" ps 1	,\
 	mean_tile w l lt rgb "black", mean_tile+stdd_tile w l ls 1												,\
 	mean_tile-stdd_tile w l ls 1																			,\
 	mean_tile w l ls 1																						,\
-	'TILEWARPFLOAT.mss' u 0:(abs($1-mean_tile) < stdd_tile ? $1 : 1/0) w p pt 7 lt rgb "#000000" ps 1
+	'dat/TILEWARPFLOAT.mss' u 0:(abs($1-mean_tile) < stdd_tile ? $1 : 1/0) w p pt 7 lt rgb "#000000" ps 1
