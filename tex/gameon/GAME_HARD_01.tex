@@ -1,0 +1,64 @@
+\documentclass[a4paper,twocolumn,10pt]{article}
+
+\usepackage{url}
+\usepackage{float}
+\usepackage{color}
+\usepackage{tabto}
+\usepackage{natbib}
+\usepackage{listings}
+\usepackage{eurosis}
+\usepackage{mdwlist}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{footmisc}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{multibib}
+\newcites{web}{WEB REFERENCES}
+
+\lstset { 
+	language=C,
+	tabsize=4,
+	backgroundcolor=\color{black!5},
+	basicstyle=\footnotesize,
+}
+
+\bibpunct[; ]{(}{)}{,}{a}{}{;}
+
+\begin{document}
+\title{PERFORMANCE~VARIATIONS~IN~EMULATED~GPGPU~KERNELS}
+\author{Eric~Nilsson and Martin~Fredriksson\\
+Department~of~Creative~Technologies\\
+Blekinge~Institute~of~Technology\\
+37179,~Karlskrona\\
+Sweden\\
+email: \href{mailto:EricNNilsson@gmail.com}{ericnnilsson@gmail.com} and \href{mailto:martin.fredriksson@bth.se}{martin.fredriksson@bth.se}}
+\date{}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\keywords{GPGPU, GPU, Simulation, Emulation, DirectCompute, WARP}
+
+\input{GAME_HARD_01_ABSTRACT.tex}
+\input{GAME_HARD_01_INTRODUCTION.tex}
+\input{GAME_HARD_01_CONTRIBUTION.tex}
+
+\newpage
+
+\input{GAME_HARD_01_CONCLUSION.tex}
+
+\newpage
+
+\input{GAME_HARD_01_BIBLIOGRAPHY}
+
+\newpage
+
+\input{GAME_HARD_01_APPENDIX.tex}
+
+\end{document}
+

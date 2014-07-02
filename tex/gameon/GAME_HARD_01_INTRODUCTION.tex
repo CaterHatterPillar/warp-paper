@@ -1,0 +1,19 @@
+% GAME_HARD_01_INTRODUCTION.tex
+
+% INTRODUCTION
+\section{INTRODUCTION}
+\label{sec:introduction}
+When developing \textit{GPU}-kernels, relatively small modifications in code may induce large deviations in performance due to massively parallelized instruction sets and architectural differences in-between on-chip hardware (see Performance Considerations by Kirk~\&~Hwu~\cite[ch.~6]{Kirk:2010:PMP:1841511} for an analysis on the volatility of \textit{GPGPU}-performance).
+The increased utilization of complex \textit{GPU}-kernels has brought forth the need of more extensive debugging- and profiling-possibilities involving access of data that may be hard to retrieve from hardware.
+Therefore, it may be desirable for the developer to be able to view the data being computed on the graphics card - a possibility often limited in terms of \textit{GPGPU}-technologies, possibly due to architectural differences in-between chip manufacturers.\\
+A preferred solution to this problem has been to emulate such \textit{GPU}-kernels on the \textit{CPU} (see Microsoft's reference on \textit{DirectX} Driver Types~\citeweb[]{drivertypes}), such as described by Kerr~et~al.~\cite[p.~416-419]{Hwu:2011:GCG:2103614} concerning the implementation of the \textit{GPU~Ocelot} compilation framework (see GPU~Ocelot~\citeweb[]{gpuocelot}), often in exchange for substantial performance-losses.
+Other resons to emulate \textit{GPU}-kernels may concern pre-silicon development - that is, development for hardware not yet existant, when hardware is busy, or otherwize unavailable (see Microsoft's reference on \textit{WARP}~\citeweb[]{warp}).
+This study comprises an investigation into the performance of software emulation of hardware accelerated \textit{GPGPU}-kernels, by the means of analyzing several software rasterizers.\\
+\\
+Furthermore, this material concerns inquiry into the \textit{DirectCompute}-framework on the \textit{Windows}-platform, analyzing the performance of a \textit{GPGPU}-kernel on-chip, using the \textit{DirectX} standard software rasterizer, and utilizing the \textit{DirectX~11.1}-addition Microsoft~\textit{WARP}-technology (\textit{Windows~Advanced~Rasterization~Platform}) - which promises high-speed software emulation (see Microsoft's reference on \textit{WARP}\citeweb[]{warp}).\\
+\\
+This paper concludes that the performance losses inflicted by such emulation may be reduced enough for that emulation to be considered viable for retail use, as originally proposed by Microsoft (see Microsoft's reference on \textit{WARP}~\citeweb[]{warp}).
+Thus, this study proposes use of Microsoft~\textit{WARP}-technology in industry rasterization if graphics hardware is unavailable, not sufficient, or busy.\\
+\\
+As such, the study concerns the fields of simulation, emulation and \textit{GPU}-technologies - respectively, with the purpose of facilitating debugging and profiling of \textit{GPU}-kernels, whilst maintaining acceptable performance.\\
+The remainder of this document presents the method and process to acquire the data used, the technologies using which it has been acquired, the results in and of their own, the conclusions based off the results and finally; the author's personal reflections surrounding future work in the area along with propositions of further study.

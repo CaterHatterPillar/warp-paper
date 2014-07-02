@@ -4,12 +4,12 @@ import os
 import sys
 import subprocess
 
-os.chdir('tex/eurosis')
+os.chdir('tex/gameon')
 
-subprocess.call("pdflatex -shell-escape eurosis.tex", shell=True)
+subprocess.call("pdflatex -shell-escape GAME_HARD_01.tex", shell=True)
 
 subprocess.call(["bibtex", "web.aux"])
-subprocess.call(["bibtex", "eurosis.aux"])
+subprocess.call(["bibtex", "GAME_HARD_01.aux"])
 
-subprocess.call("pdflatex -shell-escape eurosis.tex", shell=True)
-subprocess.call("pdflatex -shell-escape eurosis.tex", shell=True)
+subprocess.call("pdflatex -shell-escape GAME_HARD_01.tex", shell=True)
+subprocess.call("pdflatex -shell-escape GAME_HARD_01.tex", shell=True)
