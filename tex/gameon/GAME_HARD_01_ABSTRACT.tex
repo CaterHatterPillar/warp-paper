@@ -2,10 +2,10 @@
 
 % ABSTRACT
 \begin{abstract}
-A convenient approach toward debugging or profiling \textit{GPU}-kernels is to emulate the kernel on a \textit{CPU}.
-This approach is also applicable in situations where the target hardware is simply not available, as is often the case with server-side applications (see Microsoft's reference on \textit{WARP}~\citeweb[]{warp}).
+A convenient approach toward more transparent debugging and profiling of \textit{GPU}-kernels is to simulate \textit{GPU}-bound workloads on \textit{CPU}s.
+This approach is also applicable in situations where the target hardware is simply not available, as is often the case with server-side applications, or would require too many system resources to initialize.
 When performing such emulation, however, one may experience severe performance loss due to computational overhead.
 Consequently, the subject of this study is performance variations between three different driver types from the \textit{DirectX}-framework; using \textit{DirectCompute} and the high speed software rasterizer \textit{WARP}.
 As such, the performance of \textit{WARP} is compared to that of traditional \textit{GPU} hardware acceleration and the standard driver for software rasterization - the \textit{Reference~Device~Driver}.
-Our experimental results show a major performance boost when compared to that of software rasterization using the \textit{Reference~Device~Driver}, indicating that performance losses traditionally obstructing \textit{GPU}-kernel emulation may be sufficiently amended by technologies, such as \textit{WARP}, to the degree that such emulation can be considered viable for use in retail applications.
+Our experimental results show a major performance boost when compared to that of software rasterization using the \textit{Reference~Device~Driver}, indicating that performance losses traditionally obstructing simulation of throughput-oriented workloads on \textit{CPU}s may be sufficiently amended by technologies, such as \textit{WARP}, to the degree that such simulation may be considered viable for use in retail applications.
 \end{abstract}
