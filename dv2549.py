@@ -9,9 +9,9 @@ import subprocess
 PATH_TO_EXPERIMENT	= "experiment.exe"
 PATH_TO_MATRIXGEN	= "../../matrixgen/Release/matrixgen.exe"
 PATH_TO_ANALYTICS	= "../../analytics/Release/analytics.exe"
-PATH_TO_RESEXP		= "../../" + "resExperiment.res"
-PATH_TO_RESANA		= "../../" + "resAnalytics.res"
-PATH_TO_EXPRES		= "../../../"
+PATH_TO_RESEXP		= "../../../res/" + "resExperiment.res"
+PATH_TO_RESANA		= "../../../res/" + "resAnalytics.res"
+PATH_TO_EXPRES		= "../../../res/"
 def GetPath( rel ): # Relative to absolute path.
 	return os.path.abspath( rel )
 
@@ -99,8 +99,9 @@ def run( cmd ):
 	p = subprocess.Popen( cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT )
 	return p.communicate()
 def matrixgen( desc ):
-	print( "\nGenerating matrices with properties:\n\tPrecision:\t" + desc.prec + "\n\tDimension:\t" + desc.dim + "\n\tMax:\t\t" + desc.max + "\n\tMin:\t\t" + desc.min + "\n" )
-	run( GetPath( PATH_TO_MATRIXGEN ) + " " + desc.prec + " " + desc.dim + " " + desc.min + " " + desc.max )
+	generateNewMatrices = "0";
+	print( "\nGenerating matrices with properties:\n\tPrecision:\t" + desc.prec + "\n\tDimension:\t" + desc.dim + "\n\tMax:\t\t" + desc.max + "\n\tMin:\t\t" + desc.min + " " + generateNewMatrices + "\n" )
+	run( GetPath( PATH_TO_MATRIXGEN ) + " " + desc.prec + " " + desc.dim + " " + desc.min + " " + desc.max + " 1" )
 def experiment( desc ):
 	expResMss = []
 	expResDMin = []
@@ -126,15 +127,15 @@ def experiment( desc ):
 print( "---\ndv2549\n---" )
 
 # Generate a viable integer matrix:
-matrixgen( factoryDescMat( "INT", "200", "0", "10" ) )
+#matrixgen( factoryDescMat( "INT", "200", "0", "10" ) )
 
 tasksI = []
-tasksI.append( factoryDescExp( "BASIC", "HARD", "INT", 100 ) )
-tasksI.append( factoryDescExp( "BASIC", "SOFT", "INT", 100 ) )
-tasksI.append( factoryDescExp( "BASIC", "WARP", "INT", 100 ) )
-tasksI.append( factoryDescExp( "TILE", "HARD", "INT", 100 ) )
-tasksI.append( factoryDescExp( "TILE", "SOFT", "INT", 100 ) )
-tasksI.append( factoryDescExp( "TILE", "WARP", "INT", 100 ) )
+#tasksI.append( factoryDescExp( "BASIC", "HARD", "INT", 100 ) )
+#tasksI.append( factoryDescExp( "BASIC", "SOFT", "INT", 100 ) )
+#tasksI.append( factoryDescExp( "BASIC", "WARP", "INT", 100 ) )
+#tasksI.append( factoryDescExp( "TILE", "HARD", "INT", 100 ) )
+#tasksI.append( factoryDescExp( "TILE", "SOFT", "INT", 100 ) )
+#tasksI.append( factoryDescExp( "TILE", "WARP", "INT", 100 ) )
 for task in tasksI:
 	print( "\nPerforming " + str( task.num ) + " experiments with properties:\n\tAcceleration:\t" + task.acc + "\n\tPrecision:\t" + task.prec + "\n" )
 	experiment( task )
