@@ -18,7 +18,7 @@ public:
 
 		Matrix< T >* mA = loadMxg( g_mxgPath + g_mxgA );
 		Matrix< T >* mB = loadMxg( g_mxgPath + g_mxgB );
-		Matrix< T >* mRef = loadMxg( g_mxgPath + g_mxgRef );
+		Matrix< T >* mRef = loadMxgb( g_mxgPath + g_mxgRef );
 		if( mA!=nullptr && mB!=nullptr && mRef!=nullptr ) {
 			io_case.a = mA;
 			io_case.b = mB;
@@ -51,6 +51,31 @@ private:
 			MatrixFree( m ); // Matrix copies the passed data, so be sure to free memory.
 		} else {
 			MessageboxError( p_pathMxg + " not found!" );
+		}
+
+		return matrix;
+	}
+	static Matrix< T >* loadMxgb( std::string p_pathMxgb ) {
+		Matrix< T >* matrix = nullptr;
+
+		std::ifstream mxgb( p_pathMxgb, std::ios_base::binary );
+		if( mxgb.is_open() ) {
+			unsigned preRowCol[3];
+			for( unsigned i = 0; i<3; i++ ) {
+				mxgb.read( (char*)&preRowCol[i], sizeof(unsigned) );
+			}
+
+			unsigned i = 0;
+			T* m = MatrixAlloc< T >( preRowCol[1], preRowCol[2] );
+			unsigned numElements = preRowCol[1] * preRowCol[2];
+			for( unsigned i = 0; i<numElements; i++ ) {
+				mxgb.read((char*)&m[i], sizeof(matrix[i]));
+			}
+
+			matrix = new Matrix< T >( m, preRowCol[1], preRowCol[2] );
+			MatrixFree( m ); // Matrix copies the passed data, so be sure to free memory.
+		} else {
+			MessageboxError( p_pathMxgb + " not found!" );
 		}
 
 		return matrix;

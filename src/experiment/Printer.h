@@ -15,12 +15,12 @@ public:
 	}
 
 	bool print() {
-		bool sucess = true;
-		sucess = printC();
-		if( sucess==true ) {
-			sucess = printRes();
+		bool success = true;
+		success = printC();
+		if( success==true ) {
+			success = printRes();
 		}
-		return sucess;
+		return success;
 	}
 protected:
 	bool printC() {
@@ -28,36 +28,36 @@ protected:
 
 		Matrix< T >* matrix = m_case->c;
 
-		bool sucess = true;
-		std::ofstream mxg;
-		mxg.open( g_mxgPath + filename );
-		if( mxg.is_open()==true ) {
+		bool success = true;
+		std::ofstream mxgb( g_mxgPath + filename, std::ios_base::binary );
+		if( mxgb.is_open()==true ) {
 			unsigned precision = (int)m_precision;
 			unsigned rows = matrix->getNumRows();
 			unsigned cols = matrix->getNumCols();
-			mxg << "Precision:\t"	<< precision	<< "\n" 
-				<< "Rows:\t"		<< rows			<< "\n" 
-				<< "Columns:\t"		<< cols;
+			
+			mxgb.write( (const char*)&precision, sizeof(unsigned) ); // Ignore utility text since no human will be reading this, and the format won't be portable.
+			mxgb.write( (const char*)&rows, sizeof(unsigned) );
+			mxgb.write( (const char*)&cols, sizeof(unsigned) );
 
 			unsigned numElements = rows * cols;
 			T* m = matrix->get();
 			for( unsigned i = 0; i<numElements; i++ ) {
-				mxg << "\n" << m[ i ];
+				mxgb.write( (const char*)&m[i], sizeof(m[i]) );
 			}
-			mxg.close();
+			mxgb.close();
 		} else {
 			throw ExceptionExperiment( "Could not open " + g_mxgPath + filename + " for writing." );
-			sucess = false;
+			success = false;
 		}
 
-		return sucess;
+		return success;
 	}
 	bool printRes() {
-		std::string filename = "resExperiment.res";
+		std::string filename = g_resPath + "resExperiment.res";
 		
 		bool success = true;
 		std::ofstream res;
-		res.open( g_resPath + filename );
+		res.open( filename );
 		if( res.is_open()==true ) {
 			unsigned rows = m_case->c->getNumRows();
 			unsigned cols = m_case->c->getNumCols();

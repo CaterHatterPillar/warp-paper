@@ -95,6 +95,7 @@
     <ClInclude Include="..\..\src\matrixgen\Matrix.h" />
     <ClInclude Include="..\..\src\matrixgen\Matrixgen.h" />
     <ClInclude Include="..\..\src\matrixgen\Printer.h" />
+    <ClInclude Include="..\..\src\matrixgen\Reader.h" />
     <ClInclude Include="..\..\src\matrixgen\stdafx.h" />
     <ClInclude Include="..\..\src\matrixgen\Util.h" />
   </ItemGroup>

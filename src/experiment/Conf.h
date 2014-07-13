@@ -8,12 +8,12 @@ static const LPCWSTR g_fxMultFloatBasic = L"MultFloatBasic.cso";
 static const LPCWSTR g_fxMultIntTile	= L"MultIntTile.cso";
 static const LPCWSTR g_fxMultFloatTile	= L"MultFloatTile.cso";
 
-static const std::string g_resPath = "../../../bin/";
-static const std::string g_mxgPath = "../../../mxg/"; // Path to mxg-dir.
+static const std::string g_mxgPath = "../../../mxg/";
+static const std::string g_resPath = "../../../res/";
 static const std::string g_mxgA = "a.mxg";
 static const std::string g_mxgB = "b.mxg";
-static const std::string g_mxgC = "c.mxg";
-static const std::string g_mxgRef = "ref.mxg";
+static const std::string g_mxgC = "c.mxgb";
+static const std::string g_mxgRef = "ref.mxgb";
 
 // These three enums are hacks spread throughout the application.
 // Try to get tid of them.

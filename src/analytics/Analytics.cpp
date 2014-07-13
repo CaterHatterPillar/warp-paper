@@ -32,20 +32,20 @@ int Analytics::run() {
 }
 
 void Analytics::loadMatrix( std::string p_filepath, DoubleList& io_list ) {
-	std::string temp;
 	unsigned precision, rows, cols;
-	
-	std::ifstream mxg( p_filepath );
-	if( mxg.is_open() ) {
-		mxg >> temp >> precision >> temp >> rows >> temp >> cols; // We're not really interested in this data.
+	std::ifstream mxgb( p_filepath, std::ios_base::binary );
+	if( mxgb.is_open()==true ) {
+		mxgb.read( (char*)&precision, sizeof(unsigned) );
+		mxgb.read( (char*)&rows, sizeof(unsigned) );
+		mxgb.read( (char*)&cols, sizeof(unsigned) );
 
 		io_list.num = rows * cols;
 		io_list.list = (double*)malloc( sizeof( double ) * io_list.num );
 
-		unsigned i = 0;
-		while( mxg.eof()==false ) {
-			mxg >> io_list.list[ i ];
-			i++;
+		float f;
+		for(unsigned i = 0; i<io_list.num; i++) {
+			mxgb.read((char*)&f, sizeof(float));
+			io_list.list[i] = (double)f;
 		}
 	} else {
 		throw ExceptionAnalytics( "Could not open file " + p_filepath + "!" );

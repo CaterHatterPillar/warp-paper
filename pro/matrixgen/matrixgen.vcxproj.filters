@@ -33,9 +33,6 @@
     <ClInclude Include="..\..\src\matrixgen\Ampersand.h">
       <Filter>Matrixgen</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\matrixgen\Printer.h">
-      <Filter>Printer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\matrixgen\Conf.h" />
     <ClInclude Include="..\..\src\matrixgen\Amphack.h">
       <Filter>Matrixgen</Filter>
@@ -43,13 +40,16 @@
     <ClInclude Include="..\..\src\matrixgen\ExceptionMatrixgen.h">
       <Filter>Error</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\Printer.h">
+      <Filter>Matrixgen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\matrixgen\Reader.h">
+      <Filter>Matrixgen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
       <UniqueIdentifier>{1cdc51bf-e7a7-4b85-b335-a49b8b776afe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Printer">
-      <UniqueIdentifier>{02b9bd1e-df80-43dc-8850-4a4d8fd3b911}</UniqueIdentifier>
     </Filter>
     <Filter Include="Matrixgen">
       <UniqueIdentifier>{2af68c84-c65d-4a7a-8590-b0facd81ec31}</UniqueIdentifier>
