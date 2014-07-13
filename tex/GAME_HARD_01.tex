@@ -16,6 +16,10 @@
 \usepackage{verbatim}
 \usepackage[dvipsnames]{xcolor}
 
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+
 \usepackage{multibib}
 \newcites{web}{WEB REFERENCES}
 
@@ -28,21 +32,27 @@
 
 \bibpunct[; ]{(}{)}{,}{a}{}{;}
 
+% Title suggestions:
+% ACCELERATING GPU WORKLOAD SIMULATION USING MICROSOFT WARP
+% PERFORMANCE VARIATIONS IN SIMULATED GPU WORKLOADS
+% Original:
+% PERFORMANCE VARIATIONS IN EMULATED GPGPU-KERNELS
+
 \begin{document}
-\title{PERFORMANCE~VARIATIONS~IN~EMULATED~GPGPU~KERNELS}
-\author{Eric~Nilsson\\
-Department~of~Creative~Technologies\\
-Blekinge~Institute~of~Technology\\
-37179,~Karlskrona\\
+\title{PERFORMANCE~VARIATIONS~IN~EMULATED~GPGPU~KERNELS} % Obscure title. Be sure to change.
+\author{Eric Nilsson\\
+Faculty of Computing\\
+Blekinge Institute of Technology\\
+37179, Karlskrona\\
 Sweden\\
-email: \href{mailto:erne09@student.bth.se}{erne09@student.bth.se}}
+E-mail: \href{mailto:erne09@student.bth.se}{erne09@student.bth.se}}
 \date{}
 
 \maketitle
 
 \thispagestyle{empty}
 
-\keywords{GPU, Simulation, DirectCompute, WARP}
+\keywords{System simulation, Software rasterization, GPU}
 
 \input{GAME_HARD_01_ABSTRACT.tex}
 \input{GAME_HARD_01_INTRODUCTION.tex}

@@ -1,0 +1,36 @@
+ToDoIst:
+
+Additions:
+* Add author biography
+
+General:
+* Reduce whitespace throughout article (tables, etc.)
+* Caption placement for tables and figures ought to differ according to EUROSIS standards.
+
+Redo GNUplot figure.
+
+Various:
+* What causes the precision deviations in-between calculations performend in C++ AMP and DirectCompute environments is unclear, but may be attributed to differing floating point precision models present in HLSL (which both C++ AMP and DirectCompute utilizes). Regardless, there is no sign of precisional variance in-between Direct3D devices.
+
+Phrase potential use differently: "This indicates potential for extended use other than... ...since speeds..."
+
+Include in discussion:
+* Used for Windows VGA... 
+* Can be used to isolate errors from hardware or graphics driver specific errors often encountered by graphics developers.
+* May aid graphics acceleration in virtual platforms
+
+Mention copyright notice
+
+Ensure author address etc. is correct
+
+Formatting:
+* Italics and that kind of stuff. Don't overuse it. Decide what phrases are tt'd it'd and bd'd
+* Abbreviations.
+* Only capitilize phrases during their first mention
+
+Title.
+
+Future work:
+* Microsoft lists, amongst other limitations latency-oriented CPUs may have over throughput oriented GPU architectures, memory bandwidth as a potential bottleneck for WARP-type accelerating devices. Suggest further studies into WARP when its bottlenecks are stressed.
+
+Reformat surce code.

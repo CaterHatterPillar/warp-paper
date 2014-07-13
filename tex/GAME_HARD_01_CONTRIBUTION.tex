@@ -5,131 +5,134 @@
 \label{sec:contribution}
 
 % CONTRIBUTION - OBJECT OF STUDY
-\subsection{Object~of~Study}
+\subsection{Object of Study}
 \label{sec:contribution:objectofstudy}
-Due to the nature of the experiment, it is important that the Object~of~Study is measurable and deterministic. For the purpose of this study, the data computed corresponds to a square matrix multiplication, since such an operation is highly parallelizable, as demonstrated by Kirk~\&~Hwu~\cite[ch.~3]{Kirk:2010:PMP:1841511}.
-Additionally, verifying the result of such an operation is trivial, and potential losses in computational precision may be computed from the expected data-type.
-The operation was therefore considered suitable for the purpose of this experiment.\\
-\\
-The dimension $200x200$ was selected for the respective matrices as it is big enough to execute efficiently on the \textit{GPU}, but yet reasonably sized to keep measurements collected by the means of emulation comparable to the hardware accelerated reference case.\\
+Due to the nature of the experiment, it is important that the Object~of~Study is measurable and deterministic. For the purpose of this study, the data computed corresponds to a square matrix multiplication, since such an operation is highly parallelizable, as demonstrated by Kirk~and~Hwu~\cite[ch.~3]{Kirk:2010:PMP:1841511}.
+Additionally, verifying the result of such an operation is trivial, and potential losses in computational precision may be easily established.
+The operation was therefore considered suitable for the purpose of this experiment.
+Furthermore, the matrix dimension of $200x200$ was selected for the respective matrices as it is big enough to execute efficiently on the GPU, but yet reasonably sized to keep simulated measurements comparable to those of the hardware accelerated reference case.
 Throughout this material, the compiled data will be referred to as $AB=C$, and thus make out the Object of this experiment.
 
 % CONTRIBUTION - METHOD OF STUDY
-\subsection{Method~of~Study}
+\subsection{Method of Study}
 \label{sec:contribution:methodofstudy}
-In order to establish the Object~of~Study, $AB=C$, the experiment utilizes \textit{GPGPU}-kernels using which the result is calculated, in it’s entirety, in aforementioned kernel using some target Subject (see Section~\nameref{sec:contribution:subjectsofstudy}).
+In order to establish the Object~of~Study, $AB=C$, the experiment utilizes DirectCompute HLSL kernels using which the result matrix is calculated, in its entirety, using some device driver, or Subject (see section \nameref{sec:contribution:subjectsofstudy}).
 The experiment is devised of the following approximate steps in order to compile the Object~of~Study $AB=C$:
 \begin{enumerate*}
-	\item Randomize two matrices $A$ \& $B$ using desired data-type.
+	\item Randomize two matrices $A$ and $B$ of desired data-type (single floating point or integer).
 	\item Establish the product-matrix $AB=Ref$. The resulting matrix will be used as a reference matrix to verify the final result.
 	\item Start a synchronized high-precision timer.
-	\item Dispatch \textit{GPU}-kernel calculating the product matrix $AB=C$.
+	\item Dispatch DirectCompute program calculating the product matrix $AB=C$.
 	\item Stop the timer once the kernel has finished execution.
-	\item Establish possible deviation in-between resulting matrix $C$ and previously established matrix $Ref$.
+	\item Establish possible deviation between resulting matrix $C$ and previously established matrix $Ref$.
 \end{enumerate*}
-The process described above make out the Method of this study.
+The above process  makes out the Method of this study.
 
 % CONTRIBUTION - SUBJECTS OF STUDY
-\subsection{Subjects~of~Study}
+\subsection{Subjects of Study}
 \label{sec:contribution:subjectsofstudy}
-The \textit{GPU}-kernels described in Section~\nameref{sec:contribution:methodofstudy} are comprised of \texttt{HLSL}-syntax and are compiled \& executed using Microsoft \textit{DirectCompute}.
-These kernels are run using three types of acceleration technologies with varying strategies of \textit{GPU}-kernel emulation.
+The kernels described in section \nameref{sec:contribution:methodofstudy} are comprised of HLSL, compiled using Microsoft FXC, and executed using DirectCompute.
+The programs are run using three types of acceleration technologies with varying strategies of simulation.
 These are comprised of the following:
-\subsubsection{Hardware-Acceleration~(GPU)}
-The execution of a \textit{DirectCompute}-kernel on a graphics card.
-This is the common case, and involves no emulation of the kernel.
-Thus, this case will act as a reference for the emulated Subjects.\\
-During hardware acceleration on the \textit{GPU}, one may expect high performance.
-\subsubsection{Software~Rasterization~(CPU)}
-The emulated execution of a \textit{DirectCompute}-kernel using the \textit{DirectX} \textit{Reference~Device~Driver}.
-The \textit{Reference~Device~Driver} was developed for the purpose of testing and debugging, and is - although it does support some \textit{CPU}-optimizations - not intended to be used in retail applications (see Microsoft's reference on \textit{DirectX} Driver Types~\citeweb[]{drivertypes}).\\
-As the \textit{Reference~Device~Driver} is designed for the purpose of accuracy, rather than speed, one may expect poor performance.
 
-\subsubsection{Windows~Advanced~Rasterization~Platform~(CPU)}
-The emulated execution of a \textit{DirectCompute}-kernel using a special software rasterizer devised by Microsoft in their latest revision of the \textit{DirectX}-framework.
-The driver is based off the \textit{DirectX} \textit{Reference~Device~Driver} and uses thread pooling to distribute tasks efficiently on the \textit{CPU}, along with grouping execution in batches for optimum performance.
-Microsoft describes \textit{WARP} as a high-performance software rasterizer, and recommends using the driver for retail applications, such as casual games (see Microsoft's reference on \textit{WARP}~\citeweb[]{warp}).\\
-As there are, as of yet, few studies performed on Microsoft~\textit{WARP}; expectations are unclear, but the driver is expected to perform better than standard software rasterization.\\
-\\
-These three \textit{DirectX} driver-types make out the Subjects of this study.
+\subsubsection{Hardware-Acceleration (GPU)}
+The execution of a DirectCompute-kernel on a graphics card.
+By utilizing a modern graphics card, hardware acceleration allows DirectX to utilize the throughput-oriented design of modern GPUs; maximizing FLOPS (Floating-point Operations Per Second) capacity.
+Being the common case; the methodology involves no simulation.
+Thus, measurements collected using this device driver acts as a reference for the simulated Subjects.
+
+\subsubsection{Software~Rasterization (CPU)}
+The simulation of a DirectCompute-kernel on the CPU using the DirectX~reference~device~driver.
+The reference rasterizer supports every Direct3D feature and is intended to be used for debugging- and verification purposes.
+Hence, the reference~device~driver is only available on systems where the DirectX~SDK is installed.
+As such, although the reference~device~driver does feature some optimization for CPU execution, the driver is not intended for outside-development use~\citeweb[]{drivertypes}.
+As the reference~device~driver is designed for the purpose of framework functionality verification, rather than speed, one may expect poor performance.
+
+\subsubsection{Windows Advanced Rasterization Platform (CPU)}
+The simulated execution of a DirectCompute kernel using a specially devised software rasterizer devised for high performance and full framework conformance by Microsoft in their latest version of the DirectX framework.
+Being based on the reference~device~driver, WARP utilizes thread pooling to distribute tasks efficiently on the CPU, along with grouping execution in batches for optimum performance.
+Furthermore, WARP uses JIT~(Just-In-Time) compilation to generate SSE2 and SSE4.1 SIMD~(Single Instruction, Multiple Data) instructions, in addition to x86-compatible native instructions to significantly speed up simulation of GPU-bound workloads~\citeweb[]{warp}.
+Having outperformed some low-end integrated GPUs according to Microsoft, and the device driver being included in Windows~7 and 8 runtimes, Microsoft recommends using the driver for retail applications, such as casual games~\citeweb[]{warp}.
+Although Microsoft has presented some WARP comparisons to hardware acceleration, there is no performance benchmark indicative of WARP performance in relation to the traditional reference~device~driver.
+As such, expectations on the performance of WARP is unclear, but the driver is expected to perform better than standard software rasterization.\\
+
+These three DirectX driver-types make out the Subjects of this study.
 
 % CONTRIBUTION - KERNELS
 \subsection{Kernels}
 \label{sec:contribution:kernels}
-In addition to the Subject drivers mentioned in Section~\nameref{sec:contribution:subjectsofstudy}, two kernels with varying level of optimization are examined.
-The kernels have been implemented in accordance to the \textit{CUDA}-kernels as described by Kirk~\&~Hwu~\cite[p.~67, p.~87]{Kirk:2010:PMP:1841511}.
-These kernels are presented below.
-\subsubsection{Matrix~mult.~w.~Thread~Blocks}
-A kernel producing $AB=C$ from two given matrices, writing back $C$ for further analysis.
-The kernel is executed with one thread for each element in the square matrices, and likewize each produce a lone element of the resulting matrix. Execution is performed in blocks of $16x16$ threads since this was the block dimension, out of samples $8$, $16$, and $32$, that performed optimally whilst hardware accelerated on the system described in Section~\nameref{sec:contribution:equipment}.\\
-This kernel will be referred to as the Basic~Kernel throughout this material.
-
-\subsubsection{Matrix~mult.~w.~Thread~Blocks~\&~Shared~Memory}
-Similar to the previous kernel, but further optimized to utilize shared memory in order to reduce time-consuming reading of global memory, as presented by Kirk~\&~Hwu~\cite[p.~77-93]{Kirk:2010:PMP:1841511}.\\
-Stratton~et~al.~\cite[p.~1-3]{Stratton:2008:MEI:1485701.1485703} instructs that the \textit{CUDA}~\textit{GPGPU}-model may be applied onto multicore \textit{CPU}s, including locality-wize execution of logical thread-blocks (all threads in a block limited to a single core), with the utilization of local- and shared-memory approximately corresponding to a core's \textit{L1}-cache. Hence, the kernel is presented as a scenario due to the preconditions of \textit{WARP} - stating that a kernel optimized for \textit{GPU}-execution is likewize optimized for execution with \textit{WARP} (see Microsoft's reference on \textit{WARP}~\citeweb[]{warp}).
-Thus, we investigate a more optimized kernel to see whether or not this behaviour may be replicated in the experiment.\\
-This kernel will be referred to as the Tiled~Kernel throughout this material.\\
-\\
+In addition to the Subject drivers mentioned in section~\nameref{sec:contribution:subjectsofstudy}, two kernels with varying level of optimization are examined.
+The kernels are implemented in accordance to the CUDA matrix multiplication kernels as described by Kirk~and~Hwu~\cite[p.~67, p.~87]{Kirk:2010:PMP:1841511}.
 Furthermore, aforementioned kernels both support integer- and floating-point precision.
-These kernels are attached, in their entirety, under Section~\nameref{sec:appendix}.
+Descriptions of these kernels is presented below, and are complemented with source code under section~\nameref{sec:appendix}.
+
+\subsubsection{Matrix mult. w. Thread Blocks}
+A kernel producing $AB=C$ from two given matrices; writing back $C$ for further analysis.
+The program is executed with one thread for each element in the resulting square matrix, and likewise each produce a lone element of the product matrix.
+Execution is performed in blocks of $16x16$ threads, since this was the block dimension, out of samples $8$, $16$, and $32$, that performed optimally whilst hardware accelerated on the system described in section~\nameref{sec:contribution:equipment}.
+The kernel will be referred to as the Basic~Kernel throughout this material.
+
+\subsubsection{Matrix mult. w. Thread Blocks and Shared Memory}
+Similar to the previously described kernel, but optimized to utilize shared memory in order to reduce time-consuming access of global memory, as presented by Kirk~and~Hwu~\cite[p.~77-93]{Kirk:2010:PMP:1841511}.
+Stratton~et~al.~\cite[p.~1-3]{Stratton:2008:MEI:1485701.1485703} instructs that the CUDA GPGPU-model may be applied onto multicore CPUs, including locality-wise execution of logical thread blocks (that is; all threads in a block limited to a single core), with the utilization of local- and shared-memory approximately corresponding to the L1-cache of a CPU core.
+Hence, the kernel is presented as a scenario due to the preconditions of WARP, stating that a kernel optimized for GPU-execution is likewize optimized for execution with WARP~\citeweb[]{warp}.
+Thus, we investigate a more optimized kernel to see whether or not this behaviour may be replicated in the experiment in terms of memory access.
+The kernel will be referred to as the Tiled~Kernel throughout this material.
 
 % CONTRIBUTION - TOOLS
 \subsection{Tools}
 \label{sec:contribution:tools}
-The experiment process has been subdivided into three major components, all of which use Microsoft~\textit{Visual~Studio~2012} for compilation.
-These are presented below.
+The experiment process is subdivided into three major components, all of which are compiled using Visual~C++~2012.
+These programs are presented in detail below.
 
 \subsubsection{matrixgen}
 Denotes a utility developed to generate matrices of different dimensions and data-types.
-Furthermore, \textit{matrixgen} compiles the reference matrix $Ref$ used when comparing the result returned from the \textit{DirectCompute}-dispatch described in the next paragraph.\\
-\textit{matrixgen} is written in \texttt{C++} and utilizes \texttt{C++~AMP} to generate and multiply matrices $A~\&~B$ into product matrix $Ref$.
-In order to achieve random values in a \texttt{C++~AMP}-kernel the solution includes the random number generator-library \texttt{C++~AMP~RNG}.
-As \textit{matrixgen} utilizes Microsoft \texttt{C++~AMP}-technology, \textit{Windows~7} or later is required.
+In addition to randomly generating matrices, matrixgen also compiles the reference matrix $Ref$; used to validate the product matrix returned from the subsequent DirectCompute dispatch.
+The utility is written in C++ and utilizes C++~AMP to generate and multiply matrices $A$~and~$B$ into product matrix $Ref$.
+In order to produce random values in a C++~AMP program, the solution includes the random number generator library C++~AMP~RNG.
+As matrixgen utilizes Microsoft C++~AMP-technology, the utility requires Windows~7 or later in order to run.
 
 \subsubsection{experiment}
-Making out the primary component of the study, \textit{experiment} uses \textit{DirectCompute} to compile the product matrix $C$ from matrices $A~\&~B$ generated by \textit{matrixgen}.
-The application outputs data surrounding the execution of said kernel, such as it's execution time in milliseconds, to an intermediate file.\\
-\textit{experiment} is written in \texttt{C++} with it's respective \textit{DirectCompute}-kernels written in \texttt{HLSL}-syntax.
-As \textit{experiment} is developed using the \textit{Windows~8}~SDK, \textit{Windows~8.0} or later is required.
-Furthermore, \textit{experiment} requires a \textit{DirectX~11.0}- or \textit{DirectX~11.1}-compatible graphics card.
+Making out the primary component of the study, experiment uses DirectCompute to compile the product matrix $C$ from matrices $A$~and~$B$ compiled by matrixgen.
+The application outputs data surrounding the execution of the kernels, such as execution time in milliseconds, to an intermediate file.
+The utility is written in C++, with its respective DirectCompute kernels written in HLSL.
+As experiment is developed using the Windows~8~SDK, Windows~8.0 or later is required to run the tool.
+Furthermore, experiment requires a DirectX~11.0- or DirectX~11.1-compatible graphics card in order to produce the hardware accelerated reference case.
 
 \subsubsection{analytics}
-\textit{analytics} is a utility developed to compose data surrounding possible precisional deviations in-between matrices $C~\&~Ref$.
-\textit{analytics} compiles the minimum- and maximum-deviation encountered, as well as to calculate the standard deviation of said precisional deviation.
+A utility devised to compose data surrounding possible precisional deviation between matrices $C$~and~$Ref$.
+The tool, written in C++, compiles the minimum- and maximum  deviation encountered, as well as to calculate the standard deviation of any precisional discrepency in produced product matrices.
 In turn, analytics outputs this information to an intermediate file.\\
-\textit{analytics} is written in \texttt{C++}.\\
-\\
+
 These three applications are, in turn, run as subprocesses in a script specifying the various configurations and number of times to run each program.
-This script, written in \texttt{Python}, then compiles the assorted results of these applications and outputs a range of files suitably formatted for interpretation by \textit{Gnuplot}.\\
-The source code manufactured for the sake of this study is freely available via an online \textit{Git} repository~\citeweb[]{github}, along with a guide on how to compile and run the solution in order to replicate the experiment.
-Furthermore, the complete results collected and used throughout this study are also available for download, and may be acquired for further analysis.
+This script, written in Python, compiles the assorted results of respective program and outputs a range of files suitably formatted for interpretation by Gnuplot.
+The source code manufactured for the sake of this study is freely available via an online Git repository~\citeweb[]{github}, along with a guide on how to compile and run the solution in order to replicate the experiment.
+Furthermore, the complete results presented in this material are also available for download and may be acquired for further analysis.
 
 % CONTRIBUTION - EQUIPMENT
 \subsection{Equipment}
 \label{sec:contribution:equipment}
-The results presented in this study is gathered from experiments performed on a system with the following specifications:
+The results presented in the paper is gathered from experiments performed on a system with the following specifications:
 \begin{description*}
-	\item[CPU]	Intel~Q9550~Quad~Core~$2.83$GHz
-	\item[GPU]	ATI~Radeon~HD~5800
-	\item[OS]	\tabto{0.35cm}\textit{Windows~8.0} % hack
+	\item[CPU]	Intel Q9550 Quad Core $2.83$GHz
+	\item[GPU]	ATI Radeon HD 5800
+	\item[OS\phantom{U}] Windows~8.0
 \end{description*}
-This system setup was selected for use, for the purpose of this study, as Microsoft claims that the \textit{WARP} driver performs best on modern quad-core \textit{CPU}s (see Microsoft's reference on \textit{WARP}~\citeweb[]{warp}).
+This system setup was selected for use as Microsoft claims that the WARP device performs best on modern quad-core CPUs~\citeweb[]{warp}.
 
 % CONTRIBUTION - PROCESS OF STUDY
-\subsection{Process~of~Study}
+\subsection{Process of Study}
 \label{sec:contribution:processofstudy}
-For the purpose of this study, the Object~of~Study - being $200x200$ matrices - were randomized with numbers in-between zero and ten.
-The product matrix of these matrices was then computed $100$ times for each configuration.
-In this way, the Basic~Kernel was run with each Subject~of~Study - being Hardware~Acceleration, Software~Rasterization and \textit{WARP} - respectively, likewize as with the Tiled~Kernel.
-For each execution, data surrounding the dispatch-time of each kernel (meaning the time taken to execute corresponding kernel, regardless of program initialization) was garnered along with precision-wize deviational data.\\
-The process described above was then repeated for integer- and floating point-precision.\\
-\\
-The measurements gathered from these executions make out the Results presented in this study.
+For the purpose of this study, the Object~of~Study, being $200x200$ matrices of integer or floating point precision, is randomized with numbers between zero and ten.
+The product matrix of these matrices is subsequently computed $100$ times for each configuration.
+In this way, the Basic~Kernel is executed with each Subject~of~Study - being Hardware~Acceleration, Software~Rasterization and WARP - respectively, likewize as with the Tiled~Kernel.
+For each execution, data surrounding the dispatch time of each kernel (regardless of program initialization) is garnered along with precision-wise deviational data.
+This process is repeated for integer- and floating point precision, in order to establish if there is any performance-wise disrepency betwixt them.
 
 % CONTRIBUTION - RESULTS
 \subsection{Results}
 \label{sec:contribution:results}
-Based off the average of the collected execution times described in Section~\nameref{sec:contribution:processofstudy}; results indicate an improvement in the performance of the kernels when using Microsoft~\textit{WARP}, compared to the performance of the \textit{DirectX}~\textit{Reference~Device~Driver} from which \textit{WARP} is derived.
+Based off the average of the collected execution times described in Section~\nameref{sec:contribution:processofstudy}; results indicate an improvement in the performance of the kernels when using Microsoft~WARP, compared to the performance of the \textit{DirectX}~\textit{reference~device~driver} from which WARP is derived.
 Table~\ref{tab:contribution:results:summaryint} demonstrates a performance gain with the Hardware~Accelerated Subject when utilizing shared memory amongst blocks; with varying results for the other Subjects - either increasing or decreasing execution time (see Table~\ref{tab:contribution:results:summaryfloat}).
 
 \begin{table}[hbt]
@@ -160,15 +163,15 @@ Table~\ref{tab:contribution:results:summaryint} demonstrates a performance gain 
 \label{tab:contribution:results:summaryfloat}
 \end{table}
 
-Using both integer- and floating point-precision, the performance of \textit{WARP} is impaired by the kernel utilizing shared memory according to the data presented in Tables~\ref{tab:contribution:results:summaryint}~\&~\ref{tab:contribution:results:summaryfloat}.
-In Microsoft's guide on \textit{WARP} (see Microsoft's reference on \textit{WARP}~\citeweb[]{warp}), the author claims that an application, if tuned to run efficiently on hardware, will run efficiently whilst emulated using \textit{WARP} - and vice versa.
+Using both integer- and floating point-precision, the performance of WARP is impaired by the kernel utilizing shared memory according to the data presented in Tables~\ref{tab:contribution:results:summaryint}~and~\ref{tab:contribution:results:summaryfloat}.
+In Microsoft's guide on WARP (see Microsoft's reference on WARP~\citeweb[]{warp}), the author claims that an application, if tuned to run efficiently on hardware, will run efficiently whilst emulated using WARP - and vice versa.
 However, the data collected for this study rather indicates an increase in execution time of $23.9$\%, independant of precision, even though the same kernel accelerates the hardware accelerated Subject by roughly $70$\%.
 The floating point scenario of this effect is visualized in Figure~\ref{fig:contribution:results:warp:msswarp}.
 
 \begin{figure}[htb]
 \begin{center}
 	\resizebox{ \columnwidth }{!}{\input{../msswarp}}
-	\caption{\textit{WARP} execution time with floating point-precision for the Basic- and Tiled-kernel, with visualized mean and standard deviations. Values outside of their respective standard deviations have been clipped for the sake of clarity.}
+	\caption{WARP execution time with floating point-precision for the Basic- and Tiled-kernel, with visualized mean and standard deviations. Values outside of their respective standard deviations have been clipped for the sake of clarity.}
 	\label{fig:contribution:results:warp:msswarp}
 \end{center}
 \end{figure}
@@ -190,5 +193,5 @@ The average deviations in precision experienced equally with each configuration,
 \end{center}
 \end{table}
 
-These results are expected as \textit{WARP} conforms to the precision requirements of the \textit{Direct3D~10}- and \textit{10.1}-specification (see Microsoft's reference on \textit{WARP}~\citeweb[]{warp}).
+These results are expected as WARP conforms to the precision requirements of the \textit{Direct3D~10}- and \textit{10.1}-specification (see Microsoft's reference on WARP~\citeweb[]{warp}).
 See Microsoft's documentation on Floating-point Rules~\citeweb[]{floatingpointrules} for more information surrounding floating point-precision in the \textit{Direct3D}-framework.
