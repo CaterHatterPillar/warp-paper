@@ -8,11 +8,8 @@ General:
 
 Redo GNUplot figure.
 
-Phrase potential use differently: "This indicates potential for extended use other than... ...since speeds..."
-
 Include in discussion:
 * Used for Windows VGA... 
-* Can be used to isolate errors from hardware or graphics driver specific errors often encountered by graphics developers.
 * May aid graphics acceleration in virtual platforms
 
 Mention copyright notice
@@ -25,8 +22,5 @@ Formatting:
 * Only capitilize phrases during their first mention
 
 Title.
-
-Future work:
-* Microsoft lists, amongst other limitations latency-oriented CPUs may have over throughput oriented GPU architectures, memory bandwidth as a potential bottleneck for WARP-type accelerating devices. Suggest further studies into WARP when its bottlenecks are stressed.
 
 Reformat surce code.
