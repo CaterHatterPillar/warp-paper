@@ -3,14 +3,14 @@
 \section{CONCLUSION}
 \label{sec:conclusion}
 Based on the findings of the experiment described in this paper, using WARP to simulate the presented kernels has magnitudes greater performance than if one were to apply the reference~device~driver in the same manner.
-Hence, if one were to compare the execution of WARP and the reference~device~driver side-by-side, and assume the same area of application, WARP is superior in terms of execution time presuming the same preconditions.
+Hence, if one were to compare the execution of WARP and the reference~device~driver side-by-side, and assume the same area of application, WARP is superior in terms of execution time.
 
 However, keeping in mind the major performance improvements offered by WARP, it is important to consider that the two may be appropriate for different purposes.
 The reference~device~driver is primarily proposed by Microsoft as an accurate debugging-/pre-silicon-development tool (e.g., for the purposes of driver verification).
 On the contrary, WARP is intended for use in a broader sense, such as to render graphics for casual games - in addition to error-profiling purposes~\citeweb[]{warp}.
 Accordingly, the WARP device is included in the Direct3D~11~runtime for outside-development use.
 This indicates potential for extended use above and beyond that of debugging- and profiling purposes, since the WARP device may be utilized where the reference~device~driver would otherwise be orders of magnitude too slow.
-Such an example would be the isolation of hardware or graphics driver errors in high-performance graphics applications - often encountered by game developers.
+Such an example would be the isolation of hardware or graphics driver errors in high-performance graphics applications - often encountered by video game developers.
 
 In conclusion; this study proposes, pursuant to the established performance of WARP, that WARP-like technologies are feasable for use where the reference~device~driver is too slow, when hardware is not available, and for extended purposes other than debugging and profiling.
 
