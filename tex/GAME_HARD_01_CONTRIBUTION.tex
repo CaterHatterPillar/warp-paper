@@ -188,33 +188,3 @@ In hindsight, this behaviour may be expected as WARP conforms to the precision r
 See the Microsoft guide on Floating-point Rules~\citeweb[]{floatingpointrules} for more information surrounding floating point precision in the Direct3D-framework.
 Accordingly, albeit not being explicitly developed for the purposes of precision, WARP performs equally as with the reference~device~driver.
 Whether or not this behaviour is replicated for double floating point precision is uncertain.
-
-%\begin{table}[hbt]
-%\begin{center}
-%\begin{tabular}{r|r|r|r|}
-%	\cline{2-3}
-%	& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
-%	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$	& $0.24$ 	& $-79.3\%$ \\ \hline \hline
-%	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$	& $9866.40$	& $-15.0\%$ \\ \hline
-%	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$	& $18.97$	& $+23.9\%$ \\ \hline
-%        & \multicolumn{1}{|r|}{$-99.9\%$} & \multicolumn{1}{|r|}{$-99.8\%$} \\ \cline{2-3}
-%\end{tabular}
-%\end{center}
-%\caption{Average execution time in milliseconds of a $200\times 200$ integer matrix multiplication.}
-%\label{tab:contribution:results:summaryint}
-%\end{table}
-%
-%\begin{table}[hbt]
-%\begin{center}
-%\begin{tabular}{r|r|r|r|}
-%	\cline{2-3}
-%	& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
-%	\multicolumn{1}{|l|}{\textbf{HARD}}	& $0.77$	& $0.22$	& $-71.4\%$ \\ \hline \hline
-%	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $10247.03$	& $10909.88$	& $+6.5\%$ \\ \hline
-%	\multicolumn{1}{|l|}{\textbf{WARP}}	& $14.08$	& $17.44$	& $+23.9\%$ \\ \hline
-%& \multicolumn{1}{|r|}{$-99.9\%$} & \multicolumn{1}{|r|}{$-99.8\%$} \\ \cline{2-3}
-%\end{tabular}
-%\end{center}
-%\caption{Average execution time in milliseconds of a $200\times 200$ floating point matrix multiplication.}
-%\label{tab:contribution:results:summaryfloat}
-%\end{table}
