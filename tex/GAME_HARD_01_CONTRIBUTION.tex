@@ -10,7 +10,7 @@
 Due to the nature of the experiment, it is important that the Object~of~Study is measurable and deterministic. For the purpose of this study, the data computed corresponds to a square matrix multiplication, since such an operation is highly parallelizable, as demonstrated by Kirk~and~Hwu~\cite[ch.~3]{Kirk:2010:PMP:1841511}.
 Additionally, verifying the result of such an operation is trivial, and potential losses in computational precision may be easily established.
 The operation was therefore considered suitable for the purpose of this experiment.
-Furthermore, the matrix dimension of $200x200$ was selected for the respective matrices as it is big enough to execute efficiently on the GPU, but yet reasonably sized to keep simulated measurements comparable to those of the hardware accelerated reference case.
+Furthermore, the matrix dimension of $200\times 200$ was selected for the respective matrices as it is big enough to execute efficiently on the GPU, but yet reasonably sized to keep simulated measurements comparable to those of the hardware accelerated reference case.
 Throughout this material, the compiled data will be referred to as $AB=C$, and thus make out the Object of this experiment.
 
 % CONTRIBUTION - METHOD OF STUDY
@@ -114,8 +114,8 @@ Furthermore, the complete results presented in this material are also available 
 \label{sec:contribution:equipment}
 The results presented in the paper is gathered from experiments performed on a system with the following specifications:
 \begin{description*}
-	\item[CPU]	Intel Q9550 Quad Core $2.83$GHz
-	\item[GPU]	ATI Radeon HD 5800
+	\item[CPU] Intel Q9550 Quad Core $2.83$GHz
+	\item[GPU] ATI Radeon HD 5800
 	\item[OS\phantom{U}] Windows~8.0
 \end{description*}
 This system setup was selected for use as Microsoft claims that the WARP device performs best on modern quad-core CPUs~\citeweb[]{warp}.
@@ -123,7 +123,7 @@ This system setup was selected for use as Microsoft claims that the WARP device 
 % CONTRIBUTION - PROCESS OF STUDY
 \subsection{Process of Study}
 \label{sec:contribution:processofstudy}
-For the purpose of this study, the Object~of~Study, being $200x200$ matrices of integer or floating point precision, is randomized with numbers between zero and ten.
+For the purpose of this study, the Object~of~Study, being $200\times 200$ matrices of integer or floating point precision, is randomized with numbers between zero and ten.
 The product matrix of these matrices is subsequently computed $100$ times for each configuration.
 In this way, the Basic~Kernel is executed with each Subject~of~Study - being Hardware~Acceleration, Software~Rasterization and WARP - respectively, likewize as with the Tiled~Kernel.
 For each execution, data surrounding the dispatch time of each kernel (regardless of program initialization) is garnered along with precision-wise deviational data.
@@ -132,66 +132,89 @@ This process is repeated for integer- and floating point precision, in order to 
 % CONTRIBUTION - RESULTS
 \subsection{Results}
 \label{sec:contribution:results}
-Based off the average of the collected execution times described in Section~\nameref{sec:contribution:processofstudy}; results indicate an improvement in the performance of the kernels when using Microsoft~WARP, compared to the performance of the \textit{DirectX}~\textit{reference~device~driver} from which WARP is derived.
-Table~\ref{tab:contribution:results:summaryint} demonstrates a performance gain with the Hardware~Accelerated Subject when utilizing shared memory amongst blocks; with varying results for the other Subjects - either increasing or decreasing execution time (see Table~\ref{tab:contribution:results:summaryfloat}).
+Considering average percentage decreases in execution time of $99.8\%-99.9\%$ presented in table~\ref{tab:contribution:results:summaryint}~and~\ref{tab:contribution:results:summaryfloat}; results indicate significant improvements in the performance of both kernels when using WARP, compared to that of the the reference~device~driver.
+These improvements, accounting for well-over two orders of magnitude, induce an execution time spanning tenths of milliseconds; a considerable advance from that of roughly ten entire seconds.
 
-\begin{table}[hbt]
-\begin{center}
-\begin{tabular}{r|r|r|r|}
-	\cline{2-3}
-							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}}	\\ \hline
-	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$			& $0.24$ 	& $-79.3\%$  					\\ \hline
-	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$		& $9866.40$	& $-15.0\%$   					\\ \hline
-	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$			& $18.97$	& $+23.9\%$   					\\ \hline
-\end{tabular}
-\end{center}
-\caption{Average execution time in milliseconds of a $200x200$ integer matrix multiplication.}
+\restylefloat*{table} % Corrects some weird caption error causing one of the side-by-side captions to be lost (http://tex.stackexchange.com/questions/152626/two-figures-side-by-side-caption-issue).
+
+\begin{table*}
+\parbox{.5\linewidth}{
+\centering
+\caption{Average execution time in milliseconds\\of a $200\times 200$ integer matrix multiplication.}
 \label{tab:contribution:results:summaryint}
-\end{table}
-
-\begin{table}[hbt]
-\begin{center}
 \begin{tabular}{r|r|r|r|}
 	\cline{2-3}
-							& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}}	\\ \hline
-	\multicolumn{1}{|l|}{\textbf{HARD}}	& $0.77$			& $0.22$		& $-71.4\%$  				\\ \hline
-	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $10247.03$		& $10909.88$	& $+6.5\%$   				\\ \hline
-	\multicolumn{1}{|l|}{\textbf{WARP}}	& $14.08$			& $17.44$		& $+23.9\%$  				\\ \hline
+	& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
+	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$	& $0.24$ 	& $-79.3\%$ \\ \hline \hline
+	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$	& $9866.40$	& $-15.0\%$ \\ \hline
+	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$	& $18.97$	& $+23.9\%$ \\ \hline
+        & \multicolumn{1}{|r|}{$-99.9\%$} & \multicolumn{1}{|r|}{$-99.8\%$} \\ \cline{2-3}
 \end{tabular}
-\end{center}
-\caption{Average execution time in milliseconds of a $200x200$ floating point matrix multiplication.}
+}
+\hfill
+\parbox{.5\linewidth}{
+\centering
+\caption{Average execution time in milliseconds\\of a $200\times 200$ floating point matrix multiplication.}
 \label{tab:contribution:results:summaryfloat}
-\end{table}
+\begin{tabular}{r|r|r|r|}
+	\cline{2-3}
+	& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
+	\multicolumn{1}{|l|}{\textbf{HARD}}	& $0.77$	& $0.22$	& $-71.4\%$ \\ \hline \hline
+	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $10247.03$	& $10909.88$	& $+6.5\%$ \\ \hline
+	\multicolumn{1}{|l|}{\textbf{WARP}}	& $14.08$	& $17.44$	& $+23.9\%$ \\ \hline
+& \multicolumn{1}{|r|}{$-99.9\%$} & \multicolumn{1}{|r|}{$-99.8\%$} \\ \cline{2-3}
+\end{tabular}
+}
+\end{table*}
 
-Using both integer- and floating point-precision, the performance of WARP is impaired by the kernel utilizing shared memory according to the data presented in Tables~\ref{tab:contribution:results:summaryint}~and~\ref{tab:contribution:results:summaryfloat}.
-In Microsoft's guide on WARP (see Microsoft's reference on WARP~\citeweb[]{warp}), the author claims that an application, if tuned to run efficiently on hardware, will run efficiently whilst emulated using WARP - and vice versa.
-However, the data collected for this study rather indicates an increase in execution time of $23.9$\%, independant of precision, even though the same kernel accelerates the hardware accelerated Subject by roughly $70$\%.
-The floating point scenario of this effect is visualized in Figure~\ref{fig:contribution:results:warp:msswarp}.
+In terms of memory latency, table~\ref{tab:contribution:results:summaryint} demonstrates performance gains with the hardware accelerated Subject (when utilizing shared memory amongst blocks), with varying results for the other Subjects; either increasing or decreasing execution time (see table~\ref{tab:contribution:results:summaryfloat}).
+As such, applicable to both integer- and floating point-precision, the performance of WARP is impaired by the kernel utilizing shared memory.
+In the Microsoft guide on WARP~\citeweb[]{warp}, the author claims that an application tuned to run efficiently on hardware will run efficiently whilst simulated using WARP as well - and vice versa.
+However, the data collected for this study rather indicates an over $20\%$ percentual increase in execution time, independant of precision, even though the same kernel accelerates the hardware accelerated Subject by roughly $70$\%.
+This demonstrates that that the capabilities of WARP do not extend to memory latency optimization by utilization of lower-latency shared memory.
+The floating point scenario of this effect is visualized in figure~\ref{fig:contribution:results:warp:msswarp}.
 
 \begin{figure}[htb]
 \begin{center}
 	\resizebox{ \columnwidth }{!}{\input{../msswarp}}
-	\caption{WARP execution time with floating point-precision for the Basic- and Tiled-kernel, with visualized mean and standard deviations. Values outside of their respective standard deviations have been clipped for the sake of clarity.}
+	\caption{WARP execution time with floating point-precision for the Basic- and Tiled-kernel, with visualized mean and standard deviations. Values outside of their respective standard deviations are not presented for the sake of clarity.}
 	\label{fig:contribution:results:warp:msswarp}
 \end{center}
 \end{figure}
 
-Integer precision calculation showed no sign of precisonal loss whatsoever.
-Meanwhile, all floating point-experiments experienced an equal average loss of computational precision.
-However, the data collected indicates no divergence in the precisional loss of respective Subject.
-The average deviations in precision experienced equally with each configuration, in relation to the $Ref$-matrix descibed in Section~\nameref{sec:contribution:methodofstudy}, are presented in Table~\ref{tab:contribution:results:avgprecision}.
-\label{sec:contribution:results:computationalprecision}
-\begin{table}[hbt]
-\begin{center}
-	\begin{tabular}{|r|r|r|}
-		\hline
-		\textbf{Minimum} 	& \textbf{Maximum} 	& \textbf{Standard} 	\\ \hline
-		0.0   			& ~0.01  			& ~0.0025      		\\ \hline
-	\end{tabular}
-\caption {Average precisional deviations in floating~point-operations for all Subjects.}
-\label{tab:contribution:results:avgprecision}
-\end{center}
-\end{table}
+Analysis indicates no loss in precision between reference- and product matrices.
+Neither is there any recorded divergence in results compiled by respective Subjects.
+In hindsight, this behaviour may be expected as WARP conforms to the precision requirements of the Direct3D~$10$- and $10.1$-specification~\citeweb[]{warp}.
+See the Microsoft guide on Floating-point Rules~\citeweb[]{floatingpointrules} for more information surrounding floating point precision in the Direct3D-framework.
+Accordingly, albeit not being explicitly developed for the purposes of precision, WARP performs equally as with the reference~device~driver.
+Whether or not this behaviour is replicated for double floating point precision is uncertain.
 
-These results are expected as WARP conforms to the precision requirements of the \textit{Direct3D~10}- and \textit{10.1}-specification (see Microsoft's reference on WARP~\citeweb[]{warp}).
-See Microsoft's documentation on Floating-point Rules~\citeweb[]{floatingpointrules} for more information surrounding floating point-precision in the \textit{Direct3D}-framework.
+%\begin{table}[hbt]
+%\begin{center}
+%\begin{tabular}{r|r|r|r|}
+%	\cline{2-3}
+%	& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
+%	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$	& $0.24$ 	& $-79.3\%$ \\ \hline \hline
+%	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$	& $9866.40$	& $-15.0\%$ \\ \hline
+%	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$	& $18.97$	& $+23.9\%$ \\ \hline
+%        & \multicolumn{1}{|r|}{$-99.9\%$} & \multicolumn{1}{|r|}{$-99.8\%$} \\ \cline{2-3}
+%\end{tabular}
+%\end{center}
+%\caption{Average execution time in milliseconds of a $200\times 200$ integer matrix multiplication.}
+%\label{tab:contribution:results:summaryint}
+%\end{table}
+%
+%\begin{table}[hbt]
+%\begin{center}
+%\begin{tabular}{r|r|r|r|}
+%	\cline{2-3}
+%	& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
+%	\multicolumn{1}{|l|}{\textbf{HARD}}	& $0.77$	& $0.22$	& $-71.4\%$ \\ \hline \hline
+%	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $10247.03$	& $10909.88$	& $+6.5\%$ \\ \hline
+%	\multicolumn{1}{|l|}{\textbf{WARP}}	& $14.08$	& $17.44$	& $+23.9\%$ \\ \hline
+%& \multicolumn{1}{|r|}{$-99.9\%$} & \multicolumn{1}{|r|}{$-99.8\%$} \\ \cline{2-3}
+%\end{tabular}
+%\end{center}
+%\caption{Average execution time in milliseconds of a $200\times 200$ floating point matrix multiplication.}
+%\label{tab:contribution:results:summaryfloat}
+%\end{table}

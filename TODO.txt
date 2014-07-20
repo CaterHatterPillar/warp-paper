@@ -5,12 +5,8 @@ Additions:
 
 General:
 * Reduce whitespace throughout article (tables, etc.)
-* Caption placement for tables and figures ought to differ according to EUROSIS standards.
 
 Redo GNUplot figure.
-
-Various:
-* What causes the precision deviations in-between calculations performend in C++ AMP and DirectCompute environments is unclear, but may be attributed to differing floating point precision models present in HLSL (which both C++ AMP and DirectCompute utilizes). Regardless, there is no sign of precisional variance in-between Direct3D devices.
 
 Phrase potential use differently: "This indicates potential for extended use other than... ...since speeds..."
 
