@@ -174,6 +174,13 @@ However, the data collected for this study rather indicates an over $20\%$ perce
 This demonstrates that that the capabilities of WARP do not extend to memory latency optimization by utilization of lower-latency shared memory.
 The floating point scenario of this effect is visualized in figure~\ref{fig:contribution:results:warp:msswarp}.
 
+Analysis indicates no loss in precision between reference- and product matrices.
+Neither is there any recorded divergence in results compiled by respective Subjects.
+In hindsight, this behaviour may be expected as WARP conforms to the precision requirements of the Direct3D~$10$- and $10.1$-specification~\citeweb[]{warp}.
+See the Microsoft guide on Floating-point Rules~\citeweb[]{floatingpointrules} for more information surrounding floating point precision in the Direct3D-framework.
+Accordingly, albeit not being explicitly developed for the purposes of precision, WARP performs equally as with the reference~device~driver.
+Whether or not this behaviour is replicated for double floating point precision is uncertain.
+
 \begin{figure}[htb]
 \begin{center}
 	\resizebox{ \columnwidth }{!}{\input{../msswarp}}
@@ -181,10 +188,3 @@ The floating point scenario of this effect is visualized in figure~\ref{fig:cont
 	\label{fig:contribution:results:warp:msswarp}
 \end{center}
 \end{figure}
-
-Analysis indicates no loss in precision between reference- and product matrices.
-Neither is there any recorded divergence in results compiled by respective Subjects.
-In hindsight, this behaviour may be expected as WARP conforms to the precision requirements of the Direct3D~$10$- and $10.1$-specification~\citeweb[]{warp}.
-See the Microsoft guide on Floating-point Rules~\citeweb[]{floatingpointrules} for more information surrounding floating point precision in the Direct3D-framework.
-Accordingly, albeit not being explicitly developed for the purposes of precision, WARP performs equally as with the reference~device~driver.
-Whether or not this behaviour is replicated for double floating point precision is uncertain.
