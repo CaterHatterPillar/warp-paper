@@ -7,9 +7,10 @@
 % CONTRIBUTION - OBJECT OF STUDY
 \subsection{Object of Study}
 \label{sec:contribution:objectofstudy}
-Due to the nature of the experiment, it is important that the Object~of~Study is measurable and deterministic. For the purpose of this study, the data computed corresponds to a square matrix multiplication, since such an operation is highly parallelizable, as demonstrated by Kirk~and~Hwu~\cite[ch.~3]{Kirk:2010:PMP:1841511}.
+Due to the nature of the study, it is important that the experiment process is measurable and deterministic.
+For the purpose of the experiment, the data computed corresponds to a square matrix multiplication, since such an operation is highly parallelizable, as demonstrated by Kirk~and~Hwu~\cite[ch.~3]{Kirk:2010:PMP:1841511}.
 Additionally, verifying the result of such an operation is trivial, and potential losses in computational precision may be easily established.
-The operation is therefore considered suitable for the purpose of this experiment.
+The operation is therefore considered suitable for the purpose of the study.
 Furthermore, the matrix dimension $200\times 200$ is selected for the respective matrices as it is big enough to execute efficiently on the GPU, but yet reasonably sized to keep simulated measurements comparable to those of the hardware accelerated reference case.
 Throughout this material, the compiled data is referred to as $AB=C$, and thus make out the Object of this experiment.
 
@@ -109,35 +110,54 @@ This script, written in Python, compiles the assorted results of respective prog
 The source code manufactured for the sake of this study is freely available via an online Git repository~\citeweb[]{github}, along with a guide on how to compile and run the solution in order to replicate the experiment.
 Furthermore, the complete results presented in this material are also available for download and may be acquired for further analysis.
 
+% Arrowhead command. Sets a tikz node for rendering an entire arrow.
+\newcommand\ah[2]{\tikz[remember picture,baseline]\node[inner sep=2pt,outer sep=0](#1){#2};}
+% Arrow command. Draws an arrow between two tikz nodes.
+\newcommand\arrow[2]{%
+\begin{tikzpicture}[remember picture, overlay, >=stealth, shift={(0,0)}]
+\draw[->] (#1) to (#2);
+\end{tikzpicture}%
+}
+
 \restylefloat*{table} % Corrects some weird caption error causing one of the side-by-side captions to be lost (http://tex.stackexchange.com/questions/152626/two-figures-side-by-side-caption-issue).
 
 \begin{table*}
 \parbox{.5\linewidth}{
-\centering
-\caption{Average execution time in milliseconds\\of a $200\times 200$ integer matrix multiplication.}
+\centering % Consider removing?
+\caption{Average execution time in milliseconds\\of a $200\times 200$ integer matrix multiplication and\\corresponding percentage decrease- and increases.}
 \label{tab:contribution:results:summaryint}
 \begin{tabular}{r|r|r|r|}
 	\cline{2-3}
 	& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
-	\multicolumn{1}{|l|}{\textbf{HARD}}	& $1.16$	& $0.24$ 	& $-79.3\%$ \\ \hline \hline
-	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $11610.02$	& $9866.40$	& $-15.0\%$ \\ \hline
-	\multicolumn{1}{|l|}{\textbf{WARP}}	& $15.31$	& $18.97$	& $+23.9\%$ \\ \hline
-        & \multicolumn{1}{|r|}{$-99.9\%$} & \multicolumn{1}{|r|}{$-99.8\%$} \\ \cline{2-3}
+	\multicolumn{1}{|l|}{\textbf{HARD}}	& \ah{hh1}{$1.16$}	& \ah{hf1}{\phantom{000}$0.24$}\ah{spc}{} 	& \ah{spc}{$-79.3\%$} \\ \hline \hline
+	\multicolumn{1}{|l|}{\textbf{SOFT}}	& \ah{vh2}{}\ah{hh2}{$11610.02$}	& \ah{hf2}{$9866.40$}\ah{vh1}{}	& \ah{spc}{$-15.0\%$} \\ \hline
+	\multicolumn{1}{|l|}{\textbf{WARP}}	& \ah{vf2}{}\phantom{000}\ah{hh3}{$15.31$}	& \ah{hf3}{\phantom{00}$18.97$}\ah{vf1}{}	& \ah{spc}{$+23.9\%$} \\ \hline
+        & \multicolumn{1}{|c|}{\ah{spc}{$-99.9\%$}} & \multicolumn{1}{|c|}{\ah{spc}{$-99.8\%$}} \\ \cline{2-3}
 \end{tabular}
+\arrow{hh1}{hf1} % Draw horizontal arrow heads to fletchlings.
+\arrow{hh2}{hf2}
+\arrow{hh3}{hf3}
+\arrow{vh1}{vf1} % Draw vertical arrow heads to fletchlings.
+\arrow{vh2}{vf2}
 }
 \hfill
 \parbox{.5\linewidth}{
 \centering
-\caption{Average execution time in milliseconds\\of a $200\times 200$ floating point matrix multiplication.}
+\caption{Average execution time in milliseconds of\\a $200\times 200$ floating point matrix multiplication and\\ corresponding percentage decrease- and increases.}
 \label{tab:contribution:results:summaryfloat}
 \begin{tabular}{r|r|r|r|}
 	\cline{2-3}
 	& \multicolumn{1}{|c|}{\textbf{BASIC}} & \multicolumn{1}{|c|}{\textbf{TILED}} \\ \hline
-	\multicolumn{1}{|l|}{\textbf{HARD}}	& $0.77$	& $0.22$	& $-71.4\%$ \\ \hline \hline
-	\multicolumn{1}{|l|}{\textbf{SOFT}}	& $10247.03$	& $10909.88$	& $+6.5\%$ \\ \hline
-	\multicolumn{1}{|l|}{\textbf{WARP}}	& $14.08$	& $17.44$	& $+23.9\%$ \\ \hline
-& \multicolumn{1}{|r|}{$-99.9\%$} & \multicolumn{1}{|r|}{$-99.8\%$} \\ \cline{2-3}
+	\multicolumn{1}{|l|}{\textbf{HARD}}	& \ah{hh1}{$0.77$}	& \ah{hf1}{\phantom{0000}$0.22$}\ah{spc}{}	& \ah{spc}{$-71.4\%$} \\ \hline \hline
+	\multicolumn{1}{|l|}{\textbf{SOFT}}	& \ah{vh1}{}\ah{hh2}{$10247.03$}	& \ah{hf2}{$10909.88$}\ah{vh2}{}	& \ah{spc}{$+6.5\%$} \\ \hline
+	\multicolumn{1}{|l|}{\textbf{WARP}}	& \ah{vf1}{}\phantom{000}\ah{hh3}{$14.08$}	& \ah{hf3}{\phantom{000}$17.44$}\ah{vf2}{}	& \ah{spc}{$+23.9\%$} \\ \hline
+& \multicolumn{1}{|r|}{\ah{spc}{$-99.9\%$}} & \multicolumn{1}{|r|}{\ah{spc}{$-99.8\%$}} \\ \cline{2-3}
 \end{tabular}
+\arrow{hh1}{hf1} % Draw horizontal arrow heads to fletchlings.
+\arrow{hh2}{hf2}
+\arrow{hh3}{hf3}
+\arrow{vh1}{vf1} % Draw vertical arrow heads to fletchlings.
+\arrow{vh2}{vf2}
 }
 \end{table*}
 
