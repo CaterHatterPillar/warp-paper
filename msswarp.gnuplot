@@ -16,7 +16,8 @@ set terminal latex
 set output "msswarp.tex"
 unset key
 unset xtics
-set ytics nomirror
+set clip
+set border 10
 
 #set ylabel "Time (ms)" rotate by 0 offset -2
 
