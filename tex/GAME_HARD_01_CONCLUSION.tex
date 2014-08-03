@@ -12,14 +12,14 @@ Accordingly, the WARP device is included in the Direct3D~11~runtime for outside-
 This indicates potential for extended use above and beyond that of debugging- and profiling purposes, since the WARP device may be utilized where the reference~device~driver would otherwise be orders of magnitude too slow.
 Such an example would be the isolation of hardware or graphics driver errors in high-performance graphics applications - often encountered by video game developers.
 
-In conclusion; this study proposes, pursuant to the established performance of WARP, that WARP-like technologies are feasable for use where the reference~device~driver is too slow, when hardware is not available, and for extended purposes other than debugging and profiling.
+In conclusion; this study proposes, pursuant to the established performance of WARP, that WARP-like technologies are feasible for use where the reference~device~driver is too slow, when hardware is not available, and for extended purposes other than debugging and profiling.
 
 % CONCLUSION - FUTURE WORK
 \subsection{Future~Work}
 \label{sec:conclusion:futurework}
 The performance improvements of WARP, in comparison to the reference~device~driver, calls for further inquiry into what the flaws of using WARP may be.
 Microsoft lists, amongst other limitations latency-oriented CPUs may have over throughput oriented GPU architectures, memory bandwidth as a potential bottleneck for WARP-type acceleration methods~\citeweb[]{warp}.
-In accordance to the suspicions raised by Microsoft, it may be benificial to investigate the performance of WARP when such bottlenecks are stressed.
+In accordance to the suspicions raised by Microsoft, it may be beneficial to investigate the performance of WARP when such bottlenecks are stressed.
 Furthermore, the author suggests complementary elaboration into double precision calculations, with the intent of examining whether or not the Subjects detailed in section~\nameref{sec:contribution:subjectsofstudy} may have differentiating effects on computational precision.
 
 Additionally, the use of more complex kernels in coagency with the WARP-driver should be examined in order to study the effects of more demanding simulation on the CPU.
