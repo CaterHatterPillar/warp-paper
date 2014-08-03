@@ -32,7 +32,7 @@ The above process  makes out the Method of this study.
 % CONTRIBUTION - SUBJECTS OF STUDY
 \subsection{Subjects of Study}
 \label{sec:contribution:subjectsofstudy}
-The kernels described in section \nameref{sec:contribution:methodofstudy} are comprised of HLSL, compiled using Microsoft FXC, and executed using DirectCompute.
+The kernels described in section \nameref{sec:contribution:methodofstudy} are comprised of HLSL, compiled using Microsoft FXC, and executed using the Direct3D compute shader pipeline stage.
 The programs are run using three types of acceleration technologies with varying strategies of simulation.
 These are comprised of the following:
 
@@ -53,19 +53,19 @@ As the reference~device~driver is designed for the purpose of framework function
 The simulated execution of a DirectCompute kernel using a specially devised software rasterizer developed for high performance and full framework conformance by Microsoft in the latest version of DirectX.
 Being based on the reference~device~driver, WARP utilizes thread pooling to distribute tasks efficiently on the CPU, along with grouping execution in batches for optimum performance.
 Furthermore, WARP uses JIT~(Just-In-Time) compilation to generate SSE2 and SSE4.1 SIMD~(Single Instruction, Multiple Data) instructions, in addition to x86-compatible native instructions to significantly speed up simulation of GPU-bound workloads~\citeweb[]{warp}.
-Having outperformed some low-end integrated GPUs according to Microsoft, and the device driver being included in Windows~7 and 8 run-times, Microsoft recommends using the driver for retail applications, such as casual games~\citeweb[]{warp}.
+Having outperformed some low-end integrated GPUs, according to Microsoft, and the device driver being included in Windows~7 and 8 run-times, Microsoft recommends using the driver for retail applications such as casual games~\citeweb[]{warp}.
 Although Microsoft has presented some performance comparisons to hardware acceleration, there is no performance benchmark indicative of WARP performance in relation to the reference~device~driver - the device commonly used for debugging and verification purposes.
-As such, expectations on the performance of WARP is unclear, but the driver is expected to perform better than the reference~device~driver from which it is derived.\\
+As such, expectations on the performance of WARP is unclear but the driver is expected to perform faster than the reference~device~driver, from which it is derived, due to its promised optimizations and high-speed focus.\\
 
 These DirectX device drivers make out the Subjects of this study.
 
 % CONTRIBUTION - KERNELS
 \subsection{Kernels}
 \label{sec:contribution:kernels}
-In addition to the Subject drivers mentioned in section~\nameref{sec:contribution:subjectsofstudy}, two kernels with varying level of optimization are examined.
-The kernels are implemented in accordance to the CUDA matrix multiplication kernels as described by Kirk~and~Hwu~\cite[p.~67, p.~87]{Kirk:2010:PMP:1841511}.
+In addition to the Subject drivers mentioned in section~\nameref{sec:contribution:subjectsofstudy}, two kernels with varying level of memory access optimization are examined.
+The programs are implemented in accordance to the CUDA matrix multiplication kernels as described by Kirk~and~Hwu~\cite[p.~67, p.~87]{Kirk:2010:PMP:1841511}.
 Furthermore, aforementioned kernels accommodate both integer- and floating point precision.
-Descriptions of these kernels is presented below, and are complemented with source code under section~\nameref{sec:appendix}.
+Descriptions of these kernels are presented below and complemented with source code under section~\nameref{sec:appendix}.
 
 \subsubsection{Matrix mult. w. Thread Blocks}
 A kernel producing $AB=C$ from two given matrices; writing back $C$ for further analysis.
@@ -75,35 +75,35 @@ This program will be referred to as the Basic~Kernel throughout the material.
 
 \subsubsection{Matrix mult. w. Thread Blocks and Shared Memory}
 Similar to the previously described kernel, but optimized to utilize shared memory in order to reduce time-consuming access of global memory, as presented by Kirk~and~Hwu~\cite[p.~77-93]{Kirk:2010:PMP:1841511}.
-Stratton~et~al.~\cite[p.~1-3]{Stratton:2008:MEI:1485701.1485703} instructs that the CUDA GPGPU-model may be applied onto multicore CPUs, including locality-wise execution of logical thread blocks (that is; all threads in a block limited to a single core), with the utilization of local- and shared-memory approximately corresponding to the L1-cache of a CPU core.
+Stratton~et~al.~\cite[p.~1-3]{Stratton:2008:MEI:1485701.1485703} instructs that the CUDA GPGPU-model may be applied onto multicore CPUs, including locality-wise execution of logical thread blocks (that is; all threads in a block limited to a single core), with the utilization of local- and shared-memory approximately corresponding to the L1- and L2-caches of a CPU core.
 Hence, the kernel is presented as a scenario due to the preconditions of WARP, stating that a kernel optimized for GPU-execution is likewise optimized for execution with WARP~\citeweb[]{warp}.
-Thus, we investigate a more optimized kernel to see whether or not this behavior may be replicated in the experiment in terms of memory access.
-The program will be referred to as the Tiled~Kernel throughout the material.
+Thus, we investigate a more optimized kernel to see whether or not this behavior may be replicated in the experiment in terms of memory access optimization.
+The program is referred to as the Tiled~Kernel throughout this material.
 
 % CONTRIBUTION - TOOLS
 \subsection{Tools}
 \label{sec:contribution:tools}
 The experiment process is subdivided into three major components, all of which are compiled using Visual~C\texttt{++}~2012.
-These programs are presented in detail below.
+These tools are presented in detail below.
 
 \subsubsection{matrixgen}
-Denotes a utility developed to generate matrices of different dimensions and data-types.
+Denotes a utility developed to generate matrices of different dimension and precision.
 In addition to randomly generating matrices, matrixgen also compiles the reference matrix $Ref$; used to validate the product matrix returned from the subsequent DirectCompute dispatch.
 The utility is written in C\texttt{++} and utilizes C\texttt{++}~AMP to generate and multiply matrices $A$~and~$B$ into product matrix $Ref$.
 In order to produce random values in a C\texttt{++}~AMP program, the solution includes the random number generator library C\texttt{++}~AMP~RNG.
-As matrixgen utilizes Microsoft C\texttt{++}~AMP-technology, the utility requires Windows~7 or later in order to run.
+As the utility utilizes Microsoft C\texttt{++}~AMP-technology, the utility requires Windows~7 or later in order to run.
 
 \subsubsection{experiment}
-Making out the primary component of the study, experiment uses DirectCompute to compile the product matrix $C$ from matrices $A$~and~$B$ (previously generated by matrixgen).
+Making out the primary component of the study, experiment uses DirectCompute technology to compile the product matrix $C$ from matrices $A$~and~$B$ (previously generated by matrixgen).
 The application outputs data surrounding the execution of the kernels, such as execution time in milliseconds, to an intermediate file.
 The utility is written in C\texttt{++}, with its respective DirectCompute kernels devised in HLSL.
-As experiment is developed using the Windows~8~SDK, Windows~8.0 or later is required to run the tool.
-Furthermore, experiment requires a DirectX~11.0- or DirectX~11.1-compatible graphics card in order to produce the hardware accelerated reference case.
+Since the tool is developed using the Windows~8~SDK, Windows~8.0 or later is required to run the tool.
+Furthermore, the utility requires a DirectX~11.0- or DirectX~11.1-compatible graphics card in order to produce the hardware accelerated reference case.
 
 \subsubsection{analytics}
 A utility devised to compose data surrounding possible precisional deviation between matrices $C$~and~$Ref$.
 The tool, written in C\texttt{++}, compiles the minimum- and maximum  deviation encountered, as well as to calculate the standard deviation of any precisional discrepancy in produced product matrices.
-In turn, analytics outputs this information to an intermediate file.\\
+In turn, the program outputs this information to an intermediate file.\\
 
 These applications are, in turn, run as subprocesses in a script specifying the various configurations and number of times to run each program.
 This script, written in Python, compiles the assorted results of respective program and outputs a range of files suitably formatted for interpretation by Gnuplot.
@@ -164,7 +164,7 @@ Furthermore, the complete results presented in this material are also available 
 % CONTRIBUTION - EQUIPMENT
 \subsection{Equipment}
 \label{sec:contribution:equipment}
-The results presented in the paper is gathered from experiments performed on a system with the following specifications:
+The results presented in the paper are gathered from experiments performed on a system with the following specifications:
 \begin{description*}
 	\item[CPU] Intel Q9550 Quad Core $2.83$GHz
 	\item[GPU] ATI Radeon HD 5800
@@ -187,7 +187,7 @@ This process is repeated for integer- and floating point precision, in order to 
 Considering the average percentage decreases in execution time of $99.8$ to $99.9\%$ (presented in table~\ref{tab:contribution:results:summaryint}~and~\ref{tab:contribution:results:summaryfloat}); results indicate significant improvements in the performance of both kernels when using WARP, compared to that of the the reference~device~driver.
 These improvements, accounting for three orders of magnitude on average, induce an execution time spanning tenths of milliseconds; a considerable advance from that of roughly ten seconds.
 The measurements indicate that the reference~device~driver is $4$~to~$5$ orders of magnitude slower than the hardware accelerated reference case, depending on whether or not the kernel utilizes shared memory to accelerate memory accesses on the video card.
-Meanwhile, the WARP device driver performs but $1$~to~$2$ orders of magnitude worse than hardware acceleration, also depending on shared memory utilization.
+Meanwhile, the WARP device driver performs but $1$~to~$2$ orders of magnitude worse than hardware acceleration, also depending on hardware shared memory utilization.
 
 In terms of memory latency, table~\ref{tab:contribution:results:summaryint} demonstrates performance gains with the hardware accelerated Subject (when utilizing shared memory amongst blocks), with varying results for the other Subjects; either increasing or decreasing execution time (see table~\ref{tab:contribution:results:summaryfloat}).
 As such, applicable to both integer- and floating point precision, the performance of WARP is impaired by the kernel utilizing shared memory.
@@ -206,7 +206,7 @@ Whether or not this behavior is replicated for double floating point precision i
 \begin{figure}[htb]
 \begin{center}
 	\resizebox{ \columnwidth }{!}{\input{../msswarp}}
-	\caption{Execution time using WARP with floating point-precision for the Basic and Tiled kernels, indicated by their respective mean- and separated by standard deviation values. Samples outside of respective standard deviation are not presented.}
+	\caption{Execution time using WARP with floating point-precision for the Basic and Tiled kernels, indicated by their respective mean- and separated by standard deviation values. Samples outside of respective standard deviation are not presented in this visualization.}
 	\label{fig:contribution:results:warp:msswarp}
 \end{center}
 \end{figure}
