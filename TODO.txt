@@ -1,7 +1,0 @@
-ToDoIst
-
-Include in discussion:
-* Used for Windows VGA... 
-* May aid graphics acceleration in virtual platforms
-
-Reformat surce code.
