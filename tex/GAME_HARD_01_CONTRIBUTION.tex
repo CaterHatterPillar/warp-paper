@@ -184,14 +184,16 @@ This process is repeated for integer- and floating point precision, in order to 
 % CONTRIBUTION - RESULTS
 \subsection{Results}
 \label{sec:contribution:results}
-Considering the average percentage decreases in execution time of $99.8-99.9\%$ presented in table~\ref{tab:contribution:results:summaryint}~and~\ref{tab:contribution:results:summaryfloat}; results indicate significant improvements in the performance of both kernels when using WARP, compared to that of the the reference~device~driver.
-These improvements, accounting for well-over two orders of magnitude, induce an execution time spanning tenths of milliseconds; a considerable advance from that of roughly ten entire seconds.
+Considering the average percentage decreases in execution time of $99.8$ to $99.9\%$ (presented in table~\ref{tab:contribution:results:summaryint}~and~\ref{tab:contribution:results:summaryfloat}); results indicate significant improvements in the performance of both kernels when using WARP, compared to that of the the reference~device~driver.
+These improvements, accounting for three orders of magnitude on average, induce an execution time spanning tenths of milliseconds; a considerable advance from that of roughly ten seconds.
+The measurements indicate that the reference~device~driver is $4$~to~$5$ orders of magnitude slower than the hardware accelerated reference case, depending on whether or not the kernel utilizes shared memory to accelerate memory accesses on the video card.
+Meanwhile, the WARP device driver performs but $1$~to~$2$ orders of magnitude worse than hardware acceleration, also depending on shared memory utilization.
 
 In terms of memory latency, table~\ref{tab:contribution:results:summaryint} demonstrates performance gains with the hardware accelerated Subject (when utilizing shared memory amongst blocks), with varying results for the other Subjects; either increasing or decreasing execution time (see table~\ref{tab:contribution:results:summaryfloat}).
-As such, applicable to both integer- and floating point-precision, the performance of WARP is impaired by the kernel utilizing shared memory.
+As such, applicable to both integer- and floating point precision, the performance of WARP is impaired by the kernel utilizing shared memory.
 In the Microsoft guide on WARP~\citeweb[]{warp}, the author claims that an application tuned to run efficiently on hardware will run efficiently whilst simulated using WARP as well - and vice versa.
-However, the data collected for this study rather indicates an over $20\%$ percentual increase in execution time, independant of precision, even though the same kernel accelerates the hardware accelerated Subject by roughly $70$\%.
-This demonstrates that that the capabilities of WARP do not extend to memory latency optimization by utilization of lower-latency shared memory.
+However, the collected data rather indicate a roughly $20\%$ percentual increase in execution time, independant of precision, even though the same kernel accelerates the hardware accelerated Subject by roughly $70$\%.
+This demonstrates that that the capabilities of WARP do not extend to memory latency optimization by lower-latency shared memory.
 The floating point scenario of this effect is visualized in figure~\ref{fig:contribution:results:warp:msswarp}.
 
 Analysis indicates no loss in precision between reference- and product matrices.

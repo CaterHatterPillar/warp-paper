@@ -1,26 +1,7 @@
-ToDoIst:
-
-Additions:
-* Add author biography
-
-General:
-* Reduce whitespace throughout article (tables, etc.)
-
-Redo GNUplot figure.
+ToDoIst
 
 Include in discussion:
 * Used for Windows VGA... 
 * May aid graphics acceleration in virtual platforms
-
-Mention copyright notice
-
-Ensure author address etc. is correct
-
-Formatting:
-* Italics and that kind of stuff. Don't overuse it. Decide what phrases are tt'd it'd and bd'd
-* Abbreviations.
-* Only capitilize phrases during their first mention
-
-Title.
 
 Reformat surce code.
