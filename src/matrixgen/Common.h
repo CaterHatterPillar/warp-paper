@@ -1,6 +1,0 @@
-#ifndef DV2549_MATRIXGEN_COMMON_H
-#define DV2549_MATRIXGEN_COMMON_H
-
-#include <Conf.h>
-
-#endif // DV2549_MATRIXGEN_COMMON_H

@@ -1,8 +1,0 @@
-# .gitignore
-
-# Ignore source, as all libraries should be either compiled or need to be uncompressed from repo.
-*.h
-
-# Ignore documentation from .zip.
-*.txt
-*.docx
