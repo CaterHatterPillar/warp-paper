@@ -1,9 +1,51 @@
 % GAME_HARD_01_PRESENTATION_CONTRIBUTION.tex
 \section{Contribution}
 
-% SUBSECTION
-\subsection{Subsection}
+% METHODOLOGY
+\subsection{Methodology}
 \begin{frame}
-\frametitle{SUBSECTION}
+\frametitle{METHODOLOGY}
+
+{\small%
+  $200\times 200$ matrix multiplication using Direct3D DirectCompute.
+  \begin{columns}[T]
+    \begin{column}[T]{0.5\textwidth}
+      \textbf{Do:}
+      \begin{enumerate*}
+      \item Randomize matrices $A$ and $B$
+      \item Establish $AB=Ref$
+      \item Start high-precision timer
+      \item Calculate $AB=C$ using Direct3D
+      \item Stop high-precision timer
+      \item Verify $C$ and $Ref$ deviation
+      \end{enumerate*}
+    \end{column}
+    \begin{column}[T]{0.5\textwidth}
+      \textbf{Using:}
+      \begin{itemize}
+      \item Hardware Acceleration (GPU)
+      \item Reference Device Driver (CPU)
+      \item Microsoft WARP (CPU)
+      \end{itemize}
+    \end{column}
+\end{columns}}
+
+\vspace{0.5cm}{\small%
+  \begin{columns}[T]
+    \begin{column}[T]{0.5\textwidth}
+      \textbf{With Matrix mult. w. Thread Blocks:}
+      \begin{itemize}
+      \item DirectCompute kernel
+      \item Invoked once per matrix element
+      \end{itemize}
+    \end{column}
+    \begin{column}[T]{0.5\textwidth}
+      \textbf{With Matrix mult. w. Thread Blocks and Shared Memory:}
+      \begin{itemize}
+      \item Utilizes shared memory to cache matrices
+      \item Performed in blocks of $16\times 16$
+      \end{itemize}
+    \end{column}
+\end{columns}}
 
 \end{frame}

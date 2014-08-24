@@ -1,8 +1,17 @@
 \documentclass{beamer}
 \usetheme{BTH}
 
+\usepackage{mdwlist}
 \usepackage{multicol}
 \usepackage{hyperref}
+\usepackage{listings}
+
+\lstset{ 
+  language=C,
+  tabsize=2,
+  backgroundcolor=\color{black!5},
+  basicstyle=\tiny,
+}
 
 \title{ACCELERATING GPU WORKLOAD SIMULATION USING MICROSOFT WARP}
 \author{Eric Nilsson}
@@ -42,5 +51,7 @@
 \input{GAME_HARD_01_PRESENTATION_CONTRIBUTION}
 % CONCLUSION
 \input{GAME_HARD_01_PRESENTATION_CONCLUSION}
+% APPENDIX
+\input{GAME_HARD_01_PRESENTATION_APPENDIX}
 
 \end{document}
