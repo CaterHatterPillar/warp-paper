@@ -1,25 +1,6 @@
 % GAME_HARD_01_PRESENTATION_INTRODUCTION.tex
 \section{Introduction}
 
-% GRAPHICS SIMULATION
-\subsection{Graphics Simulation}
-\begin{frame}
-\frametitle{GRAPHICS SIMULATION}
-
-\begin{itemize}
-\item Common method of verifying GPU workloads, such as computer graphics, by eliminating dependency to third-party drivers and hardware
-\item Often orders of magnitude too slow for complex applications
-\end{itemize}
-
-\end{frame}
-
-% THE REFERENCE DEVICE DRIVER
-\subsection{The Reference Device Driver}
-\begin{frame}
-\frametitle{THE REFERENCE DEVICE DRIVER}
-
-\end{frame}
-
 % EXAMPLE
 \subsection{Example}
 \begin{frame}
@@ -61,6 +42,36 @@
 
 \end{frame}
 
+% THE REFERENCE DEVICE DRIVER
+\subsection{The Reference Device Driver}
+\begin{frame}
+\frametitle{THE REFERENCE DEVICE DRIVER}
+
+The Reference Device Driver or Reference Rasterizer:
+\begin{itemize}
+\item Shipped with the DirectX SDK
+\item Intended for debugging purposes:
+  \begin{itemize}
+  \item Feature testing
+  \item Demonstration purposes
+  \end{itemize}
+\item Does feature some CPU optimization, but not intended for retail applications
+\end{itemize}
+
+\end{frame}
+
+% GRAPHICS SIMULATION
+\subsection{Graphics Simulation}
+\begin{frame}
+\frametitle{GRAPHICS SIMULATION}
+
+\begin{itemize}
+\item Common method of verifying GPU workloads, such as computer graphics, by eliminating dependency to third-party drivers and hardware
+\item Often orders of magnitude too slow for complex applications
+\end{itemize}
+
+\end{frame}
+
 % MICROSOFT WARP
 \subsection{Microsoft WARP}
 \begin{frame}
@@ -79,10 +90,10 @@ Optimized for CPU execution using:
 \item Thread pooling for modern multicore CPUs
 \item Batch execution (possibly similar in concept to NVIDIA warps)
 \item JIT compilation:
-\begin{itemize}
-\item SSE2 and SSE4.1 SIMD
-\item x86 native instructions
-\end{itemize}
+  \begin{itemize}
+  \item SSE2 and SSE4.1 SIMD
+  \item x86 native instructions
+  \end{itemize}
 \end{itemize}
 
 \end{frame}
