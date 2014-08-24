@@ -13,6 +13,13 @@
 
 \end{frame}
 
+% THE REFERENCE DEVICE DRIVER
+\subsection{The Reference Device Driver}
+\begin{frame}
+\frametitle{THE REFERENCE DEVICE DRIVER}
+
+\end{frame}
+
 % EXAMPLE
 \subsection{Example}
 \begin{frame}
@@ -54,11 +61,28 @@
 
 \end{frame}
 
-% WARP
+% MICROSOFT WARP
 \subsection{Microsoft WARP}
 \begin{frame}
 \frametitle{MICROSOFT WARP}
 
-Introductory frame on Microsoft WARP.
+\href{http://msdn.microsoft.com/en-us/library/windows/desktop/gg615082(v=vs.85)%
+  .aspx}{'...a high speed, fully conformant software rasterizer...':}
+\begin{itemize}
+\item Introduced in Direct3D 11
+\item Derived from the Reference Device Driver
+\item Included in Windows 7 and 8 runtimes
+\end{itemize}
+
+Optimized for CPU execution using:
+\begin{itemize}
+\item Thread pooling for modern multicore CPUs
+\item Batch execution (possibly similar in concept to NVIDIA warps)
+\item JIT compilation:
+\begin{itemize}
+\item SSE2 and SSE4.1 SIMD
+\item x86 native instructions
+\end{itemize}
+\end{itemize}
 
 \end{frame}
