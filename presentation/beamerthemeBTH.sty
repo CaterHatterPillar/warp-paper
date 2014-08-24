@@ -1,0 +1,35 @@
+% BTH Beamer Style
+% Blekinge Institute of Technology Beamer presentation class.
+% (See https://github.com/CaterHatterPillar/bth-beamer-style)
+%
+% The BTH (Blekinge Tekniska Högskola) logo is the intellectual property of
+% Blekinge Institute of Technology (used with permission).
+%
+% Licensed under the BSD 3-Clause License.
+% See adjoined LICENSE for more information.
+%
+
+\usepackage{color}
+
+\definecolor{color_black}{RGB}{0, 0, 0}
+
+\setbeamercolor{item}{fg = color_black}
+\setbeamercolor{title}{fg = color_black}
+\setbeamercolor{frametitle}{fg = color_black}
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+
+\beamertemplatenavigationsymbolsempty % Get rid of the navigation bar.
+
+\setbeamertemplate{footline}{%
+\hspace{3mm}{Blekinge Institute of Technology}\\
+
+\hspace{3mm}37~179, Karlskrona\\
+
+\hspace{3mm}Sweden\hfill\centering{Faculty of Computing}\hfill\insertpagenumber
+\hspace{3mm}
+\vspace{2mm}
+}
+
+\titlegraphic{\includegraphics[width=3cm]{bth.eps}}

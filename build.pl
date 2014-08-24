@@ -1,5 +1,7 @@
 #!/usr/local/bin/perl
 
+use File::Copy;
+
 sub help_and_exit{
     print "Usage: build.pl paper|presentation\n";
     exit;
@@ -19,9 +21,12 @@ if($target eq "paper"){
     system("bibtex GAME_HARD_01.aux");
     system("pdflatex -shell-escape GAME_HARD_01.tex");
     system("pdflatex -shell-escape GAME_HARD_01.tex");
+    copy("GAME_HARD_01.pdf", "../GAME_HARD_01.pdf") or die "Failed to copy: $!";
 } elsif($target eq "presentation"){
-    print "Not yet implemented!";
-    exit;
+    chdir "presentation/";
+    system("pdflatex GAME_HARD_01_PRESENTATION.tex");
+    copy("GAME_HARD_01_PRESENTATION.pdf", "../GAME_HARD_01_PRESENTATION.pdf")
+        or die "Failed to copy: $!";
 } else{
     help_and_exit();
 }
