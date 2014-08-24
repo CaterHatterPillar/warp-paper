@@ -25,6 +25,7 @@ if($target eq "paper"){
 } elsif($target eq "presentation"){
     chdir "presentation/";
     system("pdflatex GAME_HARD_01_PRESENTATION.tex");
+    system("pdflatex GAME_HARD_01_PRESENTATION.tex");
     copy("GAME_HARD_01_PRESENTATION.pdf", "../GAME_HARD_01_PRESENTATION.pdf")
         or die "Failed to copy: $!";
 } else{

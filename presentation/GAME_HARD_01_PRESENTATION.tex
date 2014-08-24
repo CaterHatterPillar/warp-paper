@@ -1,16 +1,7 @@
-% BTH Beamer Style
-% Blekinge Institute of Technology Beamer presentation class.
-% (See https://github.com/CaterHatterPillar/bth-beamer-style)
-%
-% The BTH (Blekinge Tekniska Högskola) logo is the intellectual property of
-% Blekinge Institute of Technology (used with permission).
-%
-% Licensed under the BSD 3-Clause License.
-% See adjoined LICENSE for more information.
-%
-
 \documentclass{beamer}
 \usetheme{BTH}
+
+\usepackage{multicol}
 
 \title{ACCELERATING GPU WORKLOAD SIMULATION USING MICROSOFT WARP}
 \author{Eric Nilsson}
@@ -25,24 +16,30 @@
   \end{frame}
 }
 
-\begin{frame}
-\frametitle{On the subject of UNIX}
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+\setbeamertemplate{subsection in toc}{%
+  \hspace{0.5cm}\rule[0.3ex]{3pt}{3pt}~\inserttocsubsection\par}
 
-\begin{itemize}
-\item Ken Thompson
-\item Dennis Ritchie
-\end{itemize}
+\AtBeginSection[]
+{%
+  \begin{frame}
+    \frametitle{TABLE OF CONTENTS}
+    %\begin{multicols}{2}
+    \tableofcontents[currentsection]
+    %\end{multicols}
+  \end{frame}
+}
 
-\end{frame}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
 
-\begin{frame}
-\frametitle{On the subject of Simula}
+\definecolor{bth_black}{RGB}{0, 0, 0}
+\setbeamercolor{section in toc}{fg=bth_black}
 
-\begin{enumerate}
-\item Simula I
-\item Simula 67
-\end{enumerate}
-
-\end{frame}
+% INTRODUCTION
+\input{GAME_HARD_01_PRESENTATION_INTRODUCTION}
+% CONTRIBUTION
+\input{GAME_HARD_01_PRESENTATION_CONTRIBUTION}
+% CONCLUSION
+\input{GAME_HARD_01_PRESENTATION_CONCLUSION}
 
 \end{document}
