@@ -22,7 +22,8 @@
     \includegraphics[width=1.0\textwidth]{img/tbds3.png}
   \end{minipage}
   \label{fig:tilingvisualization}
-  \caption{\href{https://github.com/L0mion/xkill-source}{Tile-based deferred shading using DirectCompute.}}
+  \caption{\href{https://github.com/L0mion/xkill-source}{%
+      Tile-based deferred shading using DirectCompute.}}
 \end{figure}
 
 \begin{figure}[ht]
@@ -67,6 +68,8 @@ The Reference Device Driver or Reference Rasterizer:
 
 \begin{itemize}
 \item Common method of verifying GPU workloads, such as computer graphics, by eliminating dependency to third-party drivers and hardware
+\item May also practical for the purposes of extracting additional debugging or profiling data
+\item Sometimes a necessity on platforms lacking conformant hardware
 \item Often orders of magnitude too slow for complex applications
 \end{itemize}
 
@@ -95,5 +98,7 @@ Optimized for CPU execution using:
   \item x86 native instructions
   \end{itemize}
 \end{itemize}
+
+See also: \href{http://www.mesa3d.org/llvmpipe.html}{the Gallium llvmpipe driver}
 
 \end{frame}
