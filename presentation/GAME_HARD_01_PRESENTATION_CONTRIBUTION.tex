@@ -72,51 +72,29 @@ $200\times 200$ matrix multiplication using Direct3D DirectCompute:
 
 \end{frame}
 
-% METHODOLOGY
-%% \subsection{Methodology}
-%% \begin{frame}
-%% \frametitle{METHODOLOGY}
+% TEST CASES
+\subsection{Test Cases}
+\begin{frame}
+\frametitle{TEST CASES}
 
-%% {\small%
-%%   $200\times 200$ matrix multiplication using Direct3D DirectCompute.
-%%   \begin{columns}[T]
-%%     \begin{column}[T]{0.5\textwidth}
-%%       \textbf{Do:}
-%%       \begin{enumerate*}
-%%       \item Randomize matrices $A$ and $B$
-%%       \item Establish $AB=Ref$
-%%       \item Start high-precision timer
-%%       \item Calculate $AB=C$ using Direct3D
-%%       \item Stop high-precision timer
-%%       \item Verify $C$ and $Ref$ deviation
-%%       \end{enumerate*}
-%%     \end{column}
-%%     \begin{column}[T]{0.5\textwidth}
-%%       \textbf{Using:}
-%%       \begin{itemize}
-%%       \item Hardware Acceleration (GPU)
-%%       \item Reference Device Driver (CPU)
-%%       \item Microsoft WARP (CPU)
-%%       \end{itemize}
-%%     \end{column}
-%% \end{columns}}
+\begin{block}{1. Hardware-Acceleration}
+  \begin{itemize}
+  \item Execution on a modern video card
+  \item Maximising FLOPS output
+  \item First reference measurement for the performance of WARP
+  \end{itemize}
+\end{block}
+\noindent\rule{11cm}{0.4pt}
+\begin{block}{2. Software Rasterization}
+  \begin{itemize}
+  \item Traditional software rasterization using the reference device driver
+  \item Second reference measurement for the performance of WARP
+  \end{itemize}
+\end{block}
+\begin{block}{3. Windows Advanced Rasterization Platform}
+  \begin{itemize}
+  \item Software rendering using WARP
+  \end{itemize}
+\end{block}
 
-%% \vspace{0.5cm}{\small%
-%%   \begin{columns}[T]
-%%     \begin{column}[T]{0.5\textwidth}
-%%       \textbf{With Matrix mult. w. Thread Blocks:}
-%%       \begin{itemize}
-%%       \item DirectCompute kernel
-%%       \item Invoked once per matrix element
-%%       \end{itemize}
-%%     \end{column}
-%%     \begin{column}[T]{0.5\textwidth}
-%%       \textbf{With Matrix mult. w. Thread Blocks and Shared Memory:}
-%%       \begin{itemize}
-%%       \item Utilizes shared memory to cache matrices
-%%       \item Performed in blocks of $16\times 16$
-%%       \end{itemize}
-%%     \end{column}
-%% \end{columns}}
-
-%% \end{frame}
+\end{frame}
