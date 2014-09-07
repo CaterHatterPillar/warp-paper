@@ -12,9 +12,10 @@ if($num_args!=1) {
     help_and_exit();
 }
 
+system("gnuplot msswarp.gnuplot");
+
 $target=$ARGV[0];
 if($target eq "paper"){
-    system("gnuplot msswarp.gnuplot");
     chdir "paper/";
     system("pdflatex -shell-escape GAME_HARD_01.tex");
     system("bibtex web.aux");
