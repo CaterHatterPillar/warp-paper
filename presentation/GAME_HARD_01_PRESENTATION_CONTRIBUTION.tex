@@ -98,3 +98,45 @@ $200\times 200$ matrix multiplication using Direct3D DirectCompute:
 \end{block}
 
 \end{frame}
+
+% SOFTWARE
+\subsection{Software}
+\begin{frame}
+\frametitle{SOFTWARE}
+
+\begin{columns}[T]
+  \begin{column}{0.33\textwidth}
+    \textbf{matrixgen}\hfill$\rightarrow$\hfill
+    \begin{itemize}
+    \item Generates $A$ \& $B$
+    \item Establishes $Ref$
+    \item C$++$ and $C±±$~AMP
+    \end{itemize}
+  \end{column}
+  \begin{column}{0.33\textwidth}
+    \textbf{experiment}\hfill$\rightarrow$\hfill
+    \begin{itemize}
+    \item Produces $C$ using Direct3D
+    \item Performs $100$ tests for each scenario:
+      \begin{itemize}
+      \item Kernel
+      \item Acceleration
+      \end{itemize}
+    \item C$++$ and HLSL
+    \end{itemize}
+  \end{column}
+  \begin{column}{0.33\textwidth}
+    \textbf{analytics}
+    \begin{itemize}
+    \item Analyzes raw data
+    \item Compiles measurement average:
+      \begin{itemize}
+      \item Min/Max
+      \item Avg
+      \item StD
+      \end{itemize}
+    \end{itemize}
+  \end{column}
+\end{columns}
+
+\end{frame}
