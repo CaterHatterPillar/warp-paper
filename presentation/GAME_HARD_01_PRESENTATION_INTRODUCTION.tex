@@ -54,6 +54,7 @@
 \end{frame}
 
 % REFERENCE DEVICE DRIVER
+% The DirectX Reference Device Driver to the rescue!
 \subsection{Reference Device Driver}
 \begin{frame}
 \frametitle{REFERENCE DEVICE DRIVER}
@@ -79,12 +80,12 @@ The Reference Device Driver or Reference Rasterizer:
 
 \begin{itemize}
 \item Common method of verifying GPU workloads, such as computer graphics, by eliminating dependency to third-party drivers and hardware
-\item May also practical for the purposes of extracting additional debugging or profiling data
+\item May also be practical for the purposes of extracting additional debugging or profiling data
 \item Sometimes an unfortunate necessity on platforms lacking conformant hardware
   \begin{itemize}
+  \item Pre-silicon
   \item Server systems
   \item Virtual platforms
-  \item Pre-silicon
   \end{itemize}
 \item Often orders of magnitude too slow for complex applications
 \end{itemize}
@@ -110,8 +111,8 @@ Optimized for CPU execution using:
 \item Batch execution (possibly similar in concept to NVIDIA warps)
 \item JIT compilation:
   \begin{itemize}
-  \item SSE2 and SSE4.1 SIMD
   \item x86 native instructions
+  \item SSE2 and SSE4.1 SIMD
   \end{itemize}
 \end{itemize}
 
