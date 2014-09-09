@@ -2,16 +2,27 @@
 \section{Introduction}
 
 % GRAPHICS VERIFICATION
-% Developed Tile-Based Deferred Shading as part of project.
-% Quick description of what Tile-Based Deferred Shading is and what it's for.
-% Completed development on my system.
-% Cried out in joy to my collegues, having completed a major milestone.
-% Pushed to Git repository, the others enthuastically pulling.
-% Not functioning on the others' systems.
-% Turned out I was the only one with an AMD video card, the others all having NVIDIA.
-% Issue, visualized in images below, was caused by the AMD drivers being somewhat nicer in terms of synchronization issues.
-% (Note that the attached images aren't actually images of the problem, but picture somewhat what it looked like on NVIDIA systems. The images actually portray the effects of overriding the block-wise limit of pointlights inherent in the Tile-Based Deferred Shading solution).
-% Problem may have been detected if I'd used a reference driver for verification, to rid dependency to third-party drivers and hardware.
+% How to do notes in LaTeX Beamer:
+%\note[itemize]{
+%\item point 1
+%\item point 2
+%}
+% \note{Everything you want}
+
+%% \note{\textbf{GRAPHICS VERIFICATION}}
+%% \note{Main point: to get across that graphics verification is a good way of avoiding spending unplanned time on debugging issues believed to be solved, and that software rasterization may verify existing functionality independant of third-party drivers and hardware.}
+%% \note[itemize]{
+%% \item 1. Developed Tile-Based Deferred Shading as part of project.
+%% \item 2. Quick description of what Tile-Based Deferred Shading is and what it's for.
+%% \item 3. Completed development on my system.
+%% \item 4. Cried out in joy to my collegues, having completed a major milestone.
+%% \item 5. Pushed to Git repository, the others enthuastically pulling.
+%% \item 6. Not functioning on the others' systems.
+%% \item 7. Turned out I was the only one with an AMD video card, the others all having NVIDIA.
+%% \item 8. Issue, visualized in images below, was caused by the AMD drivers being somewhat more forgiving in terms of synchronization issues (note that the attached images aren't actually images of the problem, but picture somewhat what it looked like on NVIDIA systems. The images actually portray the effects of overriding the block-wise limit of pointlights inherent in the Tile-Based Deferred Shading solution).
+%% \item 9. Problem may have been detected if I'd used a reference driver for verification, to rid dependency to third-party drivers and hardware.
+%% }
+
 \subsection{Graphics Verification}
 \begin{frame}
 \frametitle{GRAPHICS VERIFICATION}
@@ -53,6 +64,25 @@
 
 \end{frame}
 
+% GRAPHICS SIMULATION
+\subsection{Graphics Simulation}
+\begin{frame}
+\frametitle{GRAPHICS SIMULATION}
+
+\begin{itemize}
+\item Common method of verifying GPU workloads, such as computer graphics, by eliminating dependency to third-party drivers and hardware
+\item May also be practical for the purposes of extracting additional debugging or profiling data
+\item Sometimes an unfortunate necessity on platforms lacking conformant hardware
+  \begin{itemize}
+  \item Pre-silicon
+  \item Server systems
+  \item Virtual platforms
+  \end{itemize}
+\item Often orders of magnitude too slow for complex applications
+\end{itemize}
+
+\end{frame}
+
 % REFERENCE DEVICE DRIVER
 % The DirectX Reference Device Driver to the rescue!
 \subsection{Reference Device Driver}
@@ -69,25 +99,6 @@ The Reference Device Driver or Reference Rasterizer:
   \item Demonstration purposes
   \end{itemize}
 \item Does feature some native instruction optimization, but all-in-all not intended for retail applications
-\end{itemize}
-
-\end{frame}
-
-% GRAPHICS SIMULATION
-\subsection{Graphics Simulation}
-\begin{frame}
-\frametitle{GRAPHICS SIMULATION}
-
-\begin{itemize}
-\item Common method of verifying GPU workloads, such as computer graphics, by eliminating dependency to third-party drivers and hardware
-\item May also be practical for the purposes of extracting additional debugging or profiling data
-\item Sometimes an unfortunate necessity on platforms lacking conformant hardware
-  \begin{itemize}
-  \item Pre-silicon
-  \item Server systems
-  \item Virtual platforms
-  \end{itemize}
-\item Often orders of magnitude too slow for complex applications
 \end{itemize}
 
 \end{frame}

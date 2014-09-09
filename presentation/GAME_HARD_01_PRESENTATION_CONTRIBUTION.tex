@@ -93,7 +93,7 @@ $200\times 200$ matrix multiplication using Direct3D DirectCompute:
 \end{block}
 \begin{block}{3. Windows Advanced Rasterization Platform}
   \begin{itemize}
-  \item Software rendering using WARP
+  \item Accelerated software rendering using WARP
   \end{itemize}
 \end{block}
 
@@ -155,6 +155,7 @@ $200\times 200$ matrix multiplication using Direct3D DirectCompute:
 }
 
 % RESULTS
+% Observation: the tiled floating point scenario, pictured in the visualization, feaures a larger standard deviation than its na\i ve counterpart.
 \subsection{Results}
 \begin{frame}
 \frametitle{RESULTS}
@@ -167,7 +168,7 @@ $200\times 200$ matrix multiplication using Direct3D DirectCompute:
     \begin{center}
       \begin{tabular}{r|r|r|r|}
         \cline{2-3}
-        & \multicolumn{1}{|c|}{1. Naïve} & \multicolumn{1}{|c|}{2. Tiled} \\ \hline
+        & \multicolumn{1}{|c|}{1. Na\"\i ve} & \multicolumn{1}{|c|}{2. Tiled} \\ \hline
         \multicolumn{1}{|l|}{Hard}     & \ah{hh1}{$1.16$}      & \ah{hf1}{\phantom{0000}$0.24$}\ah{spc}{}      & \ah{spc}{$-79.3\%$} \\ \hline \hline
         \multicolumn{1}{|l|}{Soft}     & \ah{vh2}{}\ah{hh2}{$11610.02$}        & \ah{hf2}{\phantom{0}$9866.40$}\ah{vh1}{}      & \ah{spc}{$-15.0\%$} \\ \hline
         \multicolumn{1}{|l|}{WARP}     & \ah{vf2}{}\phantom{000}\ah{hh3}{$15.31$}      & \ah{hf3}{\phantom{000}$18.97$}\ah{vf1}{}      & \ah{spc}{$+23.9\%$} \\ \hline
@@ -190,7 +191,7 @@ $200\times 200$ matrix multiplication using Direct3D DirectCompute:
     \begin{center}
       \begin{tabular}{r|r|r|r|}
         \cline{2-3}
-        & \multicolumn{1}{|c|}{1. Naïve} & \multicolumn{1}{|c|}{2. Tiled} \\ \hline
+        & \multicolumn{1}{|c|}{1. Na\"\i ve} & \multicolumn{1}{|c|}{2. Tiled} \\ \hline
         \multicolumn{1}{|l|}{Hard}     & \ah{hh1}{$0.77$}      & \ah{hf1}{\phantom{0000}$0.22$}\ah{spc}{}      & \ah{spc}{$-71.4\%$} \\ \hline \hline
         \multicolumn{1}{|l|}{Soft}     & \ah{vh1}{}\ah{hh2}{$10247.03$}        & \ah{hf2}{$10909.88$}\ah{vh2}{}        & \ah{spc}{$+\phantom{0}6.5\%$} \\ \hline
         \multicolumn{1}{|l|}{WARP}     & \ah{vf1}{}\phantom{000}\ah{hh3}{$14.08$}      & \ah{hf3}{\phantom{000}$17.44$}\ah{vf2}{}      & \ah{spc}{$+23.9\%$} \\ \hline
